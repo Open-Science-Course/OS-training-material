@@ -6,6 +6,8 @@
 
 Slides developed by Matthew J Grainger on the topic of data handling and curation for biodiversity data. 
 
-To render these slides please ![clone](https://resources.github.com/github-and-rstudio/) or download the repository and render the Data_handling_and_curation_from_raw_to_clean_data.qmd file. 
+To view these slides please [clone](https://resources.github.com/github-and-rstudio/) or download the repository. You can click on the Data_handling_and_curation_from_raw_to_clean.data.html file and choose "View in Web Browser" or render the Data_handling_and_curation_from_raw_to_clean_data.qmd file. 
+
+
 
 
