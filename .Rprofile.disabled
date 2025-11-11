@@ -1,0 +1,26 @@
+# Configure httpgd for vscode-R/Cursor to display plots in tabs
+# This only runs if httpgd is available, we're in an interactive session,
+# and not rendering a document (to avoid interfering with Quarto/R Markdown)
+if (interactive() && 
+    requireNamespace("httpgd", quietly = TRUE) &&
+    !nzchar(Sys.getenv("QUARTO_PROJECT_RENDER_ALL"))) {
+  
+  # Start httpgd server - vscode-R will automatically detect and use it
+  # Check if httpgd is already running first to avoid errors
+  tryCatch({
+    # Try to get the status - if it fails, httpgd isn't running
+    status <- httpgd::hgd_state()
+    if (!status$is_active) {
+      httpgd::hgd()
+    }
+  }, error = function(e) {
+    # If httpgd isn't running, start it
+    tryCatch({
+      httpgd::hgd()
+    }, error = function(e2) {
+      # Silently fail if httpgd can't start - don't break R startup
+      invisible(NULL)
+    })
+  })
+}
+
