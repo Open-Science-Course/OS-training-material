@@ -63,6 +63,8 @@ Guaranteed never to fail.
 
 ::: incremental
 -   Reduce code duplication: Don't repeat yourself
+-   Reduce code duplication: Don't repeat yourself
+-   Reduce code duplication: Don't repeat yourself
 -   Share between projects
 -   Share with others
 -   Promote better documentation

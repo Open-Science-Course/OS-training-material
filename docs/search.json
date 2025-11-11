@@ -1,262 +1,241 @@
 [
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#data-handling-curation",
-    "href": "OS_2024/dataHandling/dataHandling.html#data-handling-curation",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Data handling & curation",
-    "text": "Data handling & curation\nManaging the “data life-cycle” within and beyond a project.\n\ncreating data\norganising data\nmaintaining data"
+    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp",
+    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp",
+    "title": "Open Science: Tools and approaches",
+    "section": "The Data Management Plan (DMP)",
+    "text": "The Data Management Plan (DMP)"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#data-cleaning-vs-data-wrangling",
-    "href": "OS_2024/dataHandling/dataHandling.html#data-cleaning-vs-data-wrangling",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Data cleaning vs Data wrangling",
-    "text": "Data cleaning vs Data wrangling\nData cleaning is the process of removing incorrect, duplicate, or otherwise erroneous data from a dataset\nData wrangling changing the format to make it more useful for your analysis"
+    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp-1",
+    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp-1",
+    "title": "Open Science: Tools and approaches",
+    "section": "The Data Management Plan (DMP)",
+    "text": "The Data Management Plan (DMP)\nA document that describe your research data and how you plan to handle them\n\nHow is your data collected\nHow is your data stored\nWho owns the data\nHow is the data going to be shared and archived\nAre there any legal or ethical (e.g. GDPR) issues?\nVolume of data\nCosts associated with storing /archiving – and who is paying"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#some-r-functions-that-help-data-cleaning",
-    "href": "OS_2024/dataHandling/dataHandling.html#some-r-functions-that-help-data-cleaning",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Some R Functions that help data cleaning",
-    "text": "Some R Functions that help data cleaning\n{janitor}\n\nlibrary(tidyverse) \nlibrary(palmerpenguins) \nlibrary(janitor)  \npalmerpenguins::penguins_raw |&gt;  names() \n\n [1] \"studyName\"           \"Sample Number\"       \"Species\"            \n [4] \"Region\"              \"Island\"              \"Stage\"              \n [7] \"Individual ID\"       \"Clutch Completion\"   \"Date Egg\"           \n[10] \"Culmen Length (mm)\"  \"Culmen Depth (mm)\"   \"Flipper Length (mm)\"\n[13] \"Body Mass (g)\"       \"Sex\"                 \"Delta 15 N (o/oo)\"  \n[16] \"Delta 13 C (o/oo)\"   \"Comments\"           \n\n\n\njanitor::clean_names(palmerpenguins::penguins_raw) |&gt;  names()\n\n [1] \"study_name\"        \"sample_number\"     \"species\"          \n [4] \"region\"            \"island\"            \"stage\"            \n [7] \"individual_id\"     \"clutch_completion\" \"date_egg\"         \n[10] \"culmen_length_mm\"  \"culmen_depth_mm\"   \"flipper_length_mm\"\n[13] \"body_mass_g\"       \"sex\"               \"delta_15_n_o_oo\"  \n[16] \"delta_13_c_o_oo\"   \"comments\""
+    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp-2",
+    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp-2",
+    "title": "Open Science: Tools and approaches",
+    "section": "The Data Management Plan (DMP)",
+    "text": "The Data Management Plan (DMP)\nA DMP usually start out with a template:\n\nEasyDMP: [here]\nSikt: [here]"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-1",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-1",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "{dplyr}\n\nclean_penguins&lt;-janitor::clean_names(palmerpenguins::penguins_raw)  \n\ndplyr::glimpse(clean_penguins)\n\nRows: 344\nColumns: 17\n$ study_name        &lt;chr&gt; \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708…\n$ sample_number     &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…\n$ species           &lt;chr&gt; \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Pengu…\n$ region            &lt;chr&gt; \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"A…\n$ island            &lt;chr&gt; \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", …\n$ stage             &lt;chr&gt; \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, …\n$ individual_id     &lt;chr&gt; \"N1A1\", \"N1A2\", \"N2A1\", \"N2A2\", \"N3A1\", \"N3A2\", \"N4A…\n$ clutch_completion &lt;chr&gt; \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"No\", \"No\"…\n$ date_egg          &lt;date&gt; 2007-11-11, 2007-11-11, 2007-11-16, 2007-11-16, 200…\n$ culmen_length_mm  &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ culmen_depth_mm   &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;dbl&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;chr&gt; \"MALE\", \"FEMALE\", \"FEMALE\", NA, \"FEMALE\", \"MALE\", \"F…\n$ delta_15_n_o_oo   &lt;dbl&gt; NA, 8.94956, 8.36821, NA, 8.76651, 8.66496, 9.18718,…\n$ delta_13_c_o_oo   &lt;dbl&gt; NA, -24.69454, -25.33302, NA, -25.32426, -25.29805, …\n$ comments          &lt;chr&gt; \"Not enough blood for isotopes.\", NA, NA, \"Adult not…"
+    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis",
+    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis",
+    "title": "Open Science: Tools and approaches",
+    "section": "Preregistration of your hypothesis",
+    "text": "Preregistration of your hypothesis"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-2",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-2",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "{skimr}\n\nout&lt;-skimr::skim(palmerpenguins::penguins_raw) \n\nout\n\n\nData summary\n\n\nName\npalmerpenguins::penguins_…\n\n\nNumber of rows\n344\n\n\nNumber of columns\n17\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n9\n\n\nDate\n1\n\n\nnumeric\n7\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\nstudyName\n0\n1.00\n7\n7\n0\n3\n0\n\n\nSpecies\n0\n1.00\n33\n41\n0\n3\n0\n\n\nRegion\n0\n1.00\n6\n6\n0\n1\n0\n\n\nIsland\n0\n1.00\n5\n9\n0\n3\n0\n\n\nStage\n0\n1.00\n18\n18\n0\n1\n0\n\n\nIndividual ID\n0\n1.00\n4\n6\n0\n190\n0\n\n\nClutch Completion\n0\n1.00\n2\n3\n0\n2\n0\n\n\nSex\n11\n0.97\n4\n6\n0\n2\n0\n\n\nComments\n290\n0.16\n18\n68\n0\n10\n0\n\n\n\nVariable type: Date\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nmedian\nn_unique\n\n\nDate Egg\n0\n1\n2007-11-09\n2009-12-01\n2008-11-09\n50\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\nSample Number\n0\n1.00\n63.15\n40.43\n1.00\n29.00\n58.00\n95.25\n152.00\n▇▇▆▅▃\n\n\nCulmen Length (mm)\n2\n0.99\n43.92\n5.46\n32.10\n39.23\n44.45\n48.50\n59.60\n▃▇▇▆▁\n\n\nCulmen Depth (mm)\n2\n0.99\n17.15\n1.97\n13.10\n15.60\n17.30\n18.70\n21.50\n▅▅▇▇▂\n\n\nFlipper Length (mm)\n2\n0.99\n200.92\n14.06\n172.00\n190.00\n197.00\n213.00\n231.00\n▂▇▃▅▂\n\n\nBody Mass (g)\n2\n0.99\n4201.75\n801.95\n2700.00\n3550.00\n4050.00\n4750.00\n6300.00\n▃▇▆▃▂\n\n\nDelta 15 N (o/oo)\n14\n0.96\n8.73\n0.55\n7.63\n8.30\n8.65\n9.17\n10.03\n▃▇▆▅▂\n\n\nDelta 13 C (o/oo)\n13\n0.96\n-25.69\n0.79\n-27.02\n-26.32\n-25.83\n-25.06\n-23.79\n▆▇▅▅▂"
+    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#prergistration-of-your-hypothesis",
+    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#prergistration-of-your-hypothesis",
+    "title": "Open Science: Tools and approaches",
+    "section": "Prergistration of your hypothesis",
+    "text": "Prergistration of your hypothesis\nUseful to distinguish between exploratory and confirmatory science\n\n\n\n\n\n\nSee Nilsen, Bowler, and Linnell (2020)"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-3",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-3",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "{dplyr}\n\n#Deduplication  \ndata&lt;-tibble(Day=c(\"Monday\", \"Tuesday\",\"Wednesday\", \"Wednesday\"), \n             Person=c(\"Becks\", \"Amy\", \"Matt\", \"Matt\"))\ndata\n\n# A tibble: 4 × 2\n  Day       Person\n  &lt;chr&gt;     &lt;chr&gt; \n1 Monday    Becks \n2 Tuesday   Amy   \n3 Wednesday Matt  \n4 Wednesday Matt  \n\ndata |&gt; dplyr::distinct()\n\n# A tibble: 3 × 2\n  Day       Person\n  &lt;chr&gt;     &lt;chr&gt; \n1 Monday    Becks \n2 Tuesday   Amy   \n3 Wednesday Matt"
+    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis-1",
+    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis-1",
+    "title": "Open Science: Tools and approaches",
+    "section": "Preregistration of your hypothesis",
+    "text": "Preregistration of your hypothesis\n\n\n\n\n\nSee Nosek et al. (2018)"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-4",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-4",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "{naniar}\n\n# creating some data with missing values\nmissing_penguins&lt;-missMethods::delete_MCAR(clean_penguins, 0.3) \n\n\nmissing_penguins |&gt; \nnaniar::vis_miss()"
+    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis-2",
+    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis-2",
+    "title": "Open Science: Tools and approaches",
+    "section": "Preregistration of your hypothesis",
+    "text": "Preregistration of your hypothesis\nA document that describe your research hypotheses and how you plan to test them\n\nA clear description of your hypothesis / hypotheses\nA clear description of how you plan to collect data to test them\nA clear description of how you plan to test them statistically\nA clear description of how you plan to report the results"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#missing-data",
-    "href": "OS_2024/dataHandling/dataHandling.html#missing-data",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Missing data",
-    "text": "Missing data\nMissing data is normally a problem. Typically as ecologists we sweep missing data under the carpet by using a “complete case” approach to data analysis."
+    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#registered-reports-taking-it-one-step-further",
+    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#registered-reports-taking-it-one-step-further",
+    "title": "Open Science: Tools and approaches",
+    "section": "Registered reports: taking it one step further",
+    "text": "Registered reports: taking it one step further"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-5",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-5",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "If you have ever written some code like this:\n\n# na.omit() \ndf &lt;- na.omit(df)  \n# complete.cases() \ndf &lt;- df[complete.cases(df), ]   \n# rowSums() \ndf &lt;- df[rowSums(is.na(df)) == 0, ]   \n# drop_na() \ndf &lt;- df  |&gt;  tidyr::drop_na()\n\nyou are removing missing data (NAs) from your dataset."
+    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#registered-reports-taking-it-one-step-further-1",
+    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#registered-reports-taking-it-one-step-further-1",
+    "title": "Open Science: Tools and approaches",
+    "section": "Registered reports: taking it one step further",
+    "text": "Registered reports: taking it one step further\nA per-reviewed document (report) that clearly outline the hypotheses, data collection, data analyses and reporting prior to conducting the research\n\nExtends the pre-registration discussed so far because the report is also per-reviewed\nAfter revision (or repeated revisions) the report is de-facto accepted for publication by the journal\nOffered by several journals [e.g. Ecological Solutions and Evidence: Registered Reports Author Guidelines (wiley.com)"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#why-is-this-a-problem",
-    "href": "OS_2024/dataHandling/dataHandling.html#why-is-this-a-problem",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Why is this a problem?",
-    "text": "Why is this a problem?\nBy throwing away potentially useful data (only including those rows without a NA in them) you reduce the information you are working with, reduce statistical power and introduce selection bias (invalidating any assumption of randomisation)."
+    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#data-papers",
+    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#data-papers",
+    "title": "Open Science: Tools and approaches",
+    "section": "Data papers",
+    "text": "Data papers\nA data paper is a textual (extended) description of your data\n\nIt is a per-reviewed publication describing a data set, published in a journal\nThe main purpose of the data paper is to document data, not to solve new research questions\nA data paper can increase visibility and ensure you get credit for the data you share\nThe paper link to the data, but you still need to find a suitable place to share (publish) your data\nExample: Data papers (gbif.org)"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#different-types-of-missingness",
-    "href": "OS_2024/dataHandling/dataHandling.html#different-types-of-missingness",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Different types of missingness",
-    "text": "Different types of missingness\nThere are three broad categories of missing data:\n\nMCAR - missingness is not related to any measured or unmeasured variables\nMAR - missingness is not random but related to other variables and can be accounted for by another complete variable\nMNAR - missingness is related to the missing data itself (there is a systematic reason why the data are missing within a particular variable)"
+    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#references",
+    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#references",
+    "title": "Open Science: Tools and approaches",
+    "section": "References",
+    "text": "References\n\n\n\n\nNilsen, Erlend B., Diana E. Bowler, and John D. C. Linnell. 2020. “Exploratory and Confirmatory Research in the Open Science Era.” Journal of Applied Ecology 57 (4): 842–47. https://doi.org/10.1111/1365-2664.13571.\n\n\nNosek, Brian A., Charles R. Ebersole, Alexander C. DeHaven, and David T. Mellor. 2018. “The Preregistration Revolution.” Proceedings of the National Academy of Sciences 115 (11): 2600–2606. https://doi.org/10.1073/pnas.1708274114."
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-6",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-6",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "Imagine that we are measuring rainfall at weather stations across Norway every year.\n\n\nTable 1: Missing data patterns - MCAR\n\n\n\n\n(a) Complete data\n\nstation number\nrainfall\n\n\n\n1\n30\n\n\n2\n150\n\n\n3\n75\n\n\n4\n250\n\n\n5\n55\n\n\n\n\n\n\n(b) MCAR\n\nstation number\nrainfall\n\n\n\n1\n30\n\n\n2\n\n\n\n3\n\n\n\n4\n250\n\n\n5\n55"
+    "objectID": "functions.html#dont-worry-if-you-cannot",
+    "href": "functions.html#dont-worry-if-you-cannot",
+    "title": "Writing Functions in R",
+    "section": "Don’t worry if you cannot",
+    "text": "Don’t worry if you cannot\n\nYou can\nuse a \\ instead"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-7",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-7",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "Table 2: Complete data\n\nstation number\nrainfall\n\n\n\n1\n30\n\n\n2\n150\n\n\n3\n75\n\n\n4\n250\n\n\n5\n55\n\n\n\n\n\n\nTable 3: MAR\n\nstation number\nrainfall\n\n\n\n1\n\n\n\n2\n\n\n\n3\n\n\n\n4\n250\n\n\n5\n55\n\n\n\n\n\n\n\nMissing data patterns - MAR"
+    "objectID": "functions.html#my-first-worst-function",
+    "href": "functions.html#my-first-worst-function",
+    "title": "Writing Functions in R",
+    "section": "My first worst function",
+    "text": "My first worst function\n\nf &lt;- function(){}\nf()\n\nTakes no arguments. Does not work. Returns nothing.\nGuaranteed never to fail.\n\n\nf is a terrible name for a function - use a descriptive name\nkeyword function used to define functions\n\n() contain all the arguments separated by commas\n\n{} contain the body of the function"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-8",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-8",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "Table 4: Complete data\n\nstation number\nrainfall\n\n\n\n1\n30\n\n\n2\n150\n\n\n3\n75\n\n\n4\n250\n\n\n5\n55\n\n\n\n\n\n\nTable 5: MNAR\n\nstation number\nrainfall\n\n\n\n1\n30\n\n\n2\n\n\n\n3\n75\n\n\n4\n\n\n\n5\n55\n\n\n\n\n\n\n\nMissing data patterns - MNAR"
+    "objectID": "functions.html#why-write-functions",
+    "href": "functions.html#why-write-functions",
+    "title": "Writing Functions in R",
+    "section": "Why write functions?",
+    "text": "Why write functions?\n\nReduce code duplication: Don’t repeat yourself\nReduce code duplication: Don’t repeat yourself\nReduce code duplication: Don’t repeat yourself\nShare between projects\nShare with others\nPromote better documentation\nEasier to test\nEasier to debug"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#what-effect-does-missingness-have",
-    "href": "OS_2024/dataHandling/dataHandling.html#what-effect-does-missingness-have",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "What effect does missingness have?",
-    "text": "What effect does missingness have?\n\nlibrary(tidyverse, quietly = TRUE) \nlibrary(missMethods, quietly = TRUE) \nlibrary(palmerpenguins)\n\n#create datasets with levels missingness\n\npenguins_complete&lt;-penguins |&gt; \n  drop_na()\n\nmiss_penguins_MCAR&lt;-\n  missMethods::delete_MCAR(penguins_complete, \n                                             0.3, \"flipper_length_mm\") \n# create a pattern of missingness with censoring \n#(missing value in flipper_length \n#if body_mass is below 30% quantile of body_mass)\n\nmiss_penguins_MAR&lt;-\n  missMethods::delete_MAR_censoring(penguins_complete,\n                                                     0.3, \"flipper_length_mm\", \"body_mass_g\") \n# create a pattern of missingness with censoring \n#(missing value in flipper_length \n#if flipper_length is below 30% quantile) \n\nmiss_penguins_MNAR&lt;-\n  missMethods::delete_MNAR_censoring(penguins_complete, \n                                                       0.3, \"flipper_length_mm\")\n\nall_data&lt;-bind_rows(\"Full\"=penguins_complete, \n                    \"MCAR\"= miss_penguins_MCAR,\n                    \"MAR\"= miss_penguins_MAR,\n                    \"MNAR\"=miss_penguins_MNAR, \n                    .id=\"Missingness\")"
+    "objectID": "functions.html#dont-repeat-yourself-dry",
+    "href": "functions.html#dont-repeat-yourself-dry",
+    "title": "Writing Functions in R",
+    "section": "Don’t repeat yourself DRY",
+    "text": "Don’t repeat yourself DRY\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\npenguins |&gt; \n  filter(species == \"Gentoo\") |&gt; \n  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Body mass g\", y = \"Bill length mm\", title = \"Gentoo\")\n\npenguins |&gt; \n  filter(species == \"Adelie\") |&gt; \n  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Body mass g\", y = \"Bill length mm\", title = \"Gentoo\")"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#what-can-we-do-about-missing-data",
-    "href": "OS_2024/dataHandling/dataHandling.html#what-can-we-do-about-missing-data",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "What can we do about missing data?",
-    "text": "What can we do about missing data?\nWith MCAR and MAR we can use multiple imputation techniques"
+    "objectID": "functions.html#identify-arguments",
+    "href": "functions.html#identify-arguments",
+    "title": "Writing Functions in R",
+    "section": "Identify arguments",
+    "text": "Identify arguments\nGeneral – Specific functions\n\nGeneral - more arguments, more flexible, more complex\nSpecific - fewer arguments, less flexible, simpler\n\n\npenguins |&gt; \n  filter(species == \"Adelie\") |&gt; \n  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Body mass g\", y = \"Bill length mm\", title = \"Gentoo\")"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-12",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-12",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "# Load mice\nlibrary(mice, quietly = TRUE)\n\n# Set seed for reproducibility\nset.seed(123)\n\n# Simulate data: location, year, count\nlocations &lt;- rep(1:5, each = 5)  # Assuming 5 locations\nyears &lt;- rep(2009:2023, 5)  # Assuming data for 5 years\ncount &lt;- round(rpois(25, lambda = 20))  # Simulated count data\n\n# Create a dataframe\ndata &lt;- data.frame(Location = locations, Year = years, Count = count)\n\n# Introduce missingness - Missing completely at random (MCAR)\nprop_missing &lt;- 0.2  # Example: 20% missingness\nmissing_indices &lt;- sample(1:nrow(data), prop_missing * nrow(data))\ndata$Count[missing_indices] &lt;- NA\n\n# Check the structure of the data\nstr(data)\n\n'data.frame':   75 obs. of  3 variables:\n $ Location: int  1 1 1 1 1 2 2 2 2 2 ...\n $ Year    : int  2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 ...\n $ Count   : num  17 25 12 20 27 NA 14 NA 25 21 ..."
+    "objectID": "functions.html#sanity-check-inputs",
+    "href": "functions.html#sanity-check-inputs",
+    "title": "Writing Functions in R",
+    "section": "Sanity check inputs",
+    "text": "Sanity check inputs\nMake your functions idiot proof.\n\narea_square &lt;- function(side = 1) {\n  if (! is.numeric(side)) {\n    stop(\"side must be numeric\")\n  }\n  if (side &lt;= 0) {\n    stop(\"side must be positive\")\n  }\n  side^2\n}  \narea_square(\"fish\")\n\nError in area_square(\"fish\"): side must be numeric\n\narea_square(-1)\n\nError in area_square(-1): side must be positive"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-13",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-13",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "When we impute the missing data we use 5 replicates and then take the mean of all 5 datasets.\n\n# Impute missing data using MICE\nimp &lt;- mice(data, m = 5, method = 'pmm', seed = 500)\n\n\n iter imp variable\n  1   1  Count\n  1   2  Count\n  1   3  Count\n  1   4  Count\n  1   5  Count\n  2   1  Count\n  2   2  Count\n  2   3  Count\n  2   4  Count\n  2   5  Count\n  3   1  Count\n  3   2  Count\n  3   3  Count\n  3   4  Count\n  3   5  Count\n  4   1  Count\n  4   2  Count\n  4   3  Count\n  4   4  Count\n  4   5  Count\n  5   1  Count\n  5   2  Count\n  5   3  Count\n  5   4  Count\n  5   5  Count"
+    "objectID": "functions.html#keep-it-simple",
+    "href": "functions.html#keep-it-simple",
+    "title": "Writing Functions in R",
+    "section": "Keep it Simple",
+    "text": "Keep it Simple\nOne function - one job\n\ncomplex &lt;- function(arg1, arg2, ...) { # bad\n  # complex code to import data\n  # complex code to clean data\n  # complex code to model code\n  # complex code to plot model\n}\n\nLarge complex function\n\ndifficult to understand\nmany arguments\ndifficult to test"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#sem-instead-of-lm",
-    "href": "OS_2024/dataHandling/dataHandling.html#sem-instead-of-lm",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "sem() instead of lm()",
-    "text": "sem() instead of lm()\nUsing a Structured Equation Model (SEM) we can run a simple linear regression.\n\nlibrary(lavaan)\n# we will use the Iris dataset for this example\ncomplete_model&lt;-lm(Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length, data=iris)\n\niris_MCAR&lt;-missMethods::delete_MCAR(iris, 0.3, \"Sepal.Width\")\n\nmiss_model1&lt;-lm(Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length, data=iris_MCAR)\n\n\n\n\n=====================================================================\n                                   Dependent variable:               \n                    -------------------------------------------------\n                                       Petal.Width                   \n                              (1)                      (2)           \n---------------------------------------------------------------------\nSepal.Length               -0.207***                 -0.187**        \n                            (0.048)                  (0.057)         \nSepal.Width                 0.223***                 0.219***        \n                            (0.049)                  (0.057)         \nPetal.Length                0.524***                 0.516***        \n                            (0.024)                  (0.029)         \nConstant                     -0.240                   -0.315         \n                            (0.178)                  (0.215)         \n---------------------------------------------------------------------\nObservations                  150                      105           \nR2                           0.938                    0.931          \nAdjusted R2                  0.937                    0.929          \nResidual Std. Error     0.192 (df = 146)         0.204 (df = 101)    \nF Statistic         734.389*** (df = 3; 146) 454.577*** (df = 3; 101)\n=====================================================================\nNote:                                   *p&lt;0.05; **p&lt;0.01; ***p&lt;0.001"
+    "objectID": "functions.html#break-into-smaller-functions",
+    "href": "functions.html#break-into-smaller-functions",
+    "title": "Writing Functions in R",
+    "section": "Break into smaller functions",
+    "text": "Break into smaller functions\n\n# Better\nimport_fun &lt;- function(arg1) {\n  # complex code to import data\n}\n  \nclean_fun &lt;- function(.data) {\n  # complex code to clean data\n}  \n\nmodel_fun &lt;- function(.data_clean) {\n  # complex code to model code\n}\n\nplot_fun &lt;- function(.data_clean) {\n  # complex code to plot model\n}    \n  \ncomplex &lt;- function(arg1, arg2, ...) { \n  .data &lt;- import_fun(arg1)\n  .data_clean &lt;- clean_fun(.data)\n  mod &lt;- model_fun(.data_clean)\n  plot &lt;- plot_fun(.data_clean)\n  list(mod = mod, plot = plot)\n}"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-15",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-15",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "miss_model2 &lt;- sem('Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length', data=iris_MCAR, missing=\"ML\")\nsummary(miss_model2)\n\nlavaan 0.6-19 ended normally after 1 iteration\n\n  Estimator                                         ML\n  Optimization method                           NLMINB\n  Number of model parameters                         5\n\n                                                  Used       Total\n  Number of observations                           105         150\n  Number of missing patterns                         1            \n\nModel Test User Model:\n                                                      \n  Test statistic                                 0.000\n  Degrees of freedom                                 0\n\nParameter Estimates:\n\n  Standard errors                             Standard\n  Information                                 Observed\n  Observed information based on                Hessian\n\nRegressions:\n                   Estimate  Std.Err  z-value  P(&gt;|z|)\n  Petal.Width ~                                       \n    Sepal.Length     -0.187    0.056   -3.344    0.001\n    Sepal.Width       0.219    0.056    3.945    0.000\n    Petal.Length      0.516    0.028   18.133    0.000\n\nIntercepts:\n                   Estimate  Std.Err  z-value  P(&gt;|z|)\n   .Petal.Width      -0.315    0.211   -1.493    0.135\n\nVariances:\n                   Estimate  Std.Err  z-value  P(&gt;|z|)\n   .Petal.Width       0.040    0.006    7.246    0.000\n\n\nAdding the argument ‘missing = “ML”’ to the sem() function estimates a likelihood function for each row based on the variables that are present so that all the available data are used."
+    "objectID": "functions.html#functions-using-tidyverse",
+    "href": "functions.html#functions-using-tidyverse",
+    "title": "Writing Functions in R",
+    "section": "Functions using tidyverse",
+    "text": "Functions using tidyverse\nTidyverse is fantastic for interactive analyses.\nBit complex with functions.\n\nfilter_penguins &lt;- function(.data, species) {\n  .data |&gt; \n    filter(species == species)\n}\n  \nfilter_penguins(penguins, \"Gentoo\")  \n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nDo you need to use tidyverse?\n\nreducing the number of dependencies is good"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#data-validation",
-    "href": "OS_2024/dataHandling/dataHandling.html#data-validation",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Data validation",
-    "text": "Data validation\n\nlibrary(data.validator)  \nreport &lt;- data_validation_report()  \n\nbetween &lt;- function(a, b) {\n  function(x) { a &lt;= x & x &lt;= b }\n}\n\nvalidate(iris, name = \"Verifying flower dataset\") |&gt; \n  validate_if(Sepal.Length &gt; 0, description = \"Sepal length is greater than 0\") |&gt; \n  validate_cols(between(0, 4), Sepal.Width, description = \"Sepal width is between 0 and 4\") |&gt; \n  add_results(report)\n\nprint(report)\n\nValidation summary: \n Number of successful validations: 1\n Number of validations with warnings: 0\n Number of failed validations: 1\n\nAdvanced view: \n\n\n|table_name               |description                    |type    | total_violations|\n|:------------------------|:------------------------------|:-------|----------------:|\n|Verifying flower dataset |Sepal length is greater than 0 |success |               NA|\n|Verifying flower dataset |Sepal width is between 0 and 4 |error   |                3|"
+    "objectID": "functions.html#brace-brace",
+    "href": "functions.html#brace-brace",
+    "title": "Writing Functions in R",
+    "section": "brace brace",
+    "text": "brace brace\n\nfilter_penguins &lt;- function(.data, species) {\n  .data |&gt; \n    filter(species == {{species}})\n}\n  \nfilter_penguins(penguins, \"Gentoo\")  \n\n# A tibble: 124 × 8\n   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Gentoo  Biscoe           46.1          13.2               211        4500\n 2 Gentoo  Biscoe           50            16.3               230        5700\n 3 Gentoo  Biscoe           48.7          14.1               210        4450\n 4 Gentoo  Biscoe           50            15.2               218        5700\n 5 Gentoo  Biscoe           47.6          14.5               215        5400\n 6 Gentoo  Biscoe           46.5          13.5               210        4550\n 7 Gentoo  Biscoe           45.4          14.6               211        4800\n 8 Gentoo  Biscoe           46.7          15.3               219        5200\n 9 Gentoo  Biscoe           43.3          13.4               209        4400\n10 Gentoo  Biscoe           46.8          15.4               215        5150\n# ℹ 114 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-16",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-16",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "print(report)\n\nValidation summary: \n Number of successful validations: 1\n Number of validations with warnings: 0\n Number of failed validations: 1\n\nAdvanced view: \n\n\n|table_name               |description                    |type    | total_violations|\n|:------------------------|:------------------------------|:-------|----------------:|\n|Verifying flower dataset |Sepal length is greater than 0 |success |               NA|\n|Verifying flower dataset |Sepal width is between 0 and 4 |error   |                3|"
+    "objectID": "functions.html#and-on-the-left-hand-side",
+    "href": "functions.html#and-on-the-left-hand-side",
+    "title": "Writing Functions in R",
+    "section": "And on the left hand side",
+    "text": "And on the left hand side\n\nfilter_penguins &lt;- function(.data, column, value, new_col) {\n  .data |&gt; \n    filter({{column}} == {{value}}) |&gt; \n    mutate({{new_col}} := mean(body_mass_g)) # := instead of =\n  \n}\n  \nfilter_penguins(penguins, island, \"Dream\", island_mean)  \n\n# A tibble: 124 × 9\n   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Dream            39.5          16.7               178        3250\n 2 Adelie  Dream            37.2          18.1               178        3900\n 3 Adelie  Dream            39.5          17.8               188        3300\n 4 Adelie  Dream            40.9          18.9               184        3900\n 5 Adelie  Dream            36.4          17                 195        3325\n 6 Adelie  Dream            39.2          21.1               196        4150\n 7 Adelie  Dream            38.8          20                 190        3950\n 8 Adelie  Dream            42.2          18.5               180        3550\n 9 Adelie  Dream            37.6          19.3               181        3300\n10 Adelie  Dream            39.8          19.1               184        4650\n# ℹ 114 more rows\n# ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, island_mean &lt;dbl&gt;"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#messy-data",
-    "href": "OS_2024/dataHandling/dataHandling.html#messy-data",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Messy data",
-    "text": "Messy data\nLook at the messy data dataset. How would you go about cleaning this dataset?\n\nmessy_data &lt;- readRDS(here::here(\"OS_2024/dataHandling/data/messy_data.RDS\")) \n\nmessy_data |&gt; data.table::data.table() \n\n           Date    SEX      age    Species Name       lat      lon count\n         &lt;char&gt; &lt;char&gt;   &lt;char&gt;          &lt;char&gt;     &lt;num&gt;    &lt;num&gt; &lt;int&gt;\n  1: 2023/02/01   male    Adult    Lagopus matu  9.123826 62.92628     5\n  2:   02/02/23 Female Juvenile    Logopus muta  7.836517 61.70676     9\n  3: 2023/02/01   male        J    Logopus muta  9.387262 63.84034    15\n  4: 01-01-2023 female    ADULT Lagopus lagopus  9.609423 61.06334    14\n  5: 01-01-2023   Male    ADULT    Lagopus matu  8.531654 63.44823    10\n  6: 2023-02-01   Male        A    Lagopus muta 10.369053 62.60819    10\n  7:   02/02/23 FEMALE JUVENILE    Lagopus muta  9.297162 62.71758    11\n  8:   02-01-23 FEMALE    Adult Lagopus lagopus  6.479778 61.59151    15\n  9: 2023-02-01 female Juvenile    Lagopus muta  7.879991 63.10879     4\n 10:   02/02/23   MALE JUVENILE    Lagopus muta  6.794386 62.41039    14\n 11: 2023/02/01 Female    ADULT    Lagopus matu 10.075820 62.14845     6\n 12:   02-01-23   MALE        J Lagopas lagopus  9.368355 64.29196    13\n 13: 2023/02/01 Female    ADULT    Lagopus matu 10.933222 63.08134     8\n 14: 01-01-2023   Male        A    Logopus muta  9.508031 61.63579     7\n 15:   02/02/23   MALE JUVENILE    Logopus muta 10.925062 62.59583     4\n 16:   02/02/23 female        A Lagopus lagopus  9.279532 62.91511    11\n 17:   02/02/23   male        J Lagopus lagopus  9.139805 65.96236    10\n 18: 2023-02-01   male Juvenile Lagopas lagopus 10.119368 62.39573    15\n 19:   02-01-23   MALE    Adult    Lagopus matu  7.847859 64.10893    10\n 20: 2023-02-01   male JUVENILE    Lagopus muta 10.732284 64.42712    13\n 21: 2023/02/01 Female        A Lagopas lagopus  8.541997 62.14247    14\n 22:   02/02/23   male        J    Logopus muta  9.220419 62.62880    13\n 23:   02-01-23 female JUVENILE Lagopus lagopus  9.624997 63.91689    13\n 24: 01-01-2023 female    Adult Lagopas lagopus  8.769459 62.61416     9\n 25: 01-01-2023 FEMALE    ADULT    Lagopus matu  9.011462 64.40237     2\n 26:   02-01-23   MALE    ADULT Lagopas lagopus  8.343305 63.35766    19\n 27: 2023/02/01   Male JUVENILE Lagopus lagopus  7.015809 62.97256    10\n 28: 2023-02-01   MALE    ADULT Lagopas lagopus  7.249466 63.64190     5\n 29:   02/02/23 FEMALE    Adult Lagopas lagopus  9.762441 61.59733     6\n 30: 2023/02/01 Female Juvenile Lagopas lagopus  9.081167 62.09558     6\n 31: 2023/02/01   MALE JUVENILE    Logopus muta  8.544149 64.01272    15\n 32: 2023/02/01 FEMALE JUVENILE Lagopas lagopus  9.115873 64.69849     9\n 33: 01-01-2023   male    ADULT    Lagopus matu  7.281479 63.76351    12\n 34: 2023/02/01 female JUVENILE    Lagopus muta 10.688551 63.98931    15\n 35:   02-01-23   Male Juvenile Lagopus lagopus  9.927145 62.94457     7\n 36:   02-01-23   male Juvenile    Logopus muta  8.498186 62.40878     9\n 37:   02-01-23 female Juvenile    Lagopus matu  8.993657 64.06921     0\n 38: 2023-02-01 female    ADULT    Logopus muta  8.400518 63.67579     3\n 39: 2023/02/01   Male    ADULT    Lagopus matu  8.671143 63.79903    18\n 40: 01-01-2023 female        J    Lagopus matu  9.794615 61.83442     5\n 41: 2023/02/01   MALE        A    Logopus muta  7.662123 63.20559    18\n 42: 01-01-2023   male        A    Logopus muta  7.971045 64.32591    15\n 43: 01-01-2023 female        J    Lagopus matu  8.777006 62.43949    11\n 44:   02/02/23   Male Juvenile    Lagopus muta  8.228000 62.71882    16\n 45: 01-01-2023 Female        J    Lagopus muta  8.912136 61.42190     5\n 46: 01-01-2023   MALE Juvenile    Lagopus muta 10.286843 62.89537     7\n 47: 2023/02/01   male    Adult    Logopus muta  9.195381 61.35946     6\n 48:   02-01-23 Female        J    Lagopus matu  8.801430 62.92860     2\n 49:   02/02/23 female        J Lagopas lagopus 11.148595 63.51963    10\n 50:   02/02/23 female    ADULT Lagopas lagopus  7.861651 62.37019    12\n 51: 2023-02-01 female        A    Lagopus muta  9.238828 62.88834     5\n 52: 2023/02/01 female JUVENILE    Logopus muta  9.126381 63.92296    13\n 53:   02-01-23 female Juvenile Lagopas lagopus 10.303237 62.86576     5\n 54: 01-01-2023 female        A Lagopas lagopus  8.745229 62.17313    18\n 55:   02-01-23 female        A    Logopus muta  8.691021 62.10421     6\n 56:   02/02/23 female JUVENILE Lagopas lagopus  9.314176 62.15080    15\n 57: 01-01-2023 Female Juvenile    Logopus muta  7.122930 62.32509    11\n 58: 2023-02-01 Female        A Lagopas lagopus  9.117661 61.81606    18\n 59: 01-01-2023   male        A Lagopas lagopus  9.800076 63.52459     3\n 60: 2023/02/01 Female JUVENILE    Lagopus matu  9.263243 63.46659    12\n 61:   02-01-23 Female    Adult Lagopas lagopus  9.432039 61.53335     7\n 62: 2023-02-01   Male    Adult    Lagopus matu  7.910848 62.92433     1\n 63:   02/02/23   Male        J    Logopus muta  9.092678 61.07257    13\n 64: 2023/02/01   male        A Lagopus lagopus 10.627507 62.46044     9\n 65: 2023/02/01   MALE        A    Lagopus matu  8.575023 62.45981    13\n 66: 01-01-2023 female JUVENILE Lagopas lagopus 10.736562 64.37288     5\n 67: 01-01-2023   MALE    ADULT Lagopas lagopus 10.644320 64.10796    14\n 68:   02-01-23   MALE    ADULT Lagopus lagopus  8.442710 65.27996    12\n 69:   02-01-23 FEMALE Juvenile Lagopas lagopus  7.970893 62.21394     6\n 70:   02/02/23   male Juvenile    Lagopus muta  7.002591 62.35749     7\n 71: 01-01-2023 FEMALE    ADULT Lagopus lagopus  9.516319 63.04347     6\n 72: 01-01-2023 Female        A    Lagopus muta  8.313179 64.23023    12\n 73: 2023-02-01 female        A Lagopas lagopus  7.678440 63.40045     6\n 74:   02-01-23   male    ADULT    Lagopus matu  8.729332 60.78910     5\n 75: 01-01-2023 Female    Adult    Logopus muta  9.753151 63.08899     8\n 76:   02/02/23 FEMALE    Adult    Lagopus matu  7.873569 62.33233     8\n 77: 01-01-2023   male Juvenile Lagopas lagopus  8.963270 62.15332     9\n 78:   02/02/23   male    ADULT Lagopus lagopus  8.428166 64.55505     4\n 79:   02/02/23 Female        A Lagopas lagopus  9.471109 61.53559    11\n 80: 01-01-2023   MALE        J    Lagopus matu  9.236367 62.27483    12\n 81: 2023-02-01 female    ADULT    Lagopus muta  8.939548 63.26092     3\n 82:   02-01-23 female    ADULT    Logopus muta  9.227044 61.22400     5\n 83: 2023-02-01 female JUVENILE    Lagopus muta  9.318695 62.20958    11\n 84:   02/02/23 female Juvenile    Lagopus matu  8.708364 63.88290     7\n 85:   02/02/23 female JUVENILE Lagopas lagopus  8.872903 63.71204     8\n 86: 2023/02/01 female    Adult    Lagopus matu  7.703743 63.25247     1\n 87: 2023-02-01 Female        A    Lagopus matu  9.127351 62.30380    11\n 88: 2023-02-01 Female    Adult    Lagopus matu  9.523766 60.64250     8\n 89: 2023/02/01 female        J Lagopas lagopus  9.181112 61.92349    12\n 90:   02/02/23   MALE Juvenile Lagopas lagopus  7.702984 61.91841     4\n 91:   02-01-23 female        J    Logopus muta  8.141424 63.80680     9\n 92:   02-01-23   male Juvenile    Lagopus matu 11.014120 64.89251    18\n 93: 01-01-2023   MALE JUVENILE    Lagopus muta  6.444234 64.92426     7\n 94: 01-01-2023   male        J    Logopus muta  8.507807 63.49817     5\n 95:   02-01-23 Female Juvenile    Lagopus matu  9.379068 62.59566     8\n 96:   02-01-23   Male        J Lagopus lagopus  8.190334 61.91115    13\n 97:   02-01-23   male        A    Lagopus matu  8.489750 63.48030     7\n 98:   02/02/23 FEMALE    Adult    Lagopus muta 10.193635 62.98715    15\n 99:   02/02/23   MALE        J    Logopus muta  8.798305 63.96787     5\n100: 2023-02-01   MALE        A    Lagopus matu  7.846161 63.42758    14\n           Date    SEX      age    Species Name       lat      lon count"
+    "objectID": "functions.html#your-turn",
+    "href": "functions.html#your-turn",
+    "title": "Writing Functions in R",
+    "section": "Your turn",
+    "text": "Your turn\n\npenguins |&gt; \n  filter(species == \"Adelie\") |&gt; \n  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Body mass g\", y = \"Bill length mm\", title = \"Gentoo\")"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#data-wrangling",
-    "href": "OS_2024/dataHandling/dataHandling.html#data-wrangling",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Data wrangling",
-    "text": "Data wrangling"
+    "objectID": "functions.html#bugs",
+    "href": "functions.html#bugs",
+    "title": "Writing Functions in R",
+    "section": "Bugs",
+    "text": "Bugs\n\nSyntax error\nIncorrect results\nfunction throws unexpected error"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#transform-to-long-format",
-    "href": "OS_2024/dataHandling/dataHandling.html#transform-to-long-format",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Transform to long format",
-    "text": "Transform to long format\n\nlibrary(tidyverse) \n# this avoids tidyverse conflicts with the base function filter \nconflicted::conflict_prefer(\"filter\", \"dplyr\") \n# Pivot longer  \npenguins_long&lt;-penguins |&gt;\n  pivot_longer(contains(\"_\"),names_to = c(\"part\", \"measure\" , \"unit\"),names_sep = \"_\")  \n\npenguins_long \n\n# A tibble: 1,376 × 8\n   species island    sex     year part    measure unit   value\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;\n 1 Adelie  Torgersen male    2007 bill    length  mm      39.1\n 2 Adelie  Torgersen male    2007 bill    depth   mm      18.7\n 3 Adelie  Torgersen male    2007 flipper length  mm     181  \n 4 Adelie  Torgersen male    2007 body    mass    g     3750  \n 5 Adelie  Torgersen female  2007 bill    length  mm      39.5\n 6 Adelie  Torgersen female  2007 bill    depth   mm      17.4\n 7 Adelie  Torgersen female  2007 flipper length  mm     186  \n 8 Adelie  Torgersen female  2007 body    mass    g     3800  \n 9 Adelie  Torgersen female  2007 bill    length  mm      40.3\n10 Adelie  Torgersen female  2007 bill    depth   mm      18  \n# ℹ 1,366 more rows"
+    "objectID": "functions.html#buggy-code",
+    "href": "functions.html#buggy-code",
+    "title": "Writing Functions in R",
+    "section": "Buggy code",
+    "text": "Buggy code\n\nbuggy &lt;- function(x){\n  x &lt;- as.character(x)\n  log(x)\n}\nbuggy(1)\n\nError in log(x): non-numeric argument to mathematical function"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#transform-to-wide-format",
-    "href": "OS_2024/dataHandling/dataHandling.html#transform-to-wide-format",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Transform to wide format",
-    "text": "Transform to wide format\n\npenguins_long |&gt;\n  pivot_wider(names_from = species, values_from = value) \n\n# A tibble: 92 × 9\n   island    sex     year part    measure unit  Adelie    Gentoo Chinstrap\n   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;list&gt;    &lt;list&gt; &lt;list&gt;   \n 1 Torgersen male    2007 bill    length  mm    &lt;dbl [7]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 2 Torgersen male    2007 bill    depth   mm    &lt;dbl [7]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 3 Torgersen male    2007 flipper length  mm    &lt;dbl [7]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 4 Torgersen male    2007 body    mass    g     &lt;dbl [7]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 5 Torgersen female  2007 bill    length  mm    &lt;dbl [8]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 6 Torgersen female  2007 bill    depth   mm    &lt;dbl [8]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 7 Torgersen female  2007 flipper length  mm    &lt;dbl [8]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 8 Torgersen female  2007 body    mass    g     &lt;dbl [8]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 9 Torgersen &lt;NA&gt;    2007 bill    length  mm    &lt;dbl [5]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n10 Torgersen &lt;NA&gt;    2007 bill    depth   mm    &lt;dbl [5]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n# ℹ 82 more rows"
+    "objectID": "functions.html#strategies-for-debugging-0",
+    "href": "functions.html#strategies-for-debugging-0",
+    "title": "Writing Functions in R",
+    "section": "Strategies for debugging 0",
+    "text": "Strategies for debugging 0\n\nRead the error messages\nUse traceback() to see where the error occurred\nUse options(error = recover) to enter the debugger when an error occurs"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#whats-going-on",
-    "href": "OS_2024/dataHandling/dataHandling.html#whats-going-on",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "What’s going on?",
-    "text": "What’s going on?\nNo identifier for each observation so R puts all the values in a list. To solve this we need a unique row id.\n\npenguins_long |&gt;\n  mutate(sample=row_number()) |&gt;\n  pivot_wider(names_from = species,values_from = value) \n\n# A tibble: 1,376 × 10\n   island    sex     year part    measure unit  sample Adelie Gentoo Chinstrap\n   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;\n 1 Torgersen male    2007 bill    length  mm         1   39.1     NA        NA\n 2 Torgersen male    2007 bill    depth   mm         2   18.7     NA        NA\n 3 Torgersen male    2007 flipper length  mm         3  181       NA        NA\n 4 Torgersen male    2007 body    mass    g          4 3750       NA        NA\n 5 Torgersen female  2007 bill    length  mm         5   39.5     NA        NA\n 6 Torgersen female  2007 bill    depth   mm         6   17.4     NA        NA\n 7 Torgersen female  2007 flipper length  mm         7  186       NA        NA\n 8 Torgersen female  2007 body    mass    g          8 3800       NA        NA\n 9 Torgersen female  2007 bill    length  mm         9   40.3     NA        NA\n10 Torgersen female  2007 bill    depth   mm        10   18       NA        NA\n# ℹ 1,366 more rows"
+    "objectID": "functions.html#strategies-for-debugging-1",
+    "href": "functions.html#strategies-for-debugging-1",
+    "title": "Writing Functions in R",
+    "section": "Strategies for debugging 1",
+    "text": "Strategies for debugging 1\n\nAdd print() statements to see state of variables\n\n\nbuggy &lt;- function(x){\n  print(class(x))\n  x &lt;- as.character(x)\n  print(class(x))\n  log(x)\n}\nbuggy(1)\n\n[1] \"numeric\"\n[1] \"character\"\n\n\nError in log(x): non-numeric argument to mathematical function"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#tidy-data",
-    "href": "OS_2024/dataHandling/dataHandling.html#tidy-data",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Tidy data",
-    "text": "Tidy data"
+    "objectID": "functions.html#strategies-for-debugging-2",
+    "href": "functions.html#strategies-for-debugging-2",
+    "title": "Writing Functions in R",
+    "section": "Strategies for debugging 2",
+    "text": "Strategies for debugging 2\n\nAdd browser() somewhere strategic\n\n\nbuggy &lt;- function(x){\n  browser()\n  x &lt;- as.character(x)\n  log(x)\n}\nbuggy(1)\n\nIn the debugger, use\n\n\nn to step through the code\n\nc to continue\n\ns to step into a function\n\nQ to quit"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#tidy-data-principles",
-    "href": "OS_2024/dataHandling/dataHandling.html#tidy-data-principles",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Tidy data principles",
-    "text": "Tidy data principles"
+    "objectID": "functions.html#strategies-for-debugging-3",
+    "href": "functions.html#strategies-for-debugging-3",
+    "title": "Writing Functions in R",
+    "section": "Strategies for debugging 3",
+    "text": "Strategies for debugging 3\nUse debug to automatically add browser()\n\ndebug(buggy)\nbuggy(1)\nundebug(buggy)\n\n# or\ndebugonce(buggy)"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#untidy-data",
-    "href": "OS_2024/dataHandling/dataHandling.html#untidy-data",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Untidy data",
-    "text": "Untidy data\nHave a look at the smallGame dataset.\n\nsmallGame &lt;- readRDS(here::here(\"OS_2024/dataHandling/data/smallGame.RDS\"))\n\n\nWhat format is it in (long or wide)?\nHow would you convert it to the other format?\nWhich format do you find easier to use? (there is no “correct” answer to this one!)"
+    "objectID": "functions.html#slow-code",
+    "href": "functions.html#slow-code",
+    "title": "Writing Functions in R",
+    "section": "Slow code",
+    "text": "Slow code\nR is normally fast enough, but when it isn’t it isn’t\nUse tictoc package to time code\n\nlibrary(tictoc)\ntic()\nSys.sleep(1)\ntoc()\n\n1.004 sec elapsed"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#code-style",
-    "href": "OS_2024/dataHandling/dataHandling.html#code-style",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Code style",
-    "text": "Code style\nWhat are attributes of good code?\nHave a look at the “notReproducible.qmd” file"
+    "objectID": "functions.html#benchmark",
+    "href": "functions.html#benchmark",
+    "title": "Writing Functions in R",
+    "section": "bench::mark()",
+    "text": "bench::mark()\nUse bench::mark() to compare different implementations\n\nbm &lt;- bench::mark(\n  badloop = {x &lt;- c(); for(i in 1:1000){x &lt;- c(x, i^2)}; x},\n  goodloop = {x &lt;- numeric(1000); for(i in 1:1000){x[i] &lt;- i^2}; x},\n  map = purrr::map_dbl(1:1000, \\(i) i^2),\n  vectorised = (1:1000)^2\n)\nplot(bm)"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#tidyverse-style-guide",
-    "href": "OS_2024/dataHandling/dataHandling.html#tidyverse-style-guide",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Tidyverse style guide",
-    "text": "Tidyverse style guide\n“Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.”\n\n# Examples \nday_one # Good \nDayOne # Bad \n# Avoid names of common functions\nT &lt;- FALSE # Bad \nc &lt;- 10 # Bad \nmean &lt;- function(x) sum(x) # Bad \n# Space after a comma \nx[, 1] # Good \nx[,1] # Bad \n# space after () in functions \nfunction(x) {}# Good \nfunction (x) {} # Bad \nfunction(x){} # Bad"
+    "objectID": "functions.html#profiler",
+    "href": "functions.html#profiler",
+    "title": "Writing Functions in R",
+    "section": "Profiler",
+    "text": "Profiler\n\nlibrary(profvis)\n\nf &lt;- function() {\n  pause(0.1)\n  g()\n  h()\n}\ng &lt;- function() {\n  pause(0.1)\n  h()\n}\nh &lt;- function() {\n  pause(0.1)\n}\n\nprofvis(f())"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#useful-packages-for-style",
-    "href": "OS_2024/dataHandling/dataHandling.html#useful-packages-for-style",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "Useful packages for style",
-    "text": "Useful packages for style\n\nlibrary(lintr)\n# Define the code as a character vector\ncode &lt;- c(\n  \"# Spacing \",\n  \"average&lt;-mean(feet/12 + inches,na.rm=TRUE)\",\n  \"sqrt(x ^ 2 + y ^ 2)\",\n  \"x &lt;- 1 : 10\",\n  \"base :: get\",\n  \"# Indenting\",\n  \"if (y &lt; 0 && debug)\",\n  \"  message('Y is negative')\",\n  \"# Assignment\",\n  \"x = 5\"\n)\n\n# Write the code to 'bad_style.R'\nwriteLines(code, \"bad_style.R\")\n\n# Run lintr on the newly created file\nlint(\"bad_style.R\")\n\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:1:10: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.\n# Spacing \n         ^\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:2:8: style: [infix_spaces_linter] Put spaces around all infix operators.\naverage&lt;-mean(feet/12 + inches,na.rm=TRUE)\n       ^~\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:2:19: style: [infix_spaces_linter] Put spaces around all infix operators.\naverage&lt;-mean(feet/12 + inches,na.rm=TRUE)\n                  ^\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:2:32: style: [commas_linter] Commas should always have a space after.\naverage&lt;-mean(feet/12 + inches,na.rm=TRUE)\n                               ^\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:2:37: style: [infix_spaces_linter] Put spaces around all infix operators.\naverage&lt;-mean(feet/12 + inches,na.rm=TRUE)\n                                    ^\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:8:11: style: [quotes_linter] Only use double-quotes.\n  message('Y is negative')\n          ^~~~~~~~~~~~~~~\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:10:3: style: [assignment_linter] Use &lt;-, not =, for assignment.\nx = 5\n  ^"
+    "objectID": "functions.html#cures-for-slow-code",
+    "href": "functions.html#cures-for-slow-code",
+    "title": "Writing Functions in R",
+    "section": "Cures for slow code",
+    "text": "Cures for slow code\nReadability is more important than speed\n\nUse vectorised code\nparallelize code with furrr or future packages"
   },
   {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-17",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-17",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "library(\"styler\") \nstyle_file(\"bad_style.R\")\n\nStyling  1  files:\n bad_style.R ℹ \n────────────────────────────────────────\nStatus  Count   Legend \n✔   0   File unchanged.\nℹ   1   File changed.\n✖   0   Styling threw an error.\n────────────────────────────────────────\nPlease review the changes carefully!\n\nreadLines(\"bad_style.R\")\n\n [1] \"# Spacing\"                                        \n [2] \"average &lt;- mean(feet / 12 + inches, na.rm = TRUE)\"\n [3] \"sqrt(x^2 + y^2)\"                                  \n [4] \"x &lt;- 1:10\"                                        \n [5] \"base::get\"                                        \n [6] \"# Indenting\"                                      \n [7] \"if (y &lt; 0 && debug) {\"                            \n [8] \"  message(\\\"Y is negative\\\")\"                     \n [9] \"}\"                                                \n[10] \"# Assignment\"                                     \n[11] \"x &lt;- 5\""
-  },
-  {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#what-i-think",
-    "href": "OS_2024/dataHandling/dataHandling.html#what-i-think",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "What I think…",
-    "text": "What I think…\n\nIt runs (on your computer)\nIt runs (on my computer - without me having to do anything/much)\nIt does what you expect it to do (even after 5 years)\nIt is documented in some way"
-  },
-  {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#what-jenny-bryan-thinks",
-    "href": "OS_2024/dataHandling/dataHandling.html#what-jenny-bryan-thinks",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "What Jenny Bryan thinks",
-    "text": "What Jenny Bryan thinks\nIf the first line of your R script is\n\nsetwd(\"C:\\Users\\jenny\\path\\that\\only\\I\\have\")\n\nI will come into your office and SET YOUR COMPUTER ON FIRE 🔥."
-  },
-  {
-    "objectID": "OS_2024/dataHandling/dataHandling.html#section-18",
-    "href": "OS_2024/dataHandling/dataHandling.html#section-18",
-    "title": "Data handling and curation - from raw to clean data",
-    "section": "",
-    "text": "If the first line of your R script is\n\nrm(list = ls())\n\nI will come into your office and SET YOUR COMPUTER ON FIRE 🔥."
+    "objectID": "functions.html#more-resources",
+    "href": "functions.html#more-resources",
+    "title": "Writing Functions in R",
+    "section": "More resources",
+    "text": "More resources\nprofvis\nR for Data Science by Hadley Wickham and Garrett Grolemund\nAdvanced R by Hadley Wickham"
   },
   {
     "objectID": "OS_2024/Systematic_Reviews/Systematic_Reviews.html#why-are-we-talking-about-evidence-synthesis-in-an-openscience-course",
@@ -354,7 +333,7 @@
     "href": "OS_2024/Systematic_Reviews/Systematic_Reviews.html#bibliographic-databases",
     "title": "Systematic Reviews and Meta-Analysis in Ecology",
     "section": "Bibliographic databases",
-    "text": "Bibliographic databases\n\n\n\nWoS\nScopus\nAgricola\nAGRIS (FAO)\n\n\n\nAcademic Search Premier\n\n\n\nBiological Abstracts\nCAB Abstracts\nLens.org\n\n\n\n\nCEE 2012-2017 Systematic review – mean = 9 (2 – 75) databases. Search between 8-15 databases (broad and specific)"
+    "text": "Bibliographic databases\n\n\n\nWoS\nScopus\nAgricola\nAGRIS (FAO)\n\n\n\nAcademic Search Premier\n\n\n\nBiological Abstracts\nCAB Abstracts\nLens.org\n\n\n\nCEE 2012-2017 Systematic review – mean = 9 (2 – 75) databases. Search between 8-15 databases (broad and specific)"
   },
   {
     "objectID": "OS_2024/Systematic_Reviews/Systematic_Reviews.html#basic-search",
@@ -525,11 +504,130 @@
     "text": "Examples of poor conduct\nlandscape ecology\nA challenge - find the problem(s) with this study"
   },
   {
+    "objectID": "intro-reproducible-environment.html#r-changes",
+    "href": "intro-reproducible-environment.html#r-changes",
+    "title": "Will your code work in 2034?",
+    "section": "R changes",
+    "text": "R changes\nR &lt; 3.6.0\n\nset.seed(1)\nsample(LETTERS, size = 1)\n\n\n\n[1] \"G\"\n\n\n\nR &gt;= 3.6.0\n\nset.seed(1)\nsample(LETTERS, size = 1)\n\n\n\n[1] \"Y\""
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#packages-change",
+    "href": "intro-reproducible-environment.html#packages-change",
+    "title": "Will your code work in 2034?",
+    "section": "Packages Change",
+    "text": "Packages Change\n\nlibrary(ggplot2)\ndata(penguins, package = \"palmerpenguins\")\n\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_bar(position = \"dodge\") +\n1  opts(legend.position = \"top\")\n\n\n1\n\nopts? What are opts\n\n\n\n\n\n\nError in opts(legend.position = \"top\"): could not find function \"opts\"\n\n\n\nggplot2 News June 2012\nggplot2 0.9.2\n\n----------------------------------------------------------------\n\nTHEME SYSTEM\n\n* The `opts()` function has been renamed to `theme()`."
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#solutions",
+    "href": "intro-reproducible-environment.html#solutions",
+    "title": "Will your code work in 2034?",
+    "section": "Solutions",
+    "text": "Solutions"
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#solution-0-naming-packages-used",
+    "href": "intro-reproducible-environment.html#solution-0-naming-packages-used",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 0: naming packages used",
+    "text": "Solution 0: naming packages used\n\nvalues were analysed in R (R Core Team, 2017) using the qqman package (Turner, 2014)."
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#citing-r",
+    "href": "intro-reproducible-environment.html#citing-r",
+    "title": "Will your code work in 2034?",
+    "section": "Citing R",
+    "text": "Citing R\n\n# Citation for R\ncitation()\n\nTo cite R in publications use:\n\n  R Core Team (2025). _R: A Language and Environment for Statistical\n  Computing_. R Foundation for Statistical Computing, Vienna, Austria.\n  &lt;https://www.R-project.org/&gt;.\n\nA BibTeX entry for LaTeX users is\n\n  @Manual{,\n    title = {R: A Language and Environment for Statistical Computing},\n    author = {{R Core Team}},\n    organization = {R Foundation for Statistical Computing},\n    address = {Vienna, Austria},\n    year = {2025},\n    url = {https://www.R-project.org/},\n  }\n\nWe have invested a lot of time and effort in creating R, please cite it\nwhen using it for data analysis. See also 'citation(\"pkgname\")' for\nciting R packages."
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#citing-r-packages",
+    "href": "intro-reproducible-environment.html#citing-r-packages",
+    "title": "Will your code work in 2034?",
+    "section": "Citing R packages",
+    "text": "Citing R packages\n\n# Citation for an R package\ncitation(\"lme4\")\n\nTo cite lme4 in publications use:\n\n  Douglas Bates, Martin Maechler, Ben Bolker, Steve Walker (2015).\n  Fitting Linear Mixed-Effects Models Using lme4. Journal of\n  Statistical Software, 67(1), 1-48. doi:10.18637/jss.v067.i01.\n\nA BibTeX entry for LaTeX users is\n\n  @Article{,\n    title = {Fitting Linear Mixed-Effects Models Using {lme4}},\n    author = {Douglas Bates and Martin M{\\\"a}chler and Ben Bolker and Steve Walker},\n    journal = {Journal of Statistical Software},\n    year = {2015},\n    volume = {67},\n    number = {1},\n    pages = {1--48},\n    doi = {10.18637/jss.v067.i01},\n  }"
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#solution-1-naming-packages-used",
+    "href": "intro-reproducible-environment.html#solution-1-naming-packages-used",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 1: naming packages used",
+    "text": "Solution 1: naming packages used\n\nNumerical analyses were carried out using R v. 2.15.3 (R Core Team 2013) using the vegan package v. 2.0-9 (Oksanen et al. 2013).\n\nWhich packages to cite?\nPotentially hundreds of packages used directly and indirectly."
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#finding-package-versions",
+    "href": "intro-reproducible-environment.html#finding-package-versions",
+    "title": "Will your code work in 2034?",
+    "section": "Finding package versions",
+    "text": "Finding package versions\n\nNumerical analyses were carried out using R v. `r getRversion()`\n(R Core Team 2013) using the vegan package v.`r packageVersion(\"vegan\")`\n(Oksanen et al. 2013).\n\nUsing pakret package\n\nNumerical analyses were carried out using `r pkrt(\"R\")`\nusing `r pkrt(\"vegan\")`."
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#solution-2-renv-for-reproducible-r-environment",
+    "href": "intro-reproducible-environment.html#solution-2-renv-for-reproducible-r-environment",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 2: renv for reproducible R environment",
+    "text": "Solution 2: renv for reproducible R environment\n\ndetect which packages you use and their dependencies\nkeeps a lockfile - a list of the version of ALL the packages installed\nmakes a project library\nwill install correct version of packages in the lockfile when you start using a project"
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#demo-renv",
+    "href": "intro-reproducible-environment.html#demo-renv",
+    "title": "Will your code work in 2034?",
+    "section": "Demo renv",
+    "text": "Demo renv\n\nMake a new rstudio project.\nRun renv::init()\nAdd an R script file with some library() calls\nInstall packages with renv::install() (both CRAN and GitHub)\nRun renv::status()\nRun renv::snapshot() to save changes or renv::restore() to revert\nRepeat 3–5"
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#using-someone-elses-project-with-renv",
+    "href": "intro-reproducible-environment.html#using-someone-elses-project-with-renv",
+    "title": "Will your code work in 2034?",
+    "section": "Using someone elses project with renv",
+    "text": "Using someone elses project with renv\n\nClone the repo\nOpen in RStudio\nuse renv::restore() to install packages"
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#pitfalls",
+    "href": "intro-reproducible-environment.html#pitfalls",
+    "title": "Will your code work in 2034?",
+    "section": "Pitfalls",
+    "text": "Pitfalls\n\nrenv only valid for the version of R it was built on\nnot all package can be discovered\n\nfinds library(dplyr), tidyr::nest(...) and dependencies\n\n\n\ntar_option_set(\n  packages = c(\"tidyverse\")\n)\n\n\nsolution use targets::tar_renv()\nsolution use R file with library() calls\nDon’t forget to renv::update() packages to benefit from bugfixes."
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#solution-3-containers",
+    "href": "intro-reproducible-environment.html#solution-3-containers",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 3: Containers",
+    "text": "Solution 3: Containers\nrenv makes the list of packages available.\nDoes nothing for the all the external dependencies.\n\ndocker\nNix"
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#solution-3-rocker---docker-for-r",
+    "href": "intro-reproducible-environment.html#solution-3-rocker---docker-for-r",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 3: Rocker - Docker for R",
+    "text": "Solution 3: Rocker - Docker for R\n\n\n\nRocker"
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#solution-4-nix---package-manager",
+    "href": "intro-reproducible-environment.html#solution-4-nix---package-manager",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 4: Nix - package manager",
+    "text": "Solution 4: Nix - package manager\nR interface with rix package\n\nsimplifies creating Nix expressions, which define reproducible environments.\nlets you work interactively in RStudio\nprovides helpers that make it easy to build those environments."
+  },
+  {
+    "objectID": "intro-reproducible-environment.html#remaining-problems",
+    "href": "intro-reproducible-environment.html#remaining-problems",
+    "title": "Will your code work in 2034?",
+    "section": "Remaining problems",
+    "text": "Remaining problems\n\ndependencies on external API (e.g. gbif, leaflet)"
+  },
+  {
+    "objectID": "reproducible_workflows.html#biostats-tutorial",
+    "href": "reproducible_workflows.html#biostats-tutorial",
+    "title": "Introduction to reproducible workflows",
+    "section": "Biostats tutorial",
+    "text": "Biostats tutorial\nGo to this webpage: https://biostats-r.github.io/"
+  },
+  {
     "objectID": "course_intro.html#wifi-password",
     "href": "course_intro.html#wifi-password",
     "title": "Open, Reproducible and Transparent Science Course 2025",
     "section": "Wifi Password",
-    "text": "Wifi Password\nNetwork: kinosal\nPassword: ***"
+    "text": "Wifi Password\nNetwork: KinosalGuest\nPassword: MoskusGuest"
   },
   {
     "objectID": "course_intro.html#open-science-courses",
@@ -546,13 +644,6 @@
     "text": "Collaboration"
   },
   {
-    "objectID": "course_intro.html#funding",
-    "href": "course_intro.html#funding",
-    "title": "Open, Reproducible and Transparent Science Course 2024",
-    "section": "Funding",
-    "text": "Funding"
-  },
-  {
     "objectID": "course_intro.html#aim-of-the-os-course",
     "href": "course_intro.html#aim-of-the-os-course",
     "title": "Open, Reproducible and Transparent Science Course 2025",
@@ -567,18 +658,18 @@
     "text": "OS course 2022 in Finse"
   },
   {
-    "objectID": "course_intro.html#os-course-2023-in-hjerkinn",
-    "href": "course_intro.html#os-course-2023-in-hjerkinn",
-    "title": "Open, Reproducible and Transparent Science Course 2024",
-    "section": "OS course 2023 in Hjerkinn",
-    "text": "OS course 2023 in Hjerkinn"
+    "objectID": "course_intro.html#os-course-2023-and-2024-in-hjerkinn",
+    "href": "course_intro.html#os-course-2023-and-2024-in-hjerkinn",
+    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "section": "OS course 2023 and 2024 in Hjerkinn",
+    "text": "OS course 2023 and 2024 in Hjerkinn"
   },
   {
-    "objectID": "course_intro.html#os-course-2024-in-hjerkinn",
-    "href": "course_intro.html#os-course-2024-in-hjerkinn",
-    "title": "Open, Reproducible and Transparent Science Course 2024",
-    "section": "OS course 2024 in Hjerkinn",
-    "text": "OS course 2024 in Hjerkinn\nTo do: group photo"
+    "objectID": "course_intro.html#os-course-2025-in-hjerkinn",
+    "href": "course_intro.html#os-course-2025-in-hjerkinn",
+    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "section": "OS course 2025 in Hjerkinn",
+    "text": "OS course 2025 in Hjerkinn\nTo do: group photo"
   },
   {
     "objectID": "course_intro.html#schedule",
@@ -637,6 +728,328 @@
     "text": "Questions?"
   },
   {
+    "objectID": "reproducible_docs.html#how-do-you-write-reports-manuscripts-presentations",
+    "href": "reproducible_docs.html#how-do-you-write-reports-manuscripts-presentations",
+    "title": "Introduction to reproducible documents",
+    "section": "How do you write reports, manuscripts, presentations?",
+    "text": "How do you write reports, manuscripts, presentations?"
+  },
+  {
+    "objectID": "reproducible_docs.html#biostats-tutorial",
+    "href": "reproducible_docs.html#biostats-tutorial",
+    "title": "Introduction to reproducible documents",
+    "section": "Biostats tutorial",
+    "text": "Biostats tutorial\nGo to this webpage: https://biostats-r.github.io/"
+  },
+  {
+    "objectID": "exercise_reproducibility.html#reproducibilty",
+    "href": "exercise_reproducibility.html#reproducibilty",
+    "title": "How reproducible is ecology?",
+    "section": "Reproducibilty",
+    "text": "Reproducibilty\n\n\nThe Turing Way Community. This illustration is created by Scriberia with The Turing Way community, used under a CC-BY 4.0 licence. DOI: 10.5281/zenodo.3332807"
+  },
+  {
+    "objectID": "exercise_reproducibility.html#data-and-code-availability",
+    "href": "exercise_reproducibility.html#data-and-code-availability",
+    "title": "How reproducible is ecology?",
+    "section": "Data and code availability",
+    "text": "Data and code availability\n\n\nCulina A, van den Berg I, Evans S, Sánchez-Tójar A (2020) Low availability of code in ecology: A call for urgent action. PLOS Biology 18(7): e3000763. https://doi.org/10.1371/journal.pbio.3000763"
+  },
+  {
+    "objectID": "exercise_reproducibility.html#section",
+    "href": "exercise_reproducibility.html#section",
+    "title": "How reproducible is ecology?",
+    "section": "",
+    "text": "2023: Review 87 papers from 6 journals\n\nNumber of studies with available data and/or code."
+  },
+  {
+    "objectID": "exercise_reproducibility.html#section-1",
+    "href": "exercise_reproducibility.html#section-1",
+    "title": "How reproducible is ecology?",
+    "section": "",
+    "text": "2023: data and code availability\n\n\nFigure 1: Data and code availability."
+  },
+  {
+    "objectID": "exercise_reproducibility.html#section-2",
+    "href": "exercise_reproducibility.html#section-2",
+    "title": "How reproducible is ecology?",
+    "section": "",
+    "text": "2023: data and code availability\n\n\nFigure 2"
+  },
+  {
+    "objectID": "exercise_reproducibility.html#exercise-12",
+    "href": "exercise_reproducibility.html#exercise-12",
+    "title": "How reproducible is ecology?",
+    "section": "Exercise (1/2)",
+    "text": "Exercise (1/2)\nMake groups of 3-4.\nChoose one of the following journals and select a random issue from 2024:\n\nMethods in Ecology and Evolution\nJournal of Ecology\nOIKOS\nAmerican Naturalist\nJournal of Animal Ecology\nEcological Monographs"
+  },
+  {
+    "objectID": "exercise_reproducibility.html#exercise-22",
+    "href": "exercise_reproducibility.html#exercise-22",
+    "title": "How reproducible is ecology?",
+    "section": "Exercise (2/2)",
+    "text": "Exercise (2/2)\nFor each paper in this issue check:\n\nIs the data available and can you download it? Repo or supplement file? In what format is the data available (xlsx, csv, txt, etc.)?\nIs the code available? Choose one figure/analysis. Is the data and code for this figure/analysis available? Try to run the code, can you replicate the figure/analysis.\nAdd the data to this google spreadsheet and get a snack 🍪"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#data-handling-curation",
+    "href": "OS_2024/dataHandling/dataHandling.html#data-handling-curation",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Data handling & curation",
+    "text": "Data handling & curation\nManaging the “data life-cycle” within and beyond a project.\n\ncreating data\norganising data\nmaintaining data"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#data-cleaning-vs-data-wrangling",
+    "href": "OS_2024/dataHandling/dataHandling.html#data-cleaning-vs-data-wrangling",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Data cleaning vs Data wrangling",
+    "text": "Data cleaning vs Data wrangling\nData cleaning is the process of removing incorrect, duplicate, or otherwise erroneous data from a dataset\nData wrangling changing the format to make it more useful for your analysis"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#some-r-functions-that-help-data-cleaning",
+    "href": "OS_2024/dataHandling/dataHandling.html#some-r-functions-that-help-data-cleaning",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Some R Functions that help data cleaning",
+    "text": "Some R Functions that help data cleaning\n{janitor}\n\nlibrary(tidyverse) \nlibrary(palmerpenguins) \nlibrary(janitor)  \npalmerpenguins::penguins_raw |&gt;  names() \n\n [1] \"studyName\"           \"Sample Number\"       \"Species\"            \n [4] \"Region\"              \"Island\"              \"Stage\"              \n [7] \"Individual ID\"       \"Clutch Completion\"   \"Date Egg\"           \n[10] \"Culmen Length (mm)\"  \"Culmen Depth (mm)\"   \"Flipper Length (mm)\"\n[13] \"Body Mass (g)\"       \"Sex\"                 \"Delta 15 N (o/oo)\"  \n[16] \"Delta 13 C (o/oo)\"   \"Comments\"           \n\n\n\njanitor::clean_names(palmerpenguins::penguins_raw) |&gt;  names()\n\n [1] \"study_name\"        \"sample_number\"     \"species\"          \n [4] \"region\"            \"island\"            \"stage\"            \n [7] \"individual_id\"     \"clutch_completion\" \"date_egg\"         \n[10] \"culmen_length_mm\"  \"culmen_depth_mm\"   \"flipper_length_mm\"\n[13] \"body_mass_g\"       \"sex\"               \"delta_15_n_o_oo\"  \n[16] \"delta_13_c_o_oo\"   \"comments\""
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-1",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-1",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "{dplyr}\n\nclean_penguins&lt;-janitor::clean_names(palmerpenguins::penguins_raw)  \n\ndplyr::glimpse(clean_penguins)\n\nRows: 344\nColumns: 17\n$ study_name        &lt;chr&gt; \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708…\n$ sample_number     &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…\n$ species           &lt;chr&gt; \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Pengu…\n$ region            &lt;chr&gt; \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"A…\n$ island            &lt;chr&gt; \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", …\n$ stage             &lt;chr&gt; \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, …\n$ individual_id     &lt;chr&gt; \"N1A1\", \"N1A2\", \"N2A1\", \"N2A2\", \"N3A1\", \"N3A2\", \"N4A…\n$ clutch_completion &lt;chr&gt; \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"No\", \"No\"…\n$ date_egg          &lt;date&gt; 2007-11-11, 2007-11-11, 2007-11-16, 2007-11-16, 200…\n$ culmen_length_mm  &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ culmen_depth_mm   &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;dbl&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;chr&gt; \"MALE\", \"FEMALE\", \"FEMALE\", NA, \"FEMALE\", \"MALE\", \"F…\n$ delta_15_n_o_oo   &lt;dbl&gt; NA, 8.94956, 8.36821, NA, 8.76651, 8.66496, 9.18718,…\n$ delta_13_c_o_oo   &lt;dbl&gt; NA, -24.69454, -25.33302, NA, -25.32426, -25.29805, …\n$ comments          &lt;chr&gt; \"Not enough blood for isotopes.\", NA, NA, \"Adult not…"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-2",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-2",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "{skimr}\n\nout&lt;-skimr::skim(palmerpenguins::penguins_raw) \n\nout\n\n\nData summary\n\n\nName\npalmerpenguins::penguins_…\n\n\nNumber of rows\n344\n\n\nNumber of columns\n17\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n9\n\n\nDate\n1\n\n\nnumeric\n7\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\nstudyName\n0\n1.00\n7\n7\n0\n3\n0\n\n\nSpecies\n0\n1.00\n33\n41\n0\n3\n0\n\n\nRegion\n0\n1.00\n6\n6\n0\n1\n0\n\n\nIsland\n0\n1.00\n5\n9\n0\n3\n0\n\n\nStage\n0\n1.00\n18\n18\n0\n1\n0\n\n\nIndividual ID\n0\n1.00\n4\n6\n0\n190\n0\n\n\nClutch Completion\n0\n1.00\n2\n3\n0\n2\n0\n\n\nSex\n11\n0.97\n4\n6\n0\n2\n0\n\n\nComments\n290\n0.16\n18\n68\n0\n10\n0\n\n\n\nVariable type: Date\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nmedian\nn_unique\n\n\nDate Egg\n0\n1\n2007-11-09\n2009-12-01\n2008-11-09\n50\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\nSample Number\n0\n1.00\n63.15\n40.43\n1.00\n29.00\n58.00\n95.25\n152.00\n▇▇▆▅▃\n\n\nCulmen Length (mm)\n2\n0.99\n43.92\n5.46\n32.10\n39.23\n44.45\n48.50\n59.60\n▃▇▇▆▁\n\n\nCulmen Depth (mm)\n2\n0.99\n17.15\n1.97\n13.10\n15.60\n17.30\n18.70\n21.50\n▅▅▇▇▂\n\n\nFlipper Length (mm)\n2\n0.99\n200.92\n14.06\n172.00\n190.00\n197.00\n213.00\n231.00\n▂▇▃▅▂\n\n\nBody Mass (g)\n2\n0.99\n4201.75\n801.95\n2700.00\n3550.00\n4050.00\n4750.00\n6300.00\n▃▇▆▃▂\n\n\nDelta 15 N (o/oo)\n14\n0.96\n8.73\n0.55\n7.63\n8.30\n8.65\n9.17\n10.03\n▃▇▆▅▂\n\n\nDelta 13 C (o/oo)\n13\n0.96\n-25.69\n0.79\n-27.02\n-26.32\n-25.83\n-25.06\n-23.79\n▆▇▅▅▂"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-3",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-3",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "{dplyr}\n\n#Deduplication  \ndata&lt;-tibble(Day=c(\"Monday\", \"Tuesday\",\"Wednesday\", \"Wednesday\"), \n             Person=c(\"Becks\", \"Amy\", \"Matt\", \"Matt\"))\ndata\n\n# A tibble: 4 × 2\n  Day       Person\n  &lt;chr&gt;     &lt;chr&gt; \n1 Monday    Becks \n2 Tuesday   Amy   \n3 Wednesday Matt  \n4 Wednesday Matt  \n\ndata |&gt; dplyr::distinct()\n\n# A tibble: 3 × 2\n  Day       Person\n  &lt;chr&gt;     &lt;chr&gt; \n1 Monday    Becks \n2 Tuesday   Amy   \n3 Wednesday Matt"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-4",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-4",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "{naniar}\n\n# creating some data with missing values\nmissing_penguins&lt;-missMethods::delete_MCAR(clean_penguins, 0.3) \n\n\nmissing_penguins |&gt; \nnaniar::vis_miss()"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#missing-data",
+    "href": "OS_2024/dataHandling/dataHandling.html#missing-data",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Missing data",
+    "text": "Missing data\nMissing data is normally a problem. Typically as ecologists we sweep missing data under the carpet by using a “complete case” approach to data analysis."
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-5",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-5",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "If you have ever written some code like this:\n\n# na.omit() \ndf &lt;- na.omit(df)  \n# complete.cases() \ndf &lt;- df[complete.cases(df), ]   \n# rowSums() \ndf &lt;- df[rowSums(is.na(df)) == 0, ]   \n# drop_na() \ndf &lt;- df  |&gt;  tidyr::drop_na()\n\nyou are removing missing data (NAs) from your dataset."
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#why-is-this-a-problem",
+    "href": "OS_2024/dataHandling/dataHandling.html#why-is-this-a-problem",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Why is this a problem?",
+    "text": "Why is this a problem?\nBy throwing away potentially useful data (only including those rows without a NA in them) you reduce the information you are working with, reduce statistical power and introduce selection bias (invalidating any assumption of randomisation)."
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#different-types-of-missingness",
+    "href": "OS_2024/dataHandling/dataHandling.html#different-types-of-missingness",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Different types of missingness",
+    "text": "Different types of missingness\nThere are three broad categories of missing data:\n\nMCAR - missingness is not related to any measured or unmeasured variables\nMAR - missingness is not random but related to other variables and can be accounted for by another complete variable\nMNAR - missingness is related to the missing data itself (there is a systematic reason why the data are missing within a particular variable)"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-6",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-6",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "Imagine that we are measuring rainfall at weather stations across Norway every year.\n\n\nTable 1: Missing data patterns - MCAR\n\n\n\n\n\n(a) Complete data\n\n\n\nstation number\nrainfall\n\n\n\n1\n30\n\n\n2\n150\n\n\n3\n75\n\n\n4\n250\n\n\n5\n55\n\n\n\n\n\n\n\n\n\n\n(b) MCAR\n\n\n\nstation number\nrainfall\n\n\n\n1\n30\n\n\n2\n\n\n\n3\n\n\n\n4\n250\n\n\n5\n55"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-7",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-7",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "Table 2: Complete data\n\n\n\nstation number\nrainfall\n\n\n\n1\n30\n\n\n2\n150\n\n\n3\n75\n\n\n4\n250\n\n\n5\n55\n\n\n\n\n\n\n\n\n\n\nTable 3: MAR\n\n\n\nstation number\nrainfall\n\n\n\n1\n\n\n\n2\n\n\n\n3\n\n\n\n4\n250\n\n\n5\n55\n\n\n\n\n\n\n\n\n\n\nMissing data patterns - MAR"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-8",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-8",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "Table 4: Complete data\n\n\n\nstation number\nrainfall\n\n\n\n1\n30\n\n\n2\n150\n\n\n3\n75\n\n\n4\n250\n\n\n5\n55\n\n\n\n\n\n\n\n\n\n\nTable 5: MNAR\n\n\n\nstation number\nrainfall\n\n\n\n1\n30\n\n\n2\n\n\n\n3\n75\n\n\n4\n\n\n\n5\n55\n\n\n\n\n\n\n\n\n\n\nMissing data patterns - MNAR"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#what-effect-does-missingness-have",
+    "href": "OS_2024/dataHandling/dataHandling.html#what-effect-does-missingness-have",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "What effect does missingness have?",
+    "text": "What effect does missingness have?\n\nlibrary(tidyverse, quietly = TRUE) \nlibrary(missMethods, quietly = TRUE) \nlibrary(palmerpenguins)\n\n#create datasets with levels missingness\n\npenguins_complete&lt;-penguins |&gt; \n  drop_na()\n\nmiss_penguins_MCAR&lt;-\n  missMethods::delete_MCAR(penguins_complete, \n                                             0.3, \"flipper_length_mm\") \n# create a pattern of missingness with censoring \n#(missing value in flipper_length \n#if body_mass is below 30% quantile of body_mass)\n\nmiss_penguins_MAR&lt;-\n  missMethods::delete_MAR_censoring(penguins_complete,\n                                                     0.3, \"flipper_length_mm\", \"body_mass_g\") \n# create a pattern of missingness with censoring \n#(missing value in flipper_length \n#if flipper_length is below 30% quantile) \n\nmiss_penguins_MNAR&lt;-\n  missMethods::delete_MNAR_censoring(penguins_complete, \n                                                       0.3, \"flipper_length_mm\")\n\nall_data&lt;-bind_rows(\"Full\"=penguins_complete, \n                    \"MCAR\"= miss_penguins_MCAR,\n                    \"MAR\"= miss_penguins_MAR,\n                    \"MNAR\"=miss_penguins_MNAR, \n                    .id=\"Missingness\")"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#what-can-we-do-about-missing-data",
+    "href": "OS_2024/dataHandling/dataHandling.html#what-can-we-do-about-missing-data",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "What can we do about missing data?",
+    "text": "What can we do about missing data?\nWith MCAR and MAR we can use multiple imputation techniques"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-12",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-12",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "# Load mice\nlibrary(mice, quietly = TRUE)\n\n# Set seed for reproducibility\nset.seed(123)\n\n# Simulate data: location, year, count\nlocations &lt;- rep(1:5, each = 5)  # Assuming 5 locations\nyears &lt;- rep(2009:2023, 5)  # Assuming data for 5 years\ncount &lt;- round(rpois(25, lambda = 20))  # Simulated count data\n\n# Create a dataframe\ndata &lt;- data.frame(Location = locations, Year = years, Count = count)\n\n# Introduce missingness - Missing completely at random (MCAR)\nprop_missing &lt;- 0.2  # Example: 20% missingness\nmissing_indices &lt;- sample(1:nrow(data), prop_missing * nrow(data))\ndata$Count[missing_indices] &lt;- NA\n\n# Check the structure of the data\nstr(data)\n\n'data.frame':   75 obs. of  3 variables:\n $ Location: int  1 1 1 1 1 2 2 2 2 2 ...\n $ Year    : int  2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 ...\n $ Count   : num  17 25 12 20 27 NA 14 NA 25 21 ..."
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-13",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-13",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "When we impute the missing data we use 5 replicates and then take the mean of all 5 datasets.\n\n# Impute missing data using MICE\nimp &lt;- mice(data, m = 5, method = 'pmm', seed = 500)\n\n\n iter imp variable\n  1   1  Count\n  1   2  Count\n  1   3  Count\n  1   4  Count\n  1   5  Count\n  2   1  Count\n  2   2  Count\n  2   3  Count\n  2   4  Count\n  2   5  Count\n  3   1  Count\n  3   2  Count\n  3   3  Count\n  3   4  Count\n  3   5  Count\n  4   1  Count\n  4   2  Count\n  4   3  Count\n  4   4  Count\n  4   5  Count\n  5   1  Count\n  5   2  Count\n  5   3  Count\n  5   4  Count\n  5   5  Count"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#sem-instead-of-lm",
+    "href": "OS_2024/dataHandling/dataHandling.html#sem-instead-of-lm",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "sem() instead of lm()",
+    "text": "sem() instead of lm()\nUsing a Structured Equation Model (SEM) we can run a simple linear regression.\n\nlibrary(lavaan)\n# we will use the Iris dataset for this example\ncomplete_model&lt;-lm(Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length, data=iris)\n\niris_MCAR&lt;-missMethods::delete_MCAR(iris, 0.3, \"Sepal.Width\")\n\nmiss_model1&lt;-lm(Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length, data=iris_MCAR)\n\n\n\n\n=====================================================================\n                                   Dependent variable:               \n                    -------------------------------------------------\n                                       Petal.Width                   \n                              (1)                      (2)           \n---------------------------------------------------------------------\nSepal.Length               -0.207***                 -0.187**        \n                            (0.048)                  (0.057)         \nSepal.Width                 0.223***                 0.219***        \n                            (0.049)                  (0.057)         \nPetal.Length                0.524***                 0.516***        \n                            (0.024)                  (0.029)         \nConstant                     -0.240                   -0.315         \n                            (0.178)                  (0.215)         \n---------------------------------------------------------------------\nObservations                  150                      105           \nR2                           0.938                    0.931          \nAdjusted R2                  0.937                    0.929          \nResidual Std. Error     0.192 (df = 146)         0.204 (df = 101)    \nF Statistic         734.389*** (df = 3; 146) 454.577*** (df = 3; 101)\n=====================================================================\nNote:                                   *p&lt;0.05; **p&lt;0.01; ***p&lt;0.001"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-15",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-15",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "miss_model2 &lt;- sem('Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length', data=iris_MCAR, missing=\"ML\")\nsummary(miss_model2)\n\nlavaan 0.6-19 ended normally after 1 iteration\n\n  Estimator                                         ML\n  Optimization method                           NLMINB\n  Number of model parameters                         5\n\n                                                  Used       Total\n  Number of observations                           105         150\n  Number of missing patterns                         1            \n\nModel Test User Model:\n                                                      \n  Test statistic                                 0.000\n  Degrees of freedom                                 0\n\nParameter Estimates:\n\n  Standard errors                             Standard\n  Information                                 Observed\n  Observed information based on                Hessian\n\nRegressions:\n                   Estimate  Std.Err  z-value  P(&gt;|z|)\n  Petal.Width ~                                       \n    Sepal.Length     -0.187    0.056   -3.344    0.001\n    Sepal.Width       0.219    0.056    3.945    0.000\n    Petal.Length      0.516    0.028   18.133    0.000\n\nIntercepts:\n                   Estimate  Std.Err  z-value  P(&gt;|z|)\n   .Petal.Width      -0.315    0.211   -1.493    0.135\n\nVariances:\n                   Estimate  Std.Err  z-value  P(&gt;|z|)\n   .Petal.Width       0.040    0.006    7.246    0.000\n\n\nAdding the argument ‘missing = “ML”’ to the sem() function estimates a likelihood function for each row based on the variables that are present so that all the available data are used."
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#data-validation",
+    "href": "OS_2024/dataHandling/dataHandling.html#data-validation",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Data validation",
+    "text": "Data validation\n\nlibrary(data.validator)  \nreport &lt;- data_validation_report()  \n\nbetween &lt;- function(a, b) {\n  function(x) { a &lt;= x & x &lt;= b }\n}\n\nvalidate(iris, name = \"Verifying flower dataset\") |&gt; \n  validate_if(Sepal.Length &gt; 0, description = \"Sepal length is greater than 0\") |&gt; \n  validate_cols(between(0, 4), Sepal.Width, description = \"Sepal width is between 0 and 4\") |&gt; \n  add_results(report)\n\nprint(report)\n\nValidation summary: \n Number of successful validations: 1\n Number of validations with warnings: 0\n Number of failed validations: 1\n\nAdvanced view: \n\n\n|table_name               |description                    |type    | total_violations|\n|:------------------------|:------------------------------|:-------|----------------:|\n|Verifying flower dataset |Sepal length is greater than 0 |success |               NA|\n|Verifying flower dataset |Sepal width is between 0 and 4 |error   |                3|"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-16",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-16",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "print(report)\n\nValidation summary: \n Number of successful validations: 1\n Number of validations with warnings: 0\n Number of failed validations: 1\n\nAdvanced view: \n\n\n|table_name               |description                    |type    | total_violations|\n|:------------------------|:------------------------------|:-------|----------------:|\n|Verifying flower dataset |Sepal length is greater than 0 |success |               NA|\n|Verifying flower dataset |Sepal width is between 0 and 4 |error   |                3|"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#messy-data",
+    "href": "OS_2024/dataHandling/dataHandling.html#messy-data",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Messy data",
+    "text": "Messy data\nLook at the messy data dataset. How would you go about cleaning this dataset?\n\nmessy_data &lt;- readRDS(here::here(\"OS_2024/dataHandling/data/messy_data.RDS\")) \n\nmessy_data |&gt; data.table::data.table() \n\n           Date    SEX      age    Species Name       lat      lon count\n         &lt;char&gt; &lt;char&gt;   &lt;char&gt;          &lt;char&gt;     &lt;num&gt;    &lt;num&gt; &lt;int&gt;\n  1: 2023/02/01   male    Adult    Lagopus matu  9.123826 62.92628     5\n  2:   02/02/23 Female Juvenile    Logopus muta  7.836517 61.70676     9\n  3: 2023/02/01   male        J    Logopus muta  9.387262 63.84034    15\n  4: 01-01-2023 female    ADULT Lagopus lagopus  9.609423 61.06334    14\n  5: 01-01-2023   Male    ADULT    Lagopus matu  8.531654 63.44823    10\n  6: 2023-02-01   Male        A    Lagopus muta 10.369053 62.60819    10\n  7:   02/02/23 FEMALE JUVENILE    Lagopus muta  9.297162 62.71758    11\n  8:   02-01-23 FEMALE    Adult Lagopus lagopus  6.479778 61.59151    15\n  9: 2023-02-01 female Juvenile    Lagopus muta  7.879991 63.10879     4\n 10:   02/02/23   MALE JUVENILE    Lagopus muta  6.794386 62.41039    14\n 11: 2023/02/01 Female    ADULT    Lagopus matu 10.075820 62.14845     6\n 12:   02-01-23   MALE        J Lagopas lagopus  9.368355 64.29196    13\n 13: 2023/02/01 Female    ADULT    Lagopus matu 10.933222 63.08134     8\n 14: 01-01-2023   Male        A    Logopus muta  9.508031 61.63579     7\n 15:   02/02/23   MALE JUVENILE    Logopus muta 10.925062 62.59583     4\n 16:   02/02/23 female        A Lagopus lagopus  9.279532 62.91511    11\n 17:   02/02/23   male        J Lagopus lagopus  9.139805 65.96236    10\n 18: 2023-02-01   male Juvenile Lagopas lagopus 10.119368 62.39573    15\n 19:   02-01-23   MALE    Adult    Lagopus matu  7.847859 64.10893    10\n 20: 2023-02-01   male JUVENILE    Lagopus muta 10.732284 64.42712    13\n 21: 2023/02/01 Female        A Lagopas lagopus  8.541997 62.14247    14\n 22:   02/02/23   male        J    Logopus muta  9.220419 62.62880    13\n 23:   02-01-23 female JUVENILE Lagopus lagopus  9.624997 63.91689    13\n 24: 01-01-2023 female    Adult Lagopas lagopus  8.769459 62.61416     9\n 25: 01-01-2023 FEMALE    ADULT    Lagopus matu  9.011462 64.40237     2\n 26:   02-01-23   MALE    ADULT Lagopas lagopus  8.343305 63.35766    19\n 27: 2023/02/01   Male JUVENILE Lagopus lagopus  7.015809 62.97256    10\n 28: 2023-02-01   MALE    ADULT Lagopas lagopus  7.249466 63.64190     5\n 29:   02/02/23 FEMALE    Adult Lagopas lagopus  9.762441 61.59733     6\n 30: 2023/02/01 Female Juvenile Lagopas lagopus  9.081167 62.09558     6\n 31: 2023/02/01   MALE JUVENILE    Logopus muta  8.544149 64.01272    15\n 32: 2023/02/01 FEMALE JUVENILE Lagopas lagopus  9.115873 64.69849     9\n 33: 01-01-2023   male    ADULT    Lagopus matu  7.281479 63.76351    12\n 34: 2023/02/01 female JUVENILE    Lagopus muta 10.688551 63.98931    15\n 35:   02-01-23   Male Juvenile Lagopus lagopus  9.927145 62.94457     7\n 36:   02-01-23   male Juvenile    Logopus muta  8.498186 62.40878     9\n 37:   02-01-23 female Juvenile    Lagopus matu  8.993657 64.06921     0\n 38: 2023-02-01 female    ADULT    Logopus muta  8.400518 63.67579     3\n 39: 2023/02/01   Male    ADULT    Lagopus matu  8.671143 63.79903    18\n 40: 01-01-2023 female        J    Lagopus matu  9.794615 61.83442     5\n 41: 2023/02/01   MALE        A    Logopus muta  7.662123 63.20559    18\n 42: 01-01-2023   male        A    Logopus muta  7.971045 64.32591    15\n 43: 01-01-2023 female        J    Lagopus matu  8.777006 62.43949    11\n 44:   02/02/23   Male Juvenile    Lagopus muta  8.228000 62.71882    16\n 45: 01-01-2023 Female        J    Lagopus muta  8.912136 61.42190     5\n 46: 01-01-2023   MALE Juvenile    Lagopus muta 10.286843 62.89537     7\n 47: 2023/02/01   male    Adult    Logopus muta  9.195381 61.35946     6\n 48:   02-01-23 Female        J    Lagopus matu  8.801430 62.92860     2\n 49:   02/02/23 female        J Lagopas lagopus 11.148595 63.51963    10\n 50:   02/02/23 female    ADULT Lagopas lagopus  7.861651 62.37019    12\n 51: 2023-02-01 female        A    Lagopus muta  9.238828 62.88834     5\n 52: 2023/02/01 female JUVENILE    Logopus muta  9.126381 63.92296    13\n 53:   02-01-23 female Juvenile Lagopas lagopus 10.303237 62.86576     5\n 54: 01-01-2023 female        A Lagopas lagopus  8.745229 62.17313    18\n 55:   02-01-23 female        A    Logopus muta  8.691021 62.10421     6\n 56:   02/02/23 female JUVENILE Lagopas lagopus  9.314176 62.15080    15\n 57: 01-01-2023 Female Juvenile    Logopus muta  7.122930 62.32509    11\n 58: 2023-02-01 Female        A Lagopas lagopus  9.117661 61.81606    18\n 59: 01-01-2023   male        A Lagopas lagopus  9.800076 63.52459     3\n 60: 2023/02/01 Female JUVENILE    Lagopus matu  9.263243 63.46659    12\n 61:   02-01-23 Female    Adult Lagopas lagopus  9.432039 61.53335     7\n 62: 2023-02-01   Male    Adult    Lagopus matu  7.910848 62.92433     1\n 63:   02/02/23   Male        J    Logopus muta  9.092678 61.07257    13\n 64: 2023/02/01   male        A Lagopus lagopus 10.627507 62.46044     9\n 65: 2023/02/01   MALE        A    Lagopus matu  8.575023 62.45981    13\n 66: 01-01-2023 female JUVENILE Lagopas lagopus 10.736562 64.37288     5\n 67: 01-01-2023   MALE    ADULT Lagopas lagopus 10.644320 64.10796    14\n 68:   02-01-23   MALE    ADULT Lagopus lagopus  8.442710 65.27996    12\n 69:   02-01-23 FEMALE Juvenile Lagopas lagopus  7.970893 62.21394     6\n 70:   02/02/23   male Juvenile    Lagopus muta  7.002591 62.35749     7\n 71: 01-01-2023 FEMALE    ADULT Lagopus lagopus  9.516319 63.04347     6\n 72: 01-01-2023 Female        A    Lagopus muta  8.313179 64.23023    12\n 73: 2023-02-01 female        A Lagopas lagopus  7.678440 63.40045     6\n 74:   02-01-23   male    ADULT    Lagopus matu  8.729332 60.78910     5\n 75: 01-01-2023 Female    Adult    Logopus muta  9.753151 63.08899     8\n 76:   02/02/23 FEMALE    Adult    Lagopus matu  7.873569 62.33233     8\n 77: 01-01-2023   male Juvenile Lagopas lagopus  8.963270 62.15332     9\n 78:   02/02/23   male    ADULT Lagopus lagopus  8.428166 64.55505     4\n 79:   02/02/23 Female        A Lagopas lagopus  9.471109 61.53559    11\n 80: 01-01-2023   MALE        J    Lagopus matu  9.236367 62.27483    12\n 81: 2023-02-01 female    ADULT    Lagopus muta  8.939548 63.26092     3\n 82:   02-01-23 female    ADULT    Logopus muta  9.227044 61.22400     5\n 83: 2023-02-01 female JUVENILE    Lagopus muta  9.318695 62.20958    11\n 84:   02/02/23 female Juvenile    Lagopus matu  8.708364 63.88290     7\n 85:   02/02/23 female JUVENILE Lagopas lagopus  8.872903 63.71204     8\n 86: 2023/02/01 female    Adult    Lagopus matu  7.703743 63.25247     1\n 87: 2023-02-01 Female        A    Lagopus matu  9.127351 62.30380    11\n 88: 2023-02-01 Female    Adult    Lagopus matu  9.523766 60.64250     8\n 89: 2023/02/01 female        J Lagopas lagopus  9.181112 61.92349    12\n 90:   02/02/23   MALE Juvenile Lagopas lagopus  7.702984 61.91841     4\n 91:   02-01-23 female        J    Logopus muta  8.141424 63.80680     9\n 92:   02-01-23   male Juvenile    Lagopus matu 11.014120 64.89251    18\n 93: 01-01-2023   MALE JUVENILE    Lagopus muta  6.444234 64.92426     7\n 94: 01-01-2023   male        J    Logopus muta  8.507807 63.49817     5\n 95:   02-01-23 Female Juvenile    Lagopus matu  9.379068 62.59566     8\n 96:   02-01-23   Male        J Lagopus lagopus  8.190334 61.91115    13\n 97:   02-01-23   male        A    Lagopus matu  8.489750 63.48030     7\n 98:   02/02/23 FEMALE    Adult    Lagopus muta 10.193635 62.98715    15\n 99:   02/02/23   MALE        J    Logopus muta  8.798305 63.96787     5\n100: 2023-02-01   MALE        A    Lagopus matu  7.846161 63.42758    14\n           Date    SEX      age    Species Name       lat      lon count"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#data-wrangling",
+    "href": "OS_2024/dataHandling/dataHandling.html#data-wrangling",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Data wrangling",
+    "text": "Data wrangling"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#transform-to-long-format",
+    "href": "OS_2024/dataHandling/dataHandling.html#transform-to-long-format",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Transform to long format",
+    "text": "Transform to long format\n\nlibrary(tidyverse) \n# this avoids tidyverse conflicts with the base function filter \nconflicted::conflict_prefer(\"filter\", \"dplyr\") \n# Pivot longer  \npenguins_long&lt;-penguins |&gt;\n  pivot_longer(contains(\"_\"),names_to = c(\"part\", \"measure\" , \"unit\"),names_sep = \"_\")  \n\npenguins_long \n\n# A tibble: 1,376 × 8\n   species island    sex     year part    measure unit   value\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;\n 1 Adelie  Torgersen male    2007 bill    length  mm      39.1\n 2 Adelie  Torgersen male    2007 bill    depth   mm      18.7\n 3 Adelie  Torgersen male    2007 flipper length  mm     181  \n 4 Adelie  Torgersen male    2007 body    mass    g     3750  \n 5 Adelie  Torgersen female  2007 bill    length  mm      39.5\n 6 Adelie  Torgersen female  2007 bill    depth   mm      17.4\n 7 Adelie  Torgersen female  2007 flipper length  mm     186  \n 8 Adelie  Torgersen female  2007 body    mass    g     3800  \n 9 Adelie  Torgersen female  2007 bill    length  mm      40.3\n10 Adelie  Torgersen female  2007 bill    depth   mm      18  \n# ℹ 1,366 more rows"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#transform-to-wide-format",
+    "href": "OS_2024/dataHandling/dataHandling.html#transform-to-wide-format",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Transform to wide format",
+    "text": "Transform to wide format\n\npenguins_long |&gt;\n  pivot_wider(names_from = species, values_from = value) \n\n# A tibble: 92 × 9\n   island    sex     year part    measure unit  Adelie    Gentoo Chinstrap\n   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;list&gt;    &lt;list&gt; &lt;list&gt;   \n 1 Torgersen male    2007 bill    length  mm    &lt;dbl [7]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 2 Torgersen male    2007 bill    depth   mm    &lt;dbl [7]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 3 Torgersen male    2007 flipper length  mm    &lt;dbl [7]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 4 Torgersen male    2007 body    mass    g     &lt;dbl [7]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 5 Torgersen female  2007 bill    length  mm    &lt;dbl [8]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 6 Torgersen female  2007 bill    depth   mm    &lt;dbl [8]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 7 Torgersen female  2007 flipper length  mm    &lt;dbl [8]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 8 Torgersen female  2007 body    mass    g     &lt;dbl [8]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n 9 Torgersen &lt;NA&gt;    2007 bill    length  mm    &lt;dbl [5]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n10 Torgersen &lt;NA&gt;    2007 bill    depth   mm    &lt;dbl [5]&gt; &lt;NULL&gt; &lt;NULL&gt;   \n# ℹ 82 more rows"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#whats-going-on",
+    "href": "OS_2024/dataHandling/dataHandling.html#whats-going-on",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "What’s going on?",
+    "text": "What’s going on?\nNo identifier for each observation so R puts all the values in a list. To solve this we need a unique row id.\n\npenguins_long |&gt;\n  mutate(sample=row_number()) |&gt;\n  pivot_wider(names_from = species,values_from = value) \n\n# A tibble: 1,376 × 10\n   island    sex     year part    measure unit  sample Adelie Gentoo Chinstrap\n   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;\n 1 Torgersen male    2007 bill    length  mm         1   39.1     NA        NA\n 2 Torgersen male    2007 bill    depth   mm         2   18.7     NA        NA\n 3 Torgersen male    2007 flipper length  mm         3  181       NA        NA\n 4 Torgersen male    2007 body    mass    g          4 3750       NA        NA\n 5 Torgersen female  2007 bill    length  mm         5   39.5     NA        NA\n 6 Torgersen female  2007 bill    depth   mm         6   17.4     NA        NA\n 7 Torgersen female  2007 flipper length  mm         7  186       NA        NA\n 8 Torgersen female  2007 body    mass    g          8 3800       NA        NA\n 9 Torgersen female  2007 bill    length  mm         9   40.3     NA        NA\n10 Torgersen female  2007 bill    depth   mm        10   18       NA        NA\n# ℹ 1,366 more rows"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#tidy-data",
+    "href": "OS_2024/dataHandling/dataHandling.html#tidy-data",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Tidy data",
+    "text": "Tidy data"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#tidy-data-principles",
+    "href": "OS_2024/dataHandling/dataHandling.html#tidy-data-principles",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Tidy data principles",
+    "text": "Tidy data principles"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#untidy-data",
+    "href": "OS_2024/dataHandling/dataHandling.html#untidy-data",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Untidy data",
+    "text": "Untidy data\nHave a look at the smallGame dataset.\n\nsmallGame &lt;- readRDS(here::here(\"OS_2024/dataHandling/data/smallGame.RDS\"))\n\n\nWhat format is it in (long or wide)?\nHow would you convert it to the other format?\nWhich format do you find easier to use? (there is no “correct” answer to this one!)"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#code-style",
+    "href": "OS_2024/dataHandling/dataHandling.html#code-style",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Code style",
+    "text": "Code style\nWhat are attributes of good code?\nHave a look at the “notReproducible.qmd” file"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#tidyverse-style-guide",
+    "href": "OS_2024/dataHandling/dataHandling.html#tidyverse-style-guide",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Tidyverse style guide",
+    "text": "Tidyverse style guide\n“Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.”\n\n# Examples \nday_one # Good \nDayOne # Bad \n# Avoid names of common functions\nT &lt;- FALSE # Bad \nc &lt;- 10 # Bad \nmean &lt;- function(x) sum(x) # Bad \n# Space after a comma \nx[, 1] # Good \nx[,1] # Bad \n# space after () in functions \nfunction(x) {}# Good \nfunction (x) {} # Bad \nfunction(x){} # Bad"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#useful-packages-for-style",
+    "href": "OS_2024/dataHandling/dataHandling.html#useful-packages-for-style",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "Useful packages for style",
+    "text": "Useful packages for style\n\nlibrary(lintr)\n# Define the code as a character vector\ncode &lt;- c(\n  \"# Spacing \",\n  \"average&lt;-mean(feet/12 + inches,na.rm=TRUE)\",\n  \"sqrt(x ^ 2 + y ^ 2)\",\n  \"x &lt;- 1 : 10\",\n  \"base :: get\",\n  \"# Indenting\",\n  \"if (y &lt; 0 && debug)\",\n  \"  message('Y is negative')\",\n  \"# Assignment\",\n  \"x = 5\"\n)\n\n# Write the code to 'bad_style.R'\nwriteLines(code, \"bad_style.R\")\n\n# Run lintr on the newly created file\nlint(\"bad_style.R\")\n\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:1:10: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.\n# Spacing \n         ^\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:2:8: style: [infix_spaces_linter] Put spaces around all infix operators.\naverage&lt;-mean(feet/12 + inches,na.rm=TRUE)\n       ^~\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:2:19: style: [infix_spaces_linter] Put spaces around all infix operators.\naverage&lt;-mean(feet/12 + inches,na.rm=TRUE)\n                  ^\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:2:32: style: [commas_linter] Commas should always have a space after.\naverage&lt;-mean(feet/12 + inches,na.rm=TRUE)\n                               ^\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:2:37: style: [infix_spaces_linter] Put spaces around all infix operators.\naverage&lt;-mean(feet/12 + inches,na.rm=TRUE)\n                                    ^\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:8:11: style: [quotes_linter] Only use double-quotes.\n  message('Y is negative')\n          ^~~~~~~~~~~~~~~\n/Users/audhalbritter/Dropbox/Bergen/OS_course/OS-course-teaching-material/OS_2024/dataHandling/bad_style.R:10:3: style: [assignment_linter] Use &lt;-, not =, for assignment.\nx = 5\n  ^"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-17",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-17",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "library(\"styler\") \nstyle_file(\"bad_style.R\")\n\nStyling  1  files:\n bad_style.R ℹ \n────────────────────────────────────────\nStatus  Count   Legend \n✔   0   File unchanged.\nℹ   1   File changed.\n✖   0   Styling threw an error.\n────────────────────────────────────────\nPlease review the changes carefully!\n\nreadLines(\"bad_style.R\")\n\n [1] \"# Spacing\"                                        \n [2] \"average &lt;- mean(feet / 12 + inches, na.rm = TRUE)\"\n [3] \"sqrt(x^2 + y^2)\"                                  \n [4] \"x &lt;- 1:10\"                                        \n [5] \"base::get\"                                        \n [6] \"# Indenting\"                                      \n [7] \"if (y &lt; 0 && debug) {\"                            \n [8] \"  message(\\\"Y is negative\\\")\"                     \n [9] \"}\"                                                \n[10] \"# Assignment\"                                     \n[11] \"x &lt;- 5\""
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#what-i-think",
+    "href": "OS_2024/dataHandling/dataHandling.html#what-i-think",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "What I think…",
+    "text": "What I think…\n\nIt runs (on your computer)\nIt runs (on my computer - without me having to do anything/much)\nIt does what you expect it to do (even after 5 years)\nIt is documented in some way"
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#what-jenny-bryan-thinks",
+    "href": "OS_2024/dataHandling/dataHandling.html#what-jenny-bryan-thinks",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "What Jenny Bryan thinks",
+    "text": "What Jenny Bryan thinks\nIf the first line of your R script is\n\nsetwd(\"C:\\Users\\jenny\\path\\that\\only\\I\\have\")\n\nI will come into your office and SET YOUR COMPUTER ON FIRE 🔥."
+  },
+  {
+    "objectID": "OS_2024/dataHandling/dataHandling.html#section-18",
+    "href": "OS_2024/dataHandling/dataHandling.html#section-18",
+    "title": "Data handling and curation - from raw to clean data",
+    "section": "",
+    "text": "If the first line of your R script is\n\nrm(list = ls())\n\nI will come into your office and SET YOUR COMPUTER ON FIRE 🔥."
+  },
+  {
     "objectID": "OS_2024/Systematic_Reviews/meta_analysis.html",
     "href": "OS_2024/Systematic_Reviews/meta_analysis.html",
     "title": "Meta-analysis in R",
@@ -690,77 +1103,7 @@
     "href": "OS_2024/Systematic_Reviews/meta_analysis.html#cumulative-meta-analysis",
     "title": "Meta-analysis in R",
     "section": "Cumulative meta-analysis",
-    "text": "Cumulative meta-analysis\nA cumulative meta-analysis examines how the overall effect size estimate changes as each study is added sequentially, usually sorted by publication date. This approach can reveal trends over time, showing whether the effect size has stabilised as more studies are included.\nLet’s go through an example of performing a cumulative meta-analysis with the metafor package in R.\n\nStep 1: Create the Dataset\nFirst, we’ll create a dataset with a year variable to sort studies in chronological order for the cumulative analysis.\n\ndata &lt;- data.frame(\n  study_id = 1:10,\n  year = c(2000, 2002, 2004, 2005, 2006, 2008, 2010, 2012, 2015, 2018),  # Publication year\n  yi = c(0.8, 0.7, 0.5, 0.3, 0.1, -0.1, -0.3, -0.5, -0.7, -0.9),  # Effect sizes (Hedges' g)\n  vi = c(0.02, 0.03, 0.025, 0.04, 0.018, 0.027, 0.035, 0.033, 0.02, 0.03)  # Variances\n)\n\n# Sort data by year for cumulative meta-analysis\ndata &lt;- data[order(data$year), ]\n\n\n\nStep 2: Perform Cumulative Meta-Analysis\nNow, we can use the cumul() function from metafor to perform a cumulative meta-analysis. This function recalculates the meta-analysis result each time a new study is added.\n\n# Fit an initial random-effects model \nrandom_effect_model &lt;- rma(yi = yi, vi = vi, data = data, method = \"REML\")  # Perform cumulative meta-analysis \ncumulative_results &lt;- cumul(random_effect_model, order = data$year)  # View cumulative meta-analysis \ncumulative_results\n\n\n   estimate     se    zval  pvals   ci.lb  ci.ub        Q     Qp   tau2      I2 \n1    0.8000 0.1414  5.6569 0.0000  0.5228 1.0772   0.0000 1.0000 0.0000  0.0000 \n2    0.7600 0.1095  6.9378 0.0000  0.5453 0.9747   0.2000 0.6547 0.0000  0.0000 \n3    0.6748 0.0938  7.1978 0.0000  0.4911 0.8586   2.0270 0.3629 0.0020  7.4829 \n4    0.5986 0.1060  5.6447 0.0000  0.3907 0.8064   4.9607 0.1747 0.0174 38.6738 \n5    0.4802 0.1343  3.5758 0.0003  0.2170 0.7434  15.5708 0.0037 0.0642 71.9936 \n6    0.3842 0.1449  2.6517 0.0080  0.1002 0.6681  25.8529 0.0001 0.0997 79.8004 \n7    0.2904 0.1548  1.8756 0.0607 -0.0131 0.5939  37.8277 0.0000 0.1403 84.2217 \n8    0.1927 0.1661  1.1607 0.2458 -0.1327 0.5182  55.7933 0.0000 0.1923 87.7058 \n9    0.0898 0.1780  0.5047 0.6138 -0.2590 0.4387  92.8590 0.0000 0.2578 90.8532 \n10  -0.0087 0.1871 -0.0462 0.9631 -0.3754 0.3581 123.1155 0.0000 0.3224 92.4608 \n        H2 \n1   1.0000 \n2   1.0000 \n3   1.0809 \n4   1.6306 \n5   3.5706 \n6   4.9506 \n7   6.3378 \n8   8.1339 \n9  10.9328 \n10 13.2640 \n\n\n\n\nStep 3: Plot the Cumulative Meta-Analysis\nYou can also visualize the cumulative effect size estimates over time using forest().\n\n# Plot cumulative meta-analysis results \nforest(cumulative_results, xlab = \"Cumulative Hedges' g\", refline = 0, cex = 0.8)\n\n\n\n\n\n\nInterpretation\nAs you add each study (from the earliest to the most recent), you’ll see how the cumulative estimate of Hedges’ g changes. In ecology, this can highlight if early results were consistent with later studies or if new findings led to significant shifts in the overall effect estimate. This approach provides insight into whether further studies are likely to meaningfully alter the cumulative effect size or if it has stabilised."
-  },
-  {
-    "objectID": "reproducible_docs.html#how-do-you-write-reports-manuscripts-presentations",
-    "href": "reproducible_docs.html#how-do-you-write-reports-manuscripts-presentations",
-    "title": "Introduction to reproducible documents",
-    "section": "How do you write reports, manuscripts, presentations?",
-    "text": "How do you write reports, manuscripts, presentations?"
-  },
-  {
-    "objectID": "reproducible_docs.html#biostats-tutorial",
-    "href": "reproducible_docs.html#biostats-tutorial",
-    "title": "Introduction to reproducible documents",
-    "section": "Biostats tutorial",
-    "text": "Biostats tutorial\nGo to this webpage: https://biostats-r.github.io/"
-  },
-  {
-    "objectID": "reproducible_workflows.html#biostats-tutorial",
-    "href": "reproducible_workflows.html#biostats-tutorial",
-    "title": "Introduction to reproducible workflows",
-    "section": "Biostats tutorial",
-    "text": "Biostats tutorial\nGo to this webpage: https://biostats-r.github.io/"
-  },
-  {
-    "objectID": "exercise_reproducibility.html#reproducibilty",
-    "href": "exercise_reproducibility.html#reproducibilty",
-    "title": "How reproducible is ecology?",
-    "section": "Reproducibilty",
-    "text": "Reproducibilty\n\n\nThe Turing Way Community. This illustration is created by Scriberia with The Turing Way community, used under a CC-BY 4.0 licence. DOI: 10.5281/zenodo.3332807"
-  },
-  {
-    "objectID": "exercise_reproducibility.html#data-and-code-availability",
-    "href": "exercise_reproducibility.html#data-and-code-availability",
-    "title": "How reproducible is ecology?",
-    "section": "Data and code availability",
-    "text": "Data and code availability\n\n\nCulina A, van den Berg I, Evans S, Sánchez-Tójar A (2020) Low availability of code in ecology: A call for urgent action. PLOS Biology 18(7): e3000763. https://doi.org/10.1371/journal.pbio.3000763"
-  },
-  {
-    "objectID": "exercise_reproducibility.html#section",
-    "href": "exercise_reproducibility.html#section",
-    "title": "How reproducible is ecology?",
-    "section": "",
-    "text": "2023: Review 87 papers from 6 journals\n\nNumber of studies with available data and/or code."
-  },
-  {
-    "objectID": "exercise_reproducibility.html#section-1",
-    "href": "exercise_reproducibility.html#section-1",
-    "title": "How reproducible is ecology?",
-    "section": "",
-    "text": "2023: data and code availability\n\nFigure 1: Data and code availability."
-  },
-  {
-    "objectID": "exercise_reproducibility.html#section-2",
-    "href": "exercise_reproducibility.html#section-2",
-    "title": "How reproducible is ecology?",
-    "section": "",
-    "text": "2023: data and code availability\n\nFigure 2: ?(caption)"
-  },
-  {
-    "objectID": "exercise_reproducibility.html#exercise-12",
-    "href": "exercise_reproducibility.html#exercise-12",
-    "title": "How reproducible is ecology?",
-    "section": "Exercise (1/2)",
-    "text": "Exercise (1/2)\nMake groups of 3-4.\nChoose one of the following journals and select a random issue from 2024:\n\nMethods in Ecology and Evolution\nJournal of Ecology\nOIKOS\nAmerican Naturalist\nJournal of Animal Ecology\nEcological Monographs"
-  },
-  {
-    "objectID": "exercise_reproducibility.html#exercise-22",
-    "href": "exercise_reproducibility.html#exercise-22",
-    "title": "How reproducible is ecology?",
-    "section": "Exercise (2/2)",
-    "text": "Exercise (2/2)\nFor each paper in this issue check:\n\nIs the data available and can you download it? Repo or supplement file? In what format is the data available (xlsx, csv, txt, etc.)?\nIs the code available? Choose one figure/analysis. Is the data and code for this figure/analysis available? Try to run the code, can you replicate the figure/analysis.\nAdd the data to this google spreadsheet and get a snack 🍪"
+    "text": "Cumulative meta-analysis\nA cumulative meta-analysis examines how the overall effect size estimate changes as each study is added sequentially, usually sorted by publication date. This approach can reveal trends over time, showing whether the effect size has stabilised as more studies are included.\nLet’s go through an example of performing a cumulative meta-analysis with the metafor package in R.\n\nStep 1: Create the Dataset\nFirst, we’ll create a dataset with a year variable to sort studies in chronological order for the cumulative analysis.\n\ndata &lt;- data.frame(\n  study_id = 1:10,\n  year = c(2000, 2002, 2004, 2005, 2006, 2008, 2010, 2012, 2015, 2018),  # Publication year\n  yi = c(0.8, 0.7, 0.5, 0.3, 0.1, -0.1, -0.3, -0.5, -0.7, -0.9),  # Effect sizes (Hedges' g)\n  vi = c(0.02, 0.03, 0.025, 0.04, 0.018, 0.027, 0.035, 0.033, 0.02, 0.03)  # Variances\n)\n\n# Sort data by year for cumulative meta-analysis\ndata &lt;- data[order(data$year), ]\n\n\n\nStep 2: Perform Cumulative Meta-Analysis\nNow, we can use the cumul() function from metafor to perform a cumulative meta-analysis. This function recalculates the meta-analysis result each time a new study is added.\n\n# Fit an initial random-effects model \nrandom_effect_model &lt;- rma(yi = yi, vi = vi, data = data, method = \"REML\")  # Perform cumulative meta-analysis \ncumulative_results &lt;- cumul(random_effect_model, order = data$year)  # View cumulative meta-analysis \ncumulative_results\n\n\n   estimate     se    zval  pvals   ci.lb  ci.ub        Q     Qp   tau2      I2 \n1    0.8000 0.1414  5.6569 0.0000  0.5228 1.0772   0.0000 1.0000 0.0000  0.0000 \n2    0.7600 0.1095  6.9378 0.0000  0.5453 0.9747   0.2000 0.6547 0.0000  0.0000 \n3    0.6748 0.0938  7.1978 0.0000  0.4911 0.8586   2.0270 0.3629 0.0020  7.4829 \n4    0.5986 0.1060  5.6447 0.0000  0.3907 0.8064   4.9607 0.1747 0.0174 38.6738 \n5    0.4802 0.1343  3.5758 0.0003  0.2170 0.7434  15.5708 0.0037 0.0642 71.9936 \n6    0.3842 0.1449  2.6517 0.0080  0.1002 0.6681  25.8529 0.0001 0.0997 79.8004 \n7    0.2904 0.1548  1.8756 0.0607 -0.0131 0.5939  37.8277 0.0000 0.1403 84.2217 \n8    0.1927 0.1661  1.1607 0.2458 -0.1327 0.5182  55.7933 0.0000 0.1923 87.7058 \n9    0.0898 0.1780  0.5047 0.6138 -0.2590 0.4387  92.8590 0.0000 0.2578 90.8532 \n10  -0.0087 0.1871 -0.0462 0.9631 -0.3754 0.3581 123.1155 0.0000 0.3224 92.4608 \n        H2 \n1   1.0000 \n2   1.0000 \n3   1.0809 \n4   1.6306 \n5   3.5706 \n6   4.9506 \n7   6.3378 \n8   8.1339 \n9  10.9328 \n10 13.2640 \n\n\n\n\nStep 3: Plot the Cumulative Meta-Analysis\nYou can also visualize the cumulative effect size estimates over time using forest().\n\n# Plot cumulative meta-analysis results \nforest(cumulative_results, xlab = \"Cumulative Hedges' g\", refline = 0, cex = 0.8)\n\n\n\n\n\n\n\n\n\n\nInterpretation\nAs you add each study (from the earliest to the most recent), you’ll see how the cumulative estimate of Hedges’ g changes. In ecology, this can highlight if early results were consistent with later studies or if new findings led to significant shifts in the overall effect estimate. This approach provides insight into whether further studies are likely to meaningfully alter the cumulative effect size or if it has stabilised."
   },
   {
     "objectID": "OS_2024/introduction_os/Gentle_introduction_OS_2024.html#introduction",
@@ -802,7 +1145,7 @@
     "href": "OS_2024/introduction_os/Gentle_introduction_OS_2024.html#what-is-open-science",
     "title": "A gentle introduction to Open Science",
     "section": "What is Open Science",
-    "text": "What is Open Science\n\n\n\n\n\n\n\n\n\n\n\nWe arranged a two-day seminar about open science in research and teaching in 2020\nThe summary of the workshop can be found in the link below\n\n\n\n\n\n\nTransforming science education to meet the needs of today’s students and tomorrow’s science"
+    "text": "What is Open Science\n\n\n\n\n\n\n\n\n\n\n\nWe arranged a two-day seminar about open science in research and teaching in 2020\nThe summary of the workshop can be found in the link below\n\n\n\n\n\nTransforming science education to meet the needs of today’s students and tomorrow’s science"
   },
   {
     "objectID": "OS_2024/introduction_os/Gentle_introduction_OS_2024.html#is-it-all-good---or-are-there-remaining-challenges",
@@ -837,7 +1180,7 @@
     "href": "OS_2024/introduction_os/Gentle_introduction_OS_2024.html#the-reproduciblity-crisis",
     "title": "A gentle introduction to Open Science",
     "section": "The reproduciblity crisis",
-    "text": "The reproduciblity crisis\n\n\n\n\n\n\n\n1,500 scientists lift the lid on reproducibility | Nature"
+    "text": "The reproduciblity crisis\n\n\n\n\n\n\n1,500 scientists lift the lid on reproducibility | Nature"
   },
   {
     "objectID": "OS_2024/introduction_os/Gentle_introduction_OS_2024.html#access-to-data",
@@ -886,7 +1229,7 @@
     "href": "OS_2024/introduction_os/Gentle_introduction_OS_2024.html#distinguish-between-exploratory-and-confirmatory-science",
     "title": "A gentle introduction to Open Science",
     "section": "Distinguish between exploratory and confirmatory science",
-    "text": "Distinguish between exploratory and confirmatory science\n\n\n\n\n\n\n\nSee Nilsen, Bowler, and Linnell (2020)"
+    "text": "Distinguish between exploratory and confirmatory science\n\n\n\n\n\n\nSee Nilsen, Bowler, and Linnell (2020)"
   },
   {
     "objectID": "OS_2024/introduction_os/Gentle_introduction_OS_2024.html#open-science-is-just-as-much-about.",
@@ -900,265 +1243,6 @@
     "href": "OS_2024/introduction_os/Gentle_introduction_OS_2024.html#references",
     "title": "A gentle introduction to Open Science",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\nArchmiller, Althea A., Andrew D. Johnson, Jane Nolan, Margaret Edwards, Lisa H. Elliott, Jake M. Ferguson, Fabiola Iannarilli, et al. 2020. “Computational Reproducibility in the Wildlife Society’s Flagship Journals.” The Journal of Wildlife Management 84 (5): 1012–17. https://doi.org/10.1002/jwmg.21855.\n\n\nCulina, Antica, Ilona van den Berg, Simon Evans, and Alfredo Sánchez-Tójar. 2020. “Low Availability of Code in Ecology: A Call for Urgent Action.” PLOS Biology 18 (7): 1–9. https://doi.org/10.1371/journal.pbio.3000763.\n\n\nFecher, Benedikt, and Sascha Friesike. 2014. “Open Science: One Term, Five Schools of Thought.” In Opening Science: The Evolving Guide on How the Internet Is Changing Research, Collaboration and Scholarly Publishing, edited by Sönke Bartling and Sascha Friesike, 17–47. Cham: Springer International Publishing. https://doi.org/10.1007/978-3-319-00026-8_2.\n\n\nFraser, Tim AND Nakagawa, Hannah AND Parker. 2018. “Questionable Research Practices in Ecology and Evolution.” PLOS ONE 13 (7): 1–16. https://doi.org/10.1371/journal.pone.0200303.\n\n\nMandeville, Caitlin P, Wouter Koch, Erlend B Nilsen, and Anders G Finstad. 2021. “Open Data Practices among Users of Primary Biodiversity Data.” BioScience 71 (11): 1128–47. https://doi.org/10.1093/biosci/biab072.\n\n\nNilsen, Erlend B., Diana E. Bowler, and John D. C. Linnell. 2020. “Exploratory and Confirmatory Research in the Open Science Era.” Journal of Applied Ecology 57 (4): 842–47. https://doi.org/10.1111/1365-2664.13571.\n\n\nNosek, B. A., C. R. Ebersol, A. C. DeHaven, and D. T. Mello. 2018. “The Preregistration Revolution.” PNAS 115 (11): 2600–2606. https://doi.org/10.1073/pnas.1708274114.\n\n\nWilkinson, et al. 2016. “The FAIR Guiding Principles for Scientific Data Management and Stewardship.” Scientific Data 3. https://doi.org/10.1093/biosci/biab072."
-  },
-  {
-    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp",
-    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp",
-    "title": "Open Science: Tools and approaches",
-    "section": "The Data Management Plan (DMP)",
-    "text": "The Data Management Plan (DMP)"
-  },
-  {
-    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp-1",
-    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp-1",
-    "title": "Open Science: Tools and approaches",
-    "section": "The Data Management Plan (DMP)",
-    "text": "The Data Management Plan (DMP)\nA document that describe your research data and how you plan to handle them\n\nHow is your data collected\nHow is your data stored\nWho owns the data\nHow is the data going to be shared and archived\nAre there any legal or ethical (e.g. GDPR) issues?\nVolume of data\nCosts associated with storing /archiving – and who is paying"
-  },
-  {
-    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp-2",
-    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#the-data-management-plan-dmp-2",
-    "title": "Open Science: Tools and approaches",
-    "section": "The Data Management Plan (DMP)",
-    "text": "The Data Management Plan (DMP)\nA DMP usually start out with a template:\n\nEasyDMP: [here]\nSikt: [here]"
-  },
-  {
-    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis",
-    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis",
-    "title": "Open Science: Tools and approaches",
-    "section": "Preregistration of your hypothesis",
-    "text": "Preregistration of your hypothesis"
-  },
-  {
-    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#prergistration-of-your-hypothesis",
-    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#prergistration-of-your-hypothesis",
-    "title": "Open Science: Tools and approaches",
-    "section": "Prergistration of your hypothesis",
-    "text": "Prergistration of your hypothesis\nUseful to distinguish between exploratory and confirmatory science\n\n\n\n\n\n\n\nSee Nilsen, Bowler, and Linnell (2020)"
-  },
-  {
-    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis-1",
-    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis-1",
-    "title": "Open Science: Tools and approaches",
-    "section": "Preregistration of your hypothesis",
-    "text": "Preregistration of your hypothesis\n\n\n\n\n\nSee Nosek et al. (2018)"
-  },
-  {
-    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis-2",
-    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#preregistration-of-your-hypothesis-2",
-    "title": "Open Science: Tools and approaches",
-    "section": "Preregistration of your hypothesis",
-    "text": "Preregistration of your hypothesis\nA document that describe your research hypotheses and how you plan to test them\n\nA clear description of your hypothesis / hypotheses\nA clear description of how you plan to collect data to test them\nA clear description of how you plan to test them statistically\nA clear description of how you plan to report the results"
-  },
-  {
-    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#registered-reports-taking-it-one-step-further",
-    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#registered-reports-taking-it-one-step-further",
-    "title": "Open Science: Tools and approaches",
-    "section": "Registered reports: taking it one step further",
-    "text": "Registered reports: taking it one step further"
-  },
-  {
-    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#registered-reports-taking-it-one-step-further-1",
-    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#registered-reports-taking-it-one-step-further-1",
-    "title": "Open Science: Tools and approaches",
-    "section": "Registered reports: taking it one step further",
-    "text": "Registered reports: taking it one step further\nA per-reviewed document (report) that clearly outline the hypotheses, data collection, data analyses and reporting prior to conducting the research\n\nExtends the pre-registration discussed so far because the report is also per-reviewed\nAfter revision (or repeated revisions) the report is de-facto accepted for publication by the journal\nOffered by several journals [e.g. Ecological Solutions and Evidence: Registered Reports Author Guidelines (wiley.com)"
-  },
-  {
-    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#data-papers",
-    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#data-papers",
-    "title": "Open Science: Tools and approaches",
-    "section": "Data papers",
-    "text": "Data papers\nA data paper is a textual (extended) description of your data\n\nIt is a per-reviewed publication describing a data set, published in a journal\nThe main purpose of the data paper is to document data, not to solve new research questions\nA data paper can increase visibility and ensure you get credit for the data you share\nThe paper link to the data, but you still need to find a suitable place to share (publish) your data\nExample: Data papers (gbif.org)"
-  },
-  {
-    "objectID": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#references",
-    "href": "OS_2024/Tools_approaches/Tools_Approaches_OS_2024.html#references",
-    "title": "Open Science: Tools and approaches",
-    "section": "References",
-    "text": "References\n\n\n\n\n\n\nNilsen, Erlend B., Diana E. Bowler, and John D. C. Linnell. 2020. “Exploratory and Confirmatory Research in the Open Science Era.” Journal of Applied Ecology 57 (4): 842–47. https://doi.org/10.1111/1365-2664.13571.\n\n\nNosek, Brian A., Charles R. Ebersole, Alexander C. DeHaven, and David T. Mellor. 2018. “The Preregistration Revolution.” Proceedings of the National Academy of Sciences 115 (11): 2600–2606. https://doi.org/10.1073/pnas.1708274114."
-  },
-  {
-    "objectID": "functions.html",
-    "href": "functions.html",
-    "title": "Writing Functions in R",
-    "section": "",
-    "text": "── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors"
-  },
-  {
-    "objectID": "functions.html#dont-worry-if-you-cannot",
-    "href": "functions.html#dont-worry-if-you-cannot",
-    "title": "Writing Functions in R",
-    "section": "Don’t worry if you cannot",
-    "text": "Don’t worry if you cannot\n\nYou can\nuse a \\ instead"
-  },
-  {
-    "objectID": "functions.html#my-first-worst-function",
-    "href": "functions.html#my-first-worst-function",
-    "title": "Writing Functions in R",
-    "section": "My first worst function",
-    "text": "My first worst function\n\nf &lt;- function(){}\nf()\n\nTakes no arguments. Does not work. Returns nothing.\nGuaranteed never to fail.\n\n\nf is a terrible name for a function - use a descriptive name\nkeyword function used to define functions\n() contain all the arguments separated by commas\n{} contain the body of the function"
-  },
-  {
-    "objectID": "functions.html#why-write-functions",
-    "href": "functions.html#why-write-functions",
-    "title": "Writing Functions in R",
-    "section": "Why write functions?",
-    "text": "Why write functions?\n\n\nReduce code duplication: Don’t repeat yourself\nShare between projects\nShare with others\nPromote better documentation\nEasier to test\nEasier to debug"
-  },
-  {
-    "objectID": "functions.html#dont-repeat-yourself-dry",
-    "href": "functions.html#dont-repeat-yourself-dry",
-    "title": "Writing Functions in R",
-    "section": "Don’t repeat yourself DRY",
-    "text": "Don’t repeat yourself DRY\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\npenguins |&gt; \n  filter(species == \"Gentoo\") |&gt; \n  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Body mass g\", y = \"Bill length mm\", title = \"Gentoo\")\n\npenguins |&gt; \n  filter(species == \"Adelie\") |&gt; \n  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Body mass g\", y = \"Bill length mm\", title = \"Gentoo\")"
-  },
-  {
-    "objectID": "functions.html#identify-arguments",
-    "href": "functions.html#identify-arguments",
-    "title": "Writing Functions in R",
-    "section": "Identify arguments",
-    "text": "Identify arguments\nGeneral – Specific functions\n\nGeneral - more arguments, more flexible, more complex\nSpecific - fewer arguments, less flexible, simpler\n\n\npenguins |&gt; \n  filter(species == \"Adelie\") |&gt; \n  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Body mass g\", y = \"Bill length mm\", title = \"Gentoo\")"
-  },
-  {
-    "objectID": "functions.html#sanity-check-inputs",
-    "href": "functions.html#sanity-check-inputs",
-    "title": "Writing Functions in R",
-    "section": "Sanity check inputs",
-    "text": "Sanity check inputs\nMake your functions idiot proof.\n\narea_square &lt;- function(side = 1) {\n  if (! is.numeric(side)) {\n    stop(\"side must be numeric\")\n  }\n  if (side &lt;= 0) {\n    stop(\"side must be positive\")\n  }\n  side^2\n}  \narea_square(\"fish\")\n\nError in area_square(\"fish\"): side must be numeric\n\narea_square(-1)\n\nError in area_square(-1): side must be positive"
-  },
-  {
-    "objectID": "functions.html#keep-it-simple",
-    "href": "functions.html#keep-it-simple",
-    "title": "Writing Functions in R",
-    "section": "Keep it Simple",
-    "text": "Keep it Simple\nOne function - one job\n\ncomplex &lt;- function(arg1, arg2, ...) { # bad\n  # complex code to import data\n  # complex code to clean data\n  # complex code to model code\n  # complex code to plot model\n}\n\nLarge complex function\n\ndifficult to understand\nmany arguments\ndifficult to test"
-  },
-  {
-    "objectID": "functions.html#break-into-smaller-functions",
-    "href": "functions.html#break-into-smaller-functions",
-    "title": "Writing Functions in R",
-    "section": "Break into smaller functions",
-    "text": "Break into smaller functions\n\n# Better\nimport_fun &lt;- function(arg1) {\n  # complex code to import data\n}\n  \nclean_fun &lt;- function(.data) {\n  # complex code to clean data\n}  \n\nmodel_fun &lt;- function(.data_clean) {\n  # complex code to model code\n}\n\nplot_fun &lt;- function(.data_clean) {\n  # complex code to plot model\n}    \n  \ncomplex &lt;- function(arg1, arg2, ...) { \n  .data &lt;- import_fun(arg1)\n  .data_clean &lt;- clean_fun(.data)\n  mod &lt;- model_fun(.data_clean)\n  plot &lt;- plot_fun(.data_clean)\n  list(mod = mod, plot = plot)\n}"
-  },
-  {
-    "objectID": "functions.html#functions-using-tidyverse",
-    "href": "functions.html#functions-using-tidyverse",
-    "title": "Writing Functions in R",
-    "section": "Functions using tidyverse",
-    "text": "Functions using tidyverse\nTidyverse is fantastic for interactive analyses.\nBit complex with functions.\n\nfilter_penguins &lt;- function(.data, species) {\n  .data |&gt; \n    filter(species == species)\n}\n  \nfilter_penguins(penguins, \"Gentoo\")  \n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nDo you need to use tidyverse?\n\nreducing the number of dependencies is good"
-  },
-  {
-    "objectID": "functions.html#brace-brace",
-    "href": "functions.html#brace-brace",
-    "title": "Writing Functions in R",
-    "section": "brace brace",
-    "text": "brace brace\n\nfilter_penguins &lt;- function(.data, species) {\n  .data |&gt; \n    filter(species == {{species}})\n}\n  \nfilter_penguins(penguins, \"Gentoo\")  \n\n# A tibble: 124 × 8\n   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Gentoo  Biscoe           46.1          13.2               211        4500\n 2 Gentoo  Biscoe           50            16.3               230        5700\n 3 Gentoo  Biscoe           48.7          14.1               210        4450\n 4 Gentoo  Biscoe           50            15.2               218        5700\n 5 Gentoo  Biscoe           47.6          14.5               215        5400\n 6 Gentoo  Biscoe           46.5          13.5               210        4550\n 7 Gentoo  Biscoe           45.4          14.6               211        4800\n 8 Gentoo  Biscoe           46.7          15.3               219        5200\n 9 Gentoo  Biscoe           43.3          13.4               209        4400\n10 Gentoo  Biscoe           46.8          15.4               215        5150\n# ℹ 114 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
-  },
-  {
-    "objectID": "functions.html#and-on-the-left-hand-side",
-    "href": "functions.html#and-on-the-left-hand-side",
-    "title": "Writing Functions in R",
-    "section": "And on the left hand side",
-    "text": "And on the left hand side\n\nfilter_penguins &lt;- function(.data, column, value, new_col) {\n  .data |&gt; \n    filter({{column}} == {{value}}) |&gt; \n    mutate({{new_col}} := mean(body_mass_g)) # := instead of =\n  \n}\n  \nfilter_penguins(penguins, island, \"Dream\", island_mean)  \n\n# A tibble: 124 × 9\n   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Dream            39.5          16.7               178        3250\n 2 Adelie  Dream            37.2          18.1               178        3900\n 3 Adelie  Dream            39.5          17.8               188        3300\n 4 Adelie  Dream            40.9          18.9               184        3900\n 5 Adelie  Dream            36.4          17                 195        3325\n 6 Adelie  Dream            39.2          21.1               196        4150\n 7 Adelie  Dream            38.8          20                 190        3950\n 8 Adelie  Dream            42.2          18.5               180        3550\n 9 Adelie  Dream            37.6          19.3               181        3300\n10 Adelie  Dream            39.8          19.1               184        4650\n# ℹ 114 more rows\n# ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, island_mean &lt;dbl&gt;"
-  },
-  {
-    "objectID": "functions.html#your-turn",
-    "href": "functions.html#your-turn",
-    "title": "Writing Functions in R",
-    "section": "Your turn",
-    "text": "Your turn\n\npenguins |&gt; \n  filter(species == \"Adelie\") |&gt; \n  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Body mass g\", y = \"Bill length mm\", title = \"Gentoo\")"
-  },
-  {
-    "objectID": "functions.html#bugs",
-    "href": "functions.html#bugs",
-    "title": "Writing Functions in R",
-    "section": "Bugs",
-    "text": "Bugs\n\nSyntax error\nIncorrect results\nfunction throws unexpected error"
-  },
-  {
-    "objectID": "functions.html#buggy-code",
-    "href": "functions.html#buggy-code",
-    "title": "Writing Functions in R",
-    "section": "Buggy code",
-    "text": "Buggy code\n\nbuggy &lt;- function(x){\n  x &lt;- as.character(x)\n  log(x)\n}\nbuggy(1)\n\nError in log(x): non-numeric argument to mathematical function"
-  },
-  {
-    "objectID": "functions.html#strategies-for-debugging-0",
-    "href": "functions.html#strategies-for-debugging-0",
-    "title": "Writing Functions in R",
-    "section": "Strategies for debugging 0",
-    "text": "Strategies for debugging 0\n\nRead the error messages\nUse traceback() to see where the error occurred\nUse options(error = recover) to enter the debugger when an error occurs"
-  },
-  {
-    "objectID": "functions.html#strategies-for-debugging-1",
-    "href": "functions.html#strategies-for-debugging-1",
-    "title": "Writing Functions in R",
-    "section": "Strategies for debugging 1",
-    "text": "Strategies for debugging 1\n\nAdd print() statements to see state of variables\n\n\nbuggy &lt;- function(x){\n  print(class(x))\n  x &lt;- as.character(x)\n  print(class(x))\n  log(x)\n}\nbuggy(1)\n\n[1] \"numeric\"\n[1] \"character\"\n\n\nError in log(x): non-numeric argument to mathematical function"
-  },
-  {
-    "objectID": "functions.html#strategies-for-debugging-2",
-    "href": "functions.html#strategies-for-debugging-2",
-    "title": "Writing Functions in R",
-    "section": "Strategies for debugging 2",
-    "text": "Strategies for debugging 2\n\nAdd browser() somewhere strategic\n\n\nbuggy &lt;- function(x){\n  browser()\n  x &lt;- as.character(x)\n  log(x)\n}\nbuggy(1)\n\nIn the debugger, use\n\nn to step through the code\nc to continue\ns to step into a function\nQ to quit"
-  },
-  {
-    "objectID": "functions.html#strategies-for-debugging-3",
-    "href": "functions.html#strategies-for-debugging-3",
-    "title": "Writing Functions in R",
-    "section": "Strategies for debugging 3",
-    "text": "Strategies for debugging 3\nUse debug to automatically add browser()\n\ndebug(buggy)\nbuggy(1)\nundebug(buggy)\n\n# or\ndebugonce(buggy)"
-  },
-  {
-    "objectID": "functions.html#slow-code",
-    "href": "functions.html#slow-code",
-    "title": "Writing Functions in R",
-    "section": "Slow code",
-    "text": "Slow code\nR is normally fast enough, but when it isn’t it isn’t\nUse tictoc package to time code\n\nlibrary(tictoc)\ntic()\nSys.sleep(1)\ntoc()\n\n1.007 sec elapsed"
-  },
-  {
-    "objectID": "functions.html#benchmark",
-    "href": "functions.html#benchmark",
-    "title": "Writing Functions in R",
-    "section": "bench::mark()",
-    "text": "bench::mark()\nUse bench::mark() to compare different implementations\n\nbm &lt;- bench::mark(\n  badloop = {x &lt;- c(); for(i in 1:1000){x &lt;- c(x, i^2)}; x},\n  goodloop = {x &lt;- numeric(1000); for(i in 1:1000){x[i] &lt;- i^2}; x},\n  map = purrr::map_dbl(1:1000, \\(i) i^2),\n  vectorised = (1:1000)^2\n)\nplot(bm)"
-  },
-  {
-    "objectID": "functions.html#profiler",
-    "href": "functions.html#profiler",
-    "title": "Writing Functions in R",
-    "section": "Profiler",
-    "text": "Profiler\n\nlibrary(profvis)\n\nf &lt;- function() {\n  pause(0.1)\n  g()\n  h()\n}\ng &lt;- function() {\n  pause(0.1)\n  h()\n}\nh &lt;- function() {\n  pause(0.1)\n}\n\nprofvis(f())"
-  },
-  {
-    "objectID": "functions.html#cures-for-slow-code",
-    "href": "functions.html#cures-for-slow-code",
-    "title": "Writing Functions in R",
-    "section": "Cures for slow code",
-    "text": "Cures for slow code\nReadability is more important than speed\n\nUse vectorised code\nparallelize code with furrr or future packages"
-  },
-  {
-    "objectID": "functions.html#more-resources",
-    "href": "functions.html#more-resources",
-    "title": "Writing Functions in R",
-    "section": "More resources",
-    "text": "More resources\nprofvis\nR for Data Science by Hadley Wickham and Garrett Grolemund\nAdvanced R by Hadley Wickham"
-  },
-  {
-    "objectID": "course_intro.html#os-course-2023-and-2024-in-hjerkinn",
-    "href": "course_intro.html#os-course-2023-and-2024-in-hjerkinn",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
-    "section": "OS course 2023 and 2024 in Hjerkinn",
-    "text": "OS course 2023 and 2024 in Hjerkinn"
-  },
-  {
-    "objectID": "course_intro.html#os-course-2025-in-hjerkinn",
-    "href": "course_intro.html#os-course-2025-in-hjerkinn",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
-    "section": "OS course 2025 in Hjerkinn",
-    "text": "OS course 2025 in Hjerkinn\nTo do: group photo"
+    "text": "References\n\n\n\n\nArchmiller, Althea A., Andrew D. Johnson, Jane Nolan, Margaret Edwards, Lisa H. Elliott, Jake M. Ferguson, Fabiola Iannarilli, et al. 2020. “Computational Reproducibility in the Wildlife Society’s Flagship Journals.” The Journal of Wildlife Management 84 (5): 1012–17. https://doi.org/10.1002/jwmg.21855.\n\n\nCulina, Antica, Ilona van den Berg, Simon Evans, and Alfredo Sánchez-Tójar. 2020. “Low Availability of Code in Ecology: A Call for Urgent Action.” PLOS Biology 18 (7): 1–9. https://doi.org/10.1371/journal.pbio.3000763.\n\n\nFecher, Benedikt, and Sascha Friesike. 2014. “Open Science: One Term, Five Schools of Thought.” In Opening Science: The Evolving Guide on How the Internet Is Changing Research, Collaboration and Scholarly Publishing, edited by Sönke Bartling and Sascha Friesike, 17–47. Cham: Springer International Publishing. https://doi.org/10.1007/978-3-319-00026-8_2.\n\n\nFraser, Tim AND Nakagawa, Hannah AND Parker. 2018. “Questionable Research Practices in Ecology and Evolution.” PLOS ONE 13 (7): 1–16. https://doi.org/10.1371/journal.pone.0200303.\n\n\nMandeville, Caitlin P, Wouter Koch, Erlend B Nilsen, and Anders G Finstad. 2021. “Open Data Practices among Users of Primary Biodiversity Data.” BioScience 71 (11): 1128–47. https://doi.org/10.1093/biosci/biab072.\n\n\nNilsen, Erlend B., Diana E. Bowler, and John D. C. Linnell. 2020. “Exploratory and Confirmatory Research in the Open Science Era.” Journal of Applied Ecology 57 (4): 842–47. https://doi.org/10.1111/1365-2664.13571.\n\n\nNosek, B. A., C. R. Ebersol, A. C. DeHaven, and D. T. Mello. 2018. “The Preregistration Revolution.” PNAS 115 (11): 2600–2606. https://doi.org/10.1073/pnas.1708274114.\n\n\nWilkinson, et al. 2016. “The FAIR Guiding Principles for Scientific Data Management and Stewardship.” Scientific Data 3. https://doi.org/10.1093/biosci/biab072."
   }
 ]

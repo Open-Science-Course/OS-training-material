@@ -1,88 +1,23 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="author" content="Richard J Telford">
-
-<title>Writing Functions in R</title>
-<style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-</style>
-
-
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
+<html lang="en"><head>
 <link href="./figures/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.39">
-
-  <meta name="author" content="Richard J Telford">
-  <title>Writing Functions in R</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
-  <style>
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7fcc278e5cff05d3108fdca62cff0c71.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.20">
+<meta name="author" content="Richard J Telford">
+<title>Writing Functions in R</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+<link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -95,8 +30,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -107,7 +43,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -121,51 +57,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         -khtml-user-select: none; -moz-user-select: none;
         -ms-user-select: none; user-select: none;
         padding: 0 4px; width: 4em;
-        color: #aaaaaa;
+        color: #767676;
       }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
     div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
+      { color: #545454; background-color: #fefefe; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
     code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
-  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
+<link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-0fde88a82f0356838740f155f1088782.css">
+<link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+<link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+<link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+<style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -257,208 +193,162 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="reveal">
     <div class="slides">
 
+<section id="title-slide" class="quarto-title-block center"><h1 class="title">Writing Functions in R</h1>
+  <p class="subtitle">Open transparent and reproducible science</p>
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Richard J Telford </p>
-  </div>
-    <div class="quarto-title-meta-contents">
-        <p class="affiliation">
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Richard J Telford 
+</div>
+        <p class="quarto-title-affiliation">
             University of Bergen
           </p>
-      </div>
     </div>
-
-<div class="quarto-title-meta">
-
-      
-  
-    
-  </div>
-  
-
-</header>
-
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-</div>
-<section id="are-your-r-skills-sufficient" class="level1">
-<h1>Are your R skills sufficient?</h1>
-<hr>
-<div class="r-fit-text">
-<p>Can you spell<br>
-<del>funktion</del> <del>FUNkshun</del><br>
+
+</section><section><section id="are-your-r-skills-sufficient" class="title-slide slide level1 center"><h1>Are your R skills sufficient?</h1>
+
+</section><section class="slide level2"><div class="r-fit-text">
+<p>Can you spell<br><del>funktion</del> <del>FUNkshun</del><br>
 function?</p>
 </div>
-<section id="dont-worry-if-you-cannot" class="level2">
-<h2 class="anchored" data-anchor-id="dont-worry-if-you-cannot">Don’t worry if you cannot</h2>
+</section><section id="dont-worry-if-you-cannot" class="slide level2"><h2>Don’t worry if you cannot</h2>
 <div class="r-fit-text">
 <p>You can<br>
 use a \ instead</p>
 </div>
-</section>
-<section id="my-first-worst-function" class="level2">
-<h2 class="anchored" data-anchor-id="my-first-worst-function">My <del>first</del> worst function</h2>
+</section><section id="my-first-worst-function" class="slide level2"><h2>My <del>first</del> worst function</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(){}</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(){}</span>
+<span id="cb1-2"><a></a><span class="fu">f</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Takes no arguments. Does not work. Returns nothing.</p>
 <p>Guaranteed never to fail.</p>
-<div class="incremental">
-<ul class="incremental">
-<li><code>f</code> is a terrible name for a function - use a descriptive name</li>
-<li>keyword <code>function</code> used to define functions</li>
-<li><code>()</code> contain all the arguments separated by commas</li>
-<li><code>{}</code> contain the body of the function</li>
-</ul>
-</div>
-</section>
-<section id="why-write-functions" class="level2">
-<h2 class="anchored" data-anchor-id="why-write-functions">Why write functions?</h2>
-<div class="incremental">
-<ul class="incremental">
-<li>Reduce code duplication: Don’t repeat yourself</li>
-<li>Share between projects</li>
-<li>Share with others</li>
-<li>Promote better documentation</li>
-<li>Easier to test</li>
-<li>Easier to debug</li>
-</ul>
-</div>
-</section>
-<section id="dont-repeat-yourself-dry" class="level2">
-<h2 class="anchored" data-anchor-id="dont-repeat-yourself-dry">Don’t repeat yourself DRY</h2>
+<ul>
+<li class="fragment">
+<code>f</code> is a terrible name for a function - use a descriptive name</li>
+<li class="fragment">keyword <code>function</code> used to define functions</li>
+<li class="fragment">
+<code>()</code> contain all the arguments separated by commas</li>
+<li class="fragment">
+<code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> contain the body of the function</li>
+</ul></section><section id="why-write-functions" class="slide level2"><h2>Why write functions?</h2>
+<ul>
+<li class="fragment">Reduce code duplication: Don’t repeat yourself</li>
+<li class="fragment">Reduce code duplication: Don’t repeat yourself</li>
+<li class="fragment">Reduce code duplication: Don’t repeat yourself</li>
+<li class="fragment">Share between projects</li>
+<li class="fragment">Share with others</li>
+<li class="fragment">Promote better documentation</li>
+<li class="fragment">Easier to test</li>
+<li class="fragment">Easier to debug</li>
+</ul></section><section id="dont-repeat-yourself-dry" class="slide level2"><h2>Don’t repeat yourself DRY</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Gentoo"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass g"</span>, <span class="at">y =</span> <span class="st">"Bill length mm"</span>, <span class="at">title =</span> <span class="st">"Gentoo"</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass g"</span>, <span class="at">y =</span> <span class="st">"Bill length mm"</span>, <span class="at">title =</span> <span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb2-5"><a></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Gentoo"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-6"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb2-7"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-8"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb2-9"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass g"</span>, <span class="at">y =</span> <span class="st">"Bill length mm"</span>, <span class="at">title =</span> <span class="st">"Gentoo"</span>)</span>
+<span id="cb2-10"><a></a></span>
+<span id="cb2-11"><a></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb2-12"><a></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-13"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb2-14"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-15"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb2-16"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass g"</span>, <span class="at">y =</span> <span class="st">"Bill length mm"</span>, <span class="at">title =</span> <span class="st">"Gentoo"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="identify-arguments" class="level2">
-<h2 class="anchored" data-anchor-id="identify-arguments">Identify arguments</h2>
+</section><section id="identify-arguments" class="slide level2"><h2>Identify arguments</h2>
 <p>General – Specific functions</p>
 <ul>
 <li>General - more arguments, more flexible, more complex</li>
 <li>Specific - fewer arguments, less flexible, simpler</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass g"</span>, <span class="at">y =</span> <span class="st">"Bill length mm"</span>, <span class="at">title =</span> <span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb3-4"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass g"</span>, <span class="at">y =</span> <span class="st">"Bill length mm"</span>, <span class="at">title =</span> <span class="st">"Gentoo"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="sanity-check-inputs" class="level2">
-<h2 class="anchored" data-anchor-id="sanity-check-inputs">Sanity check inputs</h2>
+</section><section id="sanity-check-inputs" class="slide level2"><h2>Sanity check inputs</h2>
 <p>Make your functions idiot proof.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>area_square <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">side =</span> <span class="dv">1</span>) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span> <span class="fu">is.numeric</span>(side)) {</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"side must be numeric"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (side <span class="sc">&lt;=</span> <span class="dv">0</span>) {</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"side must be positive"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  side<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>}  </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">area_square</span>(<span class="st">"fish"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>area_square <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">side =</span> <span class="dv">1</span>) {</span>
+<span id="cb4-2"><a></a>  <span class="cf">if</span> (<span class="sc">!</span> <span class="fu">is.numeric</span>(side)) {</span>
+<span id="cb4-3"><a></a>    <span class="fu">stop</span>(<span class="st">"side must be numeric"</span>)</span>
+<span id="cb4-4"><a></a>  }</span>
+<span id="cb4-5"><a></a>  <span class="cf">if</span> (side <span class="sc">&lt;=</span> <span class="dv">0</span>) {</span>
+<span id="cb4-6"><a></a>    <span class="fu">stop</span>(<span class="st">"side must be positive"</span>)</span>
+<span id="cb4-7"><a></a>  }</span>
+<span id="cb4-8"><a></a>  side<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb4-9"><a></a>}  </span>
+<span id="cb4-10"><a></a><span class="fu">area_square</span>(<span class="st">"fish"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in area_square("fish"): side must be numeric</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">area_square</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">area_square</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in area_square(-1): side must be positive</code></pre>
 </div>
 </div>
-</section>
-<section id="keep-it-simple" class="level2">
-<h2 class="anchored" data-anchor-id="keep-it-simple">Keep it Simple</h2>
+</section><section id="keep-it-simple" class="slide level2"><h2>Keep it Simple</h2>
 <p>One function - one job</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>complex <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1, arg2, ...) { <span class="co"># bad</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># complex code to import data</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># complex code to clean data</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># complex code to model code</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># complex code to plot model</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>complex <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1, arg2, ...) { <span class="co"># bad</span></span>
+<span id="cb8-2"><a></a>  <span class="co"># complex code to import data</span></span>
+<span id="cb8-3"><a></a>  <span class="co"># complex code to clean data</span></span>
+<span id="cb8-4"><a></a>  <span class="co"># complex code to model code</span></span>
+<span id="cb8-5"><a></a>  <span class="co"># complex code to plot model</span></span>
+<span id="cb8-6"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Large complex function</p>
 <ul>
 <li>difficult to understand</li>
 <li>many arguments</li>
 <li>difficult to test</li>
-</ul>
-</section>
-<section id="break-into-smaller-functions" class="level2">
-<h2 class="anchored" data-anchor-id="break-into-smaller-functions">Break into smaller functions</h2>
+</ul></section><section id="break-into-smaller-functions" class="slide level2"><h2>Break into smaller functions</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Better</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>import_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1) {</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># complex code to import data</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>clean_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(.data) {</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># complex code to clean data</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>}  </span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>model_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(.data_clean) {</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># complex code to model code</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plot_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(.data_clean) {</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># complex code to plot model</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>}    </span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>complex <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1, arg2, ...) { </span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  .data <span class="ot">&lt;-</span> <span class="fu">import_fun</span>(arg1)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  .data_clean <span class="ot">&lt;-</span> <span class="fu">clean_fun</span>(.data)</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  mod <span class="ot">&lt;-</span> <span class="fu">model_fun</span>(.data_clean)</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  plot <span class="ot">&lt;-</span> <span class="fu">plot_fun</span>(.data_clean)</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">mod =</span> mod, <span class="at">plot =</span> plot)</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>}  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Better</span></span>
+<span id="cb9-2"><a></a>import_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1) {</span>
+<span id="cb9-3"><a></a>  <span class="co"># complex code to import data</span></span>
+<span id="cb9-4"><a></a>}</span>
+<span id="cb9-5"><a></a>  </span>
+<span id="cb9-6"><a></a>clean_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(.data) {</span>
+<span id="cb9-7"><a></a>  <span class="co"># complex code to clean data</span></span>
+<span id="cb9-8"><a></a>}  </span>
+<span id="cb9-9"><a></a></span>
+<span id="cb9-10"><a></a>model_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(.data_clean) {</span>
+<span id="cb9-11"><a></a>  <span class="co"># complex code to model code</span></span>
+<span id="cb9-12"><a></a>}</span>
+<span id="cb9-13"><a></a></span>
+<span id="cb9-14"><a></a>plot_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(.data_clean) {</span>
+<span id="cb9-15"><a></a>  <span class="co"># complex code to plot model</span></span>
+<span id="cb9-16"><a></a>}    </span>
+<span id="cb9-17"><a></a>  </span>
+<span id="cb9-18"><a></a>complex <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1, arg2, ...) { </span>
+<span id="cb9-19"><a></a>  .data <span class="ot">&lt;-</span> <span class="fu">import_fun</span>(arg1)</span>
+<span id="cb9-20"><a></a>  .data_clean <span class="ot">&lt;-</span> <span class="fu">clean_fun</span>(.data)</span>
+<span id="cb9-21"><a></a>  mod <span class="ot">&lt;-</span> <span class="fu">model_fun</span>(.data_clean)</span>
+<span id="cb9-22"><a></a>  plot <span class="ot">&lt;-</span> <span class="fu">plot_fun</span>(.data_clean)</span>
+<span id="cb9-23"><a></a>  <span class="fu">list</span>(<span class="at">mod =</span> mod, <span class="at">plot =</span> plot)</span>
+<span id="cb9-24"><a></a>}  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="functions-using-tidyverse" class="level2">
-<h2 class="anchored" data-anchor-id="functions-using-tidyverse">Functions using tidyverse</h2>
+</section><section id="functions-using-tidyverse" class="slide level2"><h2>Functions using tidyverse</h2>
 <p>Tidyverse is fantastic for interactive analyses.</p>
 <p>Bit complex with functions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>filter_penguins <span class="ot">&lt;-</span> <span class="cf">function</span>(.data, species) {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  .data <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(species <span class="sc">==</span> species)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">filter_penguins</span>(penguins, <span class="st">"Gentoo"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>filter_penguins <span class="ot">&lt;-</span> <span class="cf">function</span>(.data, species) {</span>
+<span id="cb10-2"><a></a>  .data <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a></a>    <span class="fu">filter</span>(species <span class="sc">==</span> species)</span>
+<span id="cb10-4"><a></a>}</span>
+<span id="cb10-5"><a></a>  </span>
+<span id="cb10-6"><a></a><span class="fu">filter_penguins</span>(penguins, <span class="st">"Gentoo"</span>)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 344 × 8
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -480,17 +370,14 @@ use a \ instead</p>
 <p>Do you need to use tidyverse?</p>
 <ul>
 <li>reducing the number of dependencies is good</li>
-</ul>
-</section>
-<section id="brace-brace" class="level2">
-<h2 class="anchored" data-anchor-id="brace-brace">brace brace</h2>
+</ul></section><section id="brace-brace" class="slide level2"><h2>brace brace</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>filter_penguins <span class="ot">&lt;-</span> <span class="cf">function</span>(.data, species) {</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  .data <span class="sc">|&gt;</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(species <span class="sc">==</span> {{species}})</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">filter_penguins</span>(penguins, <span class="st">"Gentoo"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>filter_penguins <span class="ot">&lt;-</span> <span class="cf">function</span>(.data, species) {</span>
+<span id="cb12-2"><a></a>  .data <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a></a>    <span class="fu">filter</span>(species <span class="sc">==</span> {{species}})</span>
+<span id="cb12-4"><a></a>}</span>
+<span id="cb12-5"><a></a>  </span>
+<span id="cb12-6"><a></a><span class="fu">filter_penguins</span>(penguins, <span class="st">"Gentoo"</span>)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 124 × 8
    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -509,18 +396,16 @@ use a \ instead</p>
 # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
 </div>
-</section>
-<section id="and-on-the-left-hand-side" class="level2">
-<h2 class="anchored" data-anchor-id="and-on-the-left-hand-side">And on the left hand side</h2>
+</section><section id="and-on-the-left-hand-side" class="slide level2"><h2>And on the left hand side</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>filter_penguins <span class="ot">&lt;-</span> <span class="cf">function</span>(.data, column, value, new_col) {</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  .data <span class="sc">|&gt;</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>({{column}} <span class="sc">==</span> {{value}}) <span class="sc">|&gt;</span> </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>({{new_col}} <span class="sc">:</span><span class="er">=</span> <span class="fu">mean</span>(body_mass_g)) <span class="co"># := instead of =</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">filter_penguins</span>(penguins, island, <span class="st">"Dream"</span>, island_mean)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>filter_penguins <span class="ot">&lt;-</span> <span class="cf">function</span>(.data, column, value, new_col) {</span>
+<span id="cb14-2"><a></a>  .data <span class="sc">|&gt;</span> </span>
+<span id="cb14-3"><a></a>    <span class="fu">filter</span>({{column}} <span class="sc">==</span> {{value}}) <span class="sc">|&gt;</span> </span>
+<span id="cb14-4"><a></a>    <span class="fu">mutate</span>({{new_col}} <span class="sc">:</span><span class="er">=</span> <span class="fu">mean</span>(body_mass_g)) <span class="co"># := instead of =</span></span>
+<span id="cb14-5"><a></a>  </span>
+<span id="cb14-6"><a></a>}</span>
+<span id="cb14-7"><a></a>  </span>
+<span id="cb14-8"><a></a><span class="fu">filter_penguins</span>(penguins, island, <span class="st">"Dream"</span>, island_mean)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 124 × 9
    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -539,63 +424,50 @@ use a \ instead</p>
 # ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, island_mean &lt;dbl&gt;</code></pre>
 </div>
 </div>
-</section>
-<section id="your-turn" class="level2">
-<h2 class="anchored" data-anchor-id="your-turn">Your turn</h2>
+</section><section id="your-turn" class="slide level2"><h2>Your turn</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass g"</span>, <span class="at">y =</span> <span class="st">"Bill length mm"</span>, <span class="at">title =</span> <span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb16-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-5"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass g"</span>, <span class="at">y =</span> <span class="st">"Bill length mm"</span>, <span class="at">title =</span> <span class="st">"Gentoo"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-</section>
-<section id="you-cannot-write-functions-without-writing-bugs.-that-is-the-law" class="level1">
-<h1>You cannot write functions without writing bugs.<br><br> That is the law</h1>
-<section id="bugs" class="level2">
-<h2 class="anchored" data-anchor-id="bugs">Bugs</h2>
+</section></section><section><section id="you-cannot-write-functions-without-writing-bugs.-that-is-the-law" class="title-slide slide level1 center"><h1>You cannot write functions without writing bugs.<br><br> That is the law</h1>
+
+</section><section id="bugs" class="slide level2"><h2>Bugs</h2>
 <ul>
 <li>Syntax error</li>
 <li>Incorrect results</li>
 <li>function throws unexpected error</li>
-</ul>
-</section>
-<section id="buggy-code" class="level2">
-<h2 class="anchored" data-anchor-id="buggy-code">Buggy code</h2>
+</ul></section><section id="buggy-code" class="slide level2"><h2>Buggy code</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>buggy <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(x)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">buggy</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>buggy <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb17-2"><a></a>  x <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
+<span id="cb17-3"><a></a>  <span class="fu">log</span>(x)</span>
+<span id="cb17-4"><a></a>}</span>
+<span id="cb17-5"><a></a><span class="fu">buggy</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in log(x): non-numeric argument to mathematical function</code></pre>
 </div>
 </div>
-</section>
-<section id="strategies-for-debugging-0" class="level2">
-<h2 class="anchored" data-anchor-id="strategies-for-debugging-0">Strategies for debugging 0</h2>
+</section><section id="strategies-for-debugging-0" class="slide level2"><h2>Strategies for debugging 0</h2>
 <ul>
 <li>Read the error messages</li>
-<li>Use <code>traceback()</code> to see where the error occurred</li>
+<li>Use <code><a href="https://rdrr.io/r/base/traceback.html">traceback()</a></code> to see where the error occurred</li>
 <li>Use <code>options(error = recover)</code> to enter the debugger when an error occurs</li>
-</ul>
-</section>
-<section id="strategies-for-debugging-1" class="level2">
-<h2 class="anchored" data-anchor-id="strategies-for-debugging-1">Strategies for debugging 1</h2>
+</ul></section><section id="strategies-for-debugging-1" class="slide level2"><h2>Strategies for debugging 1</h2>
 <ul>
-<li>Add <code>print()</code> statements to see state of variables</li>
+<li>Add <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> statements to see state of variables</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>buggy <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">class</span>(x))</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">class</span>(x))</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(x)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">buggy</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>buggy <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb19-2"><a></a>  <span class="fu">print</span>(<span class="fu">class</span>(x))</span>
+<span id="cb19-3"><a></a>  x <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
+<span id="cb19-4"><a></a>  <span class="fu">print</span>(<span class="fu">class</span>(x))</span>
+<span id="cb19-5"><a></a>  <span class="fu">log</span>(x)</span>
+<span id="cb19-6"><a></a>}</span>
+<span id="cb19-7"><a></a><span class="fu">buggy</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "numeric"
 [1] "character"</code></pre>
@@ -604,134 +476,101 @@ use a \ instead</p>
 <pre><code>Error in log(x): non-numeric argument to mathematical function</code></pre>
 </div>
 </div>
-</section>
-<section id="strategies-for-debugging-2" class="level2">
-<h2 class="anchored" data-anchor-id="strategies-for-debugging-2">Strategies for debugging 2</h2>
+</section><section id="strategies-for-debugging-2" class="slide level2"><h2>Strategies for debugging 2</h2>
 <ul>
-<li>Add <code>browser()</code> somewhere strategic</li>
+<li>Add <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> somewhere strategic</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>buggy <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">browser</span>()</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(x)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">buggy</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>buggy <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb22-2"><a></a>  <span class="fu">browser</span>()</span>
+<span id="cb22-3"><a></a>  x <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
+<span id="cb22-4"><a></a>  <span class="fu">log</span>(x)</span>
+<span id="cb22-5"><a></a>}</span>
+<span id="cb22-6"><a></a><span class="fu">buggy</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In the debugger, use</p>
 <ul>
-<li><code>n</code> to step through the code</li>
-<li><code>c</code> to continue</li>
-<li><code>s</code> to step into a function</li>
-<li><code>Q</code> to quit</li>
-</ul>
-</section>
-<section id="strategies-for-debugging-3" class="level2">
-<h2 class="anchored" data-anchor-id="strategies-for-debugging-3">Strategies for debugging 3</h2>
-<p>Use <code>debug</code> to automatically add <code>browser()</code></p>
+<li>
+<code>n</code> to step through the code</li>
+<li>
+<code>c</code> to continue</li>
+<li>
+<code>s</code> to step into a function</li>
+<li>
+<code>Q</code> to quit</li>
+</ul></section><section id="strategies-for-debugging-3" class="slide level2"><h2>Strategies for debugging 3</h2>
+<p>Use <code>debug</code> to automatically add <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">debug</span>(buggy)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">buggy</span>(<span class="dv">1</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">undebug</span>(buggy)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">debugonce</span>(buggy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">debug</span>(buggy)</span>
+<span id="cb23-2"><a></a><span class="fu">buggy</span>(<span class="dv">1</span>)</span>
+<span id="cb23-3"><a></a><span class="fu">undebug</span>(buggy)</span>
+<span id="cb23-4"><a></a></span>
+<span id="cb23-5"><a></a><span class="co"># or</span></span>
+<span id="cb23-6"><a></a><span class="fu">debugonce</span>(buggy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="slow-code" class="level2">
-<h2 class="anchored" data-anchor-id="slow-code">Slow code</h2>
+</section><section id="slow-code" class="slide level2"><h2>Slow code</h2>
 <p>R is normally fast enough, but when it isn’t it isn’t</p>
 <p>Use <code>tictoc</code> package to time code</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tictoc)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tic</span>()</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">library</span>(tictoc)</span>
+<span id="cb24-2"><a></a><span class="fu">tic</span>()</span>
+<span id="cb24-3"><a></a><span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
+<span id="cb24-4"><a></a><span class="fu">toc</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-
-<pre><code>1.003 sec elapsed</code></pre>
-
+<pre><code>1.004 sec elapsed</code></pre>
 </div>
 </div>
-</section>
-<section id="benchmark" class="level2">
-<h2 class="anchored" data-anchor-id="benchmark"><code>bench::mark()</code></h2>
-<p>Use <code>bench::mark()</code> to compare different implementations</p>
+</section><section id="benchmark" class="slide level2"><h2><code>bench::mark()</code></h2>
+<p>Use <code><a href="https://bench.r-lib.org/reference/mark.html">bench::mark()</a></code> to compare different implementations</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>bm <span class="ot">&lt;-</span> bench<span class="sc">::</span><span class="fu">mark</span>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">badloop =</span> {x <span class="ot">&lt;-</span> <span class="fu">c</span>(); <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>){x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, i<span class="sc">^</span><span class="dv">2</span>)}; x},</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">goodloop =</span> {x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">1000</span>); <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>){x[i] <span class="ot">&lt;-</span> i<span class="sc">^</span><span class="dv">2</span>}; x},</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">map =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, \(i) i<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">vectorised =</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="functions_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>bm <span class="ot">&lt;-</span> bench<span class="sc">::</span><span class="fu">mark</span>(</span>
+<span id="cb26-2"><a></a>  <span class="at">badloop =</span> {x <span class="ot">&lt;-</span> <span class="fu">c</span>(); <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>){x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, i<span class="sc">^</span><span class="dv">2</span>)}; x},</span>
+<span id="cb26-3"><a></a>  <span class="at">goodloop =</span> {x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">1000</span>); <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>){x[i] <span class="ot">&lt;-</span> i<span class="sc">^</span><span class="dv">2</span>}; x},</span>
+<span id="cb26-4"><a></a>  <span class="at">map =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, \(i) i<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb26-5"><a></a>  <span class="at">vectorised =</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb26-6"><a></a>)</span>
+<span id="cb26-7"><a></a><span class="fu">plot</span>(bm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
 </div>
-
-<img data-src="functions_files/figure-revealjs/bench-mark-1.png" width="960" class="r-stretch"></section>
-<section id="profiler" class="slide level2">
-<h2>Profiler</h2>
-
+<img data-src="functions_files/figure-revealjs/bench-mark-1.png" width="960" class="r-stretch"></section><section id="profiler" class="slide level2"><h2>Profiler</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(profvis)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pause</span>(<span class="fl">0.1</span>)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">g</span>()</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">h</span>()</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pause</span>(<span class="fl">0.1</span>)</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">h</span>()</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pause</span>(<span class="fl">0.1</span>)</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="fu">profvis</span>(<span class="fu">f</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(profvis)</span>
+<span id="cb27-2"><a></a></span>
+<span id="cb27-3"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb27-4"><a></a>  <span class="fu">pause</span>(<span class="fl">0.1</span>)</span>
+<span id="cb27-5"><a></a>  <span class="fu">g</span>()</span>
+<span id="cb27-6"><a></a>  <span class="fu">h</span>()</span>
+<span id="cb27-7"><a></a>}</span>
+<span id="cb27-8"><a></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb27-9"><a></a>  <span class="fu">pause</span>(<span class="fl">0.1</span>)</span>
+<span id="cb27-10"><a></a>  <span class="fu">h</span>()</span>
+<span id="cb27-11"><a></a>}</span>
+<span id="cb27-12"><a></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb27-13"><a></a>  <span class="fu">pause</span>(<span class="fl">0.1</span>)</span>
+<span id="cb27-14"><a></a>}</span>
+<span id="cb27-15"><a></a></span>
+<span id="cb27-16"><a></a><span class="fu">profvis</span>(<span class="fu">f</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="cures-for-slow-code" class="level2">
-<h2 class="anchored" data-anchor-id="cures-for-slow-code">Cures for slow code</h2>
+</section><section id="cures-for-slow-code" class="slide level2"><h2>Cures for slow code</h2>
 <p>Readability is more important than speed</p>
 <ul>
 <li>Use vectorised code</li>
 <li>parallelize code with <code>furrr</code> or <code>future</code> packages</li>
-</ul>
-</section>
-<section id="more-resources" class="level2">
-<h2 class="anchored" data-anchor-id="more-resources">More resources</h2>
+</ul></section><section id="more-resources" class="slide level2"><h2>More resources</h2>
 <p><a href="https://profvis.r-lib.org/">profvis</a></p>
 <p><a href="https://r4ds.hadley.nz/functions.html">R for Data Science</a> by Hadley Wickham and Garrett Grolemund</p>
 <p><a href="https://adv-r.hadley.nz/">Advanced R</a> by Hadley Wickham</p>
 
 
 </section></section>
-    </div>
+</div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
 </div></div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="site_libs/revealjs/plugin/notes/notes.js"></script><script src="site_libs/revealjs/plugin/search/search.js"></script><script src="site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -897,7 +736,7 @@ use a \ instead</p>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -916,267 +755,214 @@ use a \ instead</p>
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
-    };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    </script><script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
 
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
             }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
             }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
           }
-          selectedAnnoteEl = annoteEl;
         }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script><script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
         });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
           } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+            return undefined;
           }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
         };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
       });
-    }
-  }
-});
-</script>
-</div> <!-- /content -->
-
+      </script>
 
 
 </body></html>
