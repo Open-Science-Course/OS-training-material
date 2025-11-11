@@ -34,39 +34,86 @@ Culina A, van den Berg I, Evans S, Sánchez-Tójar A (2020) Low availability of 
 
 ## 
 
-### 2023: Review 87 papers from 6 journals
+### Reviewed papers from 6 journals (2023 & 2024)
 
 ```{r}
 #| label: setup
 #| echo: false
 #| eval: true
-#| fig-cap: Number of studies with available data and/or code.
-
 
 library(tidyverse)
 library(readxl)
-dat <- read_excel("data/Reproducibility.xlsx", sheet = "Hjerkinn_2023") |>
-  select(Group:Issue, `Is the data available?`, "Is the code to run the analysis for Fig/Tab x available?") |> 
+library(glue)
+
+```
+
+```{r}
+#| label: load-data
+#| echo: false
+#| eval: true
+
+# Read data from both years and ensure consistent types
+dat_2023 <- read_excel("data/Reproducibility_2024.xlsx", sheet = "Hjerkinn_2023") |>
+  mutate(Year = "2023") |>
+  # Convert logical columns to character
+  mutate(across(where(is.logical), ~ if_else(is.na(.x), NA_character_, as.character(.x)))) |>
+  # Convert Group to character (handles numeric, character, and NA)
+  mutate(Group = as.character(Group))
+
+dat_2024 <- read_excel("data/Reproducibility_2024.xlsx", sheet = "Hjerkinn_2024") |>
+  mutate(Year = "2024") |>
+  # Convert logical columns to character
+  mutate(across(where(is.logical), ~ if_else(is.na(.x), NA_character_, as.character(.x)))) |>
+  # Convert Group to character (handles numeric, character, and NA)
+  mutate(Group = as.character(Group))
+
+# Combine data first
+dat_combined <- bind_rows(dat_2023, dat_2024)
+
+# Combine and process data
+dat_raw <- dat_combined |>
+  select(Year, Group:Issue, `Is the data available?`, "Is the code to run the analysis for Fig/Tab x available?") |> 
   rename("data" = `Is the data available?`,
          "code" = "Is the code to run the analysis for Fig/Tab x available?") %>%
   mutate(Journal = tolower(Journal),
          Journal = if_else(Journal == "amrican naturalist", "american naturalist", Journal),
+         # Handle empty strings and NA variations for Journal
+         Journal = if_else(Journal == "" | Journal == "na" | Journal == "n/a", NA_character_, Journal),
          data = tolower(data),
-         data = case_when(data == "na" ~ NA_character_,
+         data = case_when(data == "na" | data == "n/a" ~ NA_character_,
                           data == "yes, but" ~ "yes",
                           TRUE ~ data),
-         code = tolower(code)) |> 
+         code = tolower(code),
+         code = case_when(code == "na" | code == "n/a" ~ NA_character_,
+                         TRUE ~ code),
+         Year = factor(Year, levels = c("2023", "2024"))) |>
+  # Filter out rows with missing Journal after processing
+  filter(!is.na(Journal))
+
+# Create long format for availability analysis
+dat <- dat_raw |> 
   pivot_longer(cols = c(data, code), names_to = "variable", values_to = "availability") |> 
   mutate(variable = factor(variable, levels = c("data", "code"))) |> 
   filter(!availability %in% c("yes, but"))
 
-dat |> 
-  group_by(Journal) |> 
-  summarise(n = n()) |> 
+```
+
+```{r}
+#| label: fig-nr-papers
+#| echo: false
+#| eval: true
+#| fig-cap: !expr glue::glue("Number of papers reviewed in 2023 were {nrow(dat_2023)} and in2024 were {nrow(dat_2024)}")
+
+
+# Count papers by Year and Journal
+dat_raw |> 
+  group_by(Year, Journal) |> 
+  summarise(n = n(), .groups = "drop") |> 
   ggplot(aes(x = Journal, y = n, fill = Journal)) +
   geom_col() +
   coord_flip() +
-  labs(x = "", y = "") +
+  facet_wrap(~ Year, ncol = 1) +
+  labs(x = "", y = "Number of papers") +
   theme_bw() +
   theme(legend.position = "none")
 
@@ -75,28 +122,30 @@ dat |>
 
 ## 
 
-### 2023: data and code availability
+### Data and code availability (2023 & 2024)
 
 ```{r}
 #| label: fig-two
 #| echo: false
 #| eval: true
-#| fig-cap: Data and code availability.
+#| fig-cap: Data and code availability by year.
 
 dat |> 
-  group_by(variable, availability) |> 
-  summarise(n = n()) |> 
+  group_by(Year, variable, availability) |> 
+  summarise(n = n(), .groups = "drop") |> 
   ggplot(aes(x = variable, y = n, fill = availability)) +
-  geom_col() +
-  labs(x = "", y = "") +
-  theme_bw()
+  geom_col(position = "dodge") +
+  facet_wrap(~ Year, ncol = 2) +
+  labs(x = "", y = "Number of papers") +
+  theme_bw() +
+  theme(legend.position = "bottom")
 
 ```
 
 
 ## 
 
-### 2023: data and code availability
+### 2023 & 2024: data and code availability by journal
 
 ```{r}
 #| label: fig-three
@@ -104,13 +153,13 @@ dat |>
 #| eval: true
 
 dat |> 
-  group_by(Journal, variable, availability) |> 
-  summarise(n = n()) |> 
+  group_by(Year, Journal, variable, availability) |> 
+  summarise(n = n(), .groups = "drop") |> 
   ggplot(aes(x = Journal, y = n, fill = availability)) +
   geom_col(position = "fill") +
   coord_flip() +
-  labs(x = "", y = "") +
-  facet_wrap(~ variable) +
+  labs(x = "", y = "Proportion") +
+  facet_grid(variable ~ Year) +
   theme_bw() +
   theme(legend.position = "bottom")
 
