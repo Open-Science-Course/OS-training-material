@@ -740,5 +740,187 @@
     "title": "Open Science: Tools and approaches",
     "section": "References",
     "text": "References\n\n\n\n\nNilsen, Erlend B., Diana E. Bowler, and John D. C. Linnell. 2020. “Exploratory and Confirmatory Research in the Open Science Era.” Journal of Applied Ecology 57 (4): 842–47. https://doi.org/10.1111/1365-2664.13571.\n\n\nNosek, Brian A., Charles R. Ebersole, Alexander C. DeHaven, and David T. Mellor. 2018. “The Preregistration Revolution.” Proceedings of the National Academy of Sciences 115 (11): 2600–2606. https://doi.org/10.1073/pnas.1708274114."
+  },
+  {
+    "objectID": "reproducibility/reproducible_docs.html#how-do-you-write-reports-manuscripts-presentations",
+    "href": "reproducibility/reproducible_docs.html#how-do-you-write-reports-manuscripts-presentations",
+    "title": "Introduction to reproducible documents",
+    "section": "How do you write reports, manuscripts, presentations?",
+    "text": "How do you write reports, manuscripts, presentations?"
+  },
+  {
+    "objectID": "reproducibility/reproducible_docs.html#biostats-tutorial",
+    "href": "reproducibility/reproducible_docs.html#biostats-tutorial",
+    "title": "Introduction to reproducible documents",
+    "section": "Biostats tutorial",
+    "text": "Biostats tutorial\nGo to this webpage: https://biostats-r.github.io/"
+  },
+  {
+    "objectID": "reproducibility/reproducible_workflows.html#biostats-tutorial",
+    "href": "reproducibility/reproducible_workflows.html#biostats-tutorial",
+    "title": "Introduction to reproducible workflows",
+    "section": "Biostats tutorial",
+    "text": "Biostats tutorial\nGo to this webpage: https://biostats-r.github.io/"
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#r-changes",
+    "href": "reproducibility/intro-reproducible-environment.html#r-changes",
+    "title": "Will your code work in 2034?",
+    "section": "R changes",
+    "text": "R changes\nR &lt; 3.6.0\n\nset.seed(1)\nsample(LETTERS, size = 1)\n\n\n\n[1] \"G\"\n\n\n\nR &gt;= 3.6.0\n\nset.seed(1)\nsample(LETTERS, size = 1)\n\n\n\n[1] \"Y\""
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#packages-change",
+    "href": "reproducibility/intro-reproducible-environment.html#packages-change",
+    "title": "Will your code work in 2034?",
+    "section": "Packages Change",
+    "text": "Packages Change\n\nlibrary(ggplot2)\ndata(penguins, package = \"palmerpenguins\")\n\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_bar(position = \"dodge\") +\n1  opts(legend.position = \"top\")\n\n\n1\n\nopts? What are opts\n\n\n\n\n\n\nError in opts(legend.position = \"top\"): could not find function \"opts\"\n\n\n\nggplot2 News June 2012\nggplot2 0.9.2\n\n----------------------------------------------------------------\n\nTHEME SYSTEM\n\n* The `opts()` function has been renamed to `theme()`."
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#solutions",
+    "href": "reproducibility/intro-reproducible-environment.html#solutions",
+    "title": "Will your code work in 2034?",
+    "section": "Solutions",
+    "text": "Solutions"
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#solution-0-naming-packages-used",
+    "href": "reproducibility/intro-reproducible-environment.html#solution-0-naming-packages-used",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 0: naming packages used",
+    "text": "Solution 0: naming packages used\n\nvalues were analysed in R (R Core Team, 2017) using the qqman package (Turner, 2014)."
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#citing-r",
+    "href": "reproducibility/intro-reproducible-environment.html#citing-r",
+    "title": "Will your code work in 2034?",
+    "section": "Citing R",
+    "text": "Citing R\n\n# Citation for R\ncitation()\n\nTo cite R in publications use:\n\n  R Core Team (2025). _R: A Language and Environment for Statistical\n  Computing_. R Foundation for Statistical Computing, Vienna, Austria.\n  &lt;https://www.R-project.org/&gt;.\n\nA BibTeX entry for LaTeX users is\n\n  @Manual{,\n    title = {R: A Language and Environment for Statistical Computing},\n    author = {{R Core Team}},\n    organization = {R Foundation for Statistical Computing},\n    address = {Vienna, Austria},\n    year = {2025},\n    url = {https://www.R-project.org/},\n  }\n\nWe have invested a lot of time and effort in creating R, please cite it\nwhen using it for data analysis. See also 'citation(\"pkgname\")' for\nciting R packages."
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#citing-r-packages",
+    "href": "reproducibility/intro-reproducible-environment.html#citing-r-packages",
+    "title": "Will your code work in 2034?",
+    "section": "Citing R packages",
+    "text": "Citing R packages\n\n# Citation for an R package\ncitation(\"lme4\")\n\nTo cite lme4 in publications use:\n\n  Douglas Bates, Martin Maechler, Ben Bolker, Steve Walker (2015).\n  Fitting Linear Mixed-Effects Models Using lme4. Journal of\n  Statistical Software, 67(1), 1-48. doi:10.18637/jss.v067.i01.\n\nA BibTeX entry for LaTeX users is\n\n  @Article{,\n    title = {Fitting Linear Mixed-Effects Models Using {lme4}},\n    author = {Douglas Bates and Martin M{\\\"a}chler and Ben Bolker and Steve Walker},\n    journal = {Journal of Statistical Software},\n    year = {2015},\n    volume = {67},\n    number = {1},\n    pages = {1--48},\n    doi = {10.18637/jss.v067.i01},\n  }"
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#solution-1-naming-packages-used",
+    "href": "reproducibility/intro-reproducible-environment.html#solution-1-naming-packages-used",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 1: naming packages used",
+    "text": "Solution 1: naming packages used\n\nNumerical analyses were carried out using R v. 2.15.3 (R Core Team 2013) using the vegan package v. 2.0-9 (Oksanen et al. 2013).\n\nWhich packages to cite?\nPotentially hundreds of packages used directly and indirectly."
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#finding-package-versions",
+    "href": "reproducibility/intro-reproducible-environment.html#finding-package-versions",
+    "title": "Will your code work in 2034?",
+    "section": "Finding package versions",
+    "text": "Finding package versions\n\nNumerical analyses were carried out using R v. `r getRversion()`\n(R Core Team 2013) using the vegan package v.`r packageVersion(\"vegan\")`\n(Oksanen et al. 2013).\n\nUsing pakret package\n\nNumerical analyses were carried out using `r pkrt(\"R\")`\nusing `r pkrt(\"vegan\")`."
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#solution-2-renv-for-reproducible-r-environment",
+    "href": "reproducibility/intro-reproducible-environment.html#solution-2-renv-for-reproducible-r-environment",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 2: renv for reproducible R environment",
+    "text": "Solution 2: renv for reproducible R environment\n\ndetect which packages you use and their dependencies\nkeeps a lockfile - a list of the version of ALL the packages installed\nmakes a project library\nwill install correct version of packages in the lockfile when you start using a project"
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#demo-renv",
+    "href": "reproducibility/intro-reproducible-environment.html#demo-renv",
+    "title": "Will your code work in 2034?",
+    "section": "Demo renv",
+    "text": "Demo renv\n\nMake a new rstudio project.\nRun renv::init()\nAdd an R script file with some library() calls\nInstall packages with renv::install() (both CRAN and GitHub)\nRun renv::status()\nRun renv::snapshot() to save changes or renv::restore() to revert\nRepeat 3–5"
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#using-someone-elses-project-with-renv",
+    "href": "reproducibility/intro-reproducible-environment.html#using-someone-elses-project-with-renv",
+    "title": "Will your code work in 2034?",
+    "section": "Using someone elses project with renv",
+    "text": "Using someone elses project with renv\n\nClone the repo\nOpen in RStudio\nuse renv::restore() to install packages"
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#pitfalls",
+    "href": "reproducibility/intro-reproducible-environment.html#pitfalls",
+    "title": "Will your code work in 2034?",
+    "section": "Pitfalls",
+    "text": "Pitfalls\n\nrenv only valid for the version of R it was built on\nnot all package can be discovered\n\nfinds library(dplyr), tidyr::nest(...) and dependencies\n\n\n\ntar_option_set(\n  packages = c(\"tidyverse\")\n)\n\n\nsolution use targets::tar_renv()\nsolution use R file with library() calls\nDon’t forget to renv::update() packages to benefit from bugfixes."
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#solution-3-containers",
+    "href": "reproducibility/intro-reproducible-environment.html#solution-3-containers",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 3: Containers",
+    "text": "Solution 3: Containers\nrenv makes the list of packages available.\nDoes nothing for the all the external dependencies.\n\ndocker\nNix"
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#solution-3-rocker---docker-for-r",
+    "href": "reproducibility/intro-reproducible-environment.html#solution-3-rocker---docker-for-r",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 3: Rocker - Docker for R",
+    "text": "Solution 3: Rocker - Docker for R\n\n\n\nRocker"
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#solution-4-nix---package-manager",
+    "href": "reproducibility/intro-reproducible-environment.html#solution-4-nix---package-manager",
+    "title": "Will your code work in 2034?",
+    "section": "Solution 4: Nix - package manager",
+    "text": "Solution 4: Nix - package manager\nR interface with rix package\n\nsimplifies creating Nix expressions, which define reproducible environments.\nlets you work interactively in RStudio\nprovides helpers that make it easy to build those environments."
+  },
+  {
+    "objectID": "reproducibility/intro-reproducible-environment.html#remaining-problems",
+    "href": "reproducibility/intro-reproducible-environment.html#remaining-problems",
+    "title": "Will your code work in 2034?",
+    "section": "Remaining problems",
+    "text": "Remaining problems\n\ndependencies on external API (e.g. gbif, leaflet)"
+  },
+  {
+    "objectID": "reproducibility/exercise_reproducibility.html#reproducibilty",
+    "href": "reproducibility/exercise_reproducibility.html#reproducibilty",
+    "title": "How reproducible is ecology?",
+    "section": "Reproducibilty",
+    "text": "Reproducibilty\n\n\nThe Turing Way Community. This illustration is created by Scriberia with The Turing Way community, used under a CC-BY 4.0 licence. DOI: 10.5281/zenodo.3332807"
+  },
+  {
+    "objectID": "reproducibility/exercise_reproducibility.html#data-and-code-availability",
+    "href": "reproducibility/exercise_reproducibility.html#data-and-code-availability",
+    "title": "How reproducible is ecology?",
+    "section": "Data and code availability",
+    "text": "Data and code availability\n\n\nCulina A, van den Berg I, Evans S, Sánchez-Tójar A (2020) Low availability of code in ecology: A call for urgent action. PLOS Biology 18(7): e3000763. https://doi.org/10.1371/journal.pbio.3000763"
+  },
+  {
+    "objectID": "reproducibility/exercise_reproducibility.html#section",
+    "href": "reproducibility/exercise_reproducibility.html#section",
+    "title": "How reproducible is ecology?",
+    "section": "",
+    "text": "Reviewed papers from 6 journals (2023-2025)\n\n\nFigure 1: Number of papers reviewed in 2023: 44, 2024: 59, 2025: 59"
+  },
+  {
+    "objectID": "reproducibility/exercise_reproducibility.html#section-1",
+    "href": "reproducibility/exercise_reproducibility.html#section-1",
+    "title": "How reproducible is ecology?",
+    "section": "",
+    "text": "Data and code availability (2023–2025)\n\n\nFigure 2: Data and code availability by year."
+  },
+  {
+    "objectID": "reproducibility/exercise_reproducibility.html#section-2",
+    "href": "reproducibility/exercise_reproducibility.html#section-2",
+    "title": "How reproducible is ecology?",
+    "section": "",
+    "text": "2023–2025: data and code availability by journal\n\n\nFigure 3"
+  },
+  {
+    "objectID": "reproducibility/exercise_reproducibility.html#exercise-12",
+    "href": "reproducibility/exercise_reproducibility.html#exercise-12",
+    "title": "How reproducible is ecology?",
+    "section": "Exercise (1/2)",
+    "text": "Exercise (1/2)\nMake 6 groups.\nChoose one of the following journals and select a random issue from 2026:\n\nMethods in Ecology and Evolution\nJournal of Ecology\nOIKOS\nAmerican Naturalist\nJournal of Animal Ecology\nEcological Monographs"
+  },
+  {
+    "objectID": "reproducibility/exercise_reproducibility.html#exercise-22",
+    "href": "reproducibility/exercise_reproducibility.html#exercise-22",
+    "title": "How reproducible is ecology?",
+    "section": "Exercise (2/2)",
+    "text": "Exercise (2/2)\nFor each paper in this issue check:\n\nIs the data available and can you download it? Repo or supplement file? In what format is the data available (xlsx, csv, txt, etc.)?\nIs the code available? Choose one figure/analysis. Is the data and code for this figure/analysis available? Try to run the code, can you replicate the figure/analysis.\nAdd the data to this google spreadsheet and get a snack 🍪"
   }
 ]
