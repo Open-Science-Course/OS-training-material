@@ -1,0 +1,141 @@
+---
+title: "How reproducible is ecology in 2024?"
+author: "Aud and Matt"
+format: 
+  revealjs:
+    embed-resources: true
+    slide-number: true
+    show-slide-number: all
+execute:
+  echo: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## 
+
+```{r}
+#| label: setup
+#| echo: false
+
+library(tidyverse)
+library(readxl)
+
+```
+
+
+```{r}
+#| label: data
+#| echo: false
+
+dat23 <- read_excel("data/Reproducibility_2024.xlsx", sheet = "Hjerkinn_2023") |>
+  select(Journal, `Is the data available?`, "Is the code to run the analysis for Fig/Tab x available?", "Can you reproduce analysis figure/table x?") |> 
+  rename("data" = `Is the data available?`,
+         "code" = "Is the code to run the analysis for Fig/Tab x available?",
+         "reproduce" = "Can you reproduce analysis figure/table x?") %>%
+  mutate(Journal = tolower(Journal),
+         Journal = if_else(Journal == "amrican naturalist", "american naturalist", Journal),
+         data = tolower(data),
+         data = case_when(data == "na" ~ NA_character_,
+                          data == "yes, but" ~ "yes",
+                          TRUE ~ data),
+         code = tolower(code),
+         code = if_else(grepl("yes", code), "yes", code),
+         reproduce = tolower(reproduce),
+         reproduce = case_when(reproduce == "na" ~ NA_character_,
+                               grepl("currently|six", reproduce) ~ "partly",
+                               TRUE ~ reproduce),
+         year = 2023)
+
+
+dat24 <- read_excel("data/Reproducibility_2024.xlsx", sheet = "Hjerkinn_2024") |>
+  select(Journal, `Is the data available?`, "Is the code to run the analysis for Fig/Tab x available?", "Can you reproduce analysis figure/table x?") |> 
+  rename("data" = `Is the data available?`,
+         "code" = "Is the code to run the analysis for Fig/Tab x available?",
+         "reproduce" = "Can you reproduce analysis figure/table x?") %>%
+  mutate(Journal = tolower(Journal),
+         data = tolower(data),
+         data = if_else(data == "n/a", NA_character_, data),
+         code = tolower(code),
+         code = case_when(code == "n/a" ~ NA_character_,
+                          code == "na" ~ NA_character_,
+                          TRUE ~ code),
+         reproduce = tolower(reproduce),
+         reproduce = case_when(reproduce == "na" ~ NA_character_,
+                               grepl("code", reproduce) ~ NA_character_,
+                               TRUE ~ reproduce),
+         year = 2024) |> 
+  filter(!is.na(Journal))
+
+
+dat <- bind_rows(dat23, dat24) |> 
+  pivot_longer(cols = c(data, code, reproduce), names_to = "variable", values_to = "availability") |> 
+  mutate(variable = factor(variable, levels = c("data", "code", "reproduce"))) |> 
+  filter(!availability %in% c("yes, but"))
+```
+
+
+2023: 44 papers
+
+2024: 54 papers
+
+```{r}
+#| label: journals
+#| echo: false
+
+dat2 <- dat |> 
+  filter(variable == "data") |> 
+  group_by(Journal, year) |> 
+  summarise(n = n())
+
+ggplot(dat2, aes(x = Journal, y = n, fill = Journal)) +
+  geom_col() +
+  coord_flip() +
+  labs(x = "", y = "") +
+  theme_bw() +
+  theme(legend.position = "none") + 
+  facet_wrap( ~ year)
+
+```
+
+## 
+
+```{r}
+#| label: data-code-reproduce
+#| echo: false
+
+dat |> 
+  group_by(variable, availability, year) |> 
+  summarise(n = n()) |> 
+  mutate(year = as.factor(year)) |> 
+  ggplot(aes(x = year, y = n, fill = availability)) +
+  geom_col() +
+  labs(x = "", y = "") +
+  theme_bw() +
+  facet_wrap(~variable)
+
+
+```
+
+
+## 
+
+```{r}
+#| label: per-journal
+#| echo: false
+
+
+dat |> 
+  group_by(Journal, variable, availability, year) |> 
+  summarise(n = n()) |> 
+  mutate(year = as.factor(year)) |> 
+  ggplot(aes(x = Journal, y = n, fill = availability)) +
+  geom_col(position = "fill") +
+  coord_flip() +
+  labs(x = "", y = "") +
+  facet_wrap(~ variable) +
+  theme_bw() +
+  theme(legend.position = "bottom") +
+  facet_grid(variable~year)
+```
