@@ -1,0 +1,28 @@
+---
+title: "Introduction to reproducible documents"
+author: "Aud H. Halbritter (Richard Telford)"
+format: 
+  revealjs:
+    embed-resources: true
+    slide-number: true
+    show-slide-number: all
+execute:
+  echo: true
+---
+
+## How do you write reports, manuscripts, presentations?
+
+
+## {}
+
+![](pics/non-rep.png)
+
+## {}
+
+![](pics/rep.png)
+
+## Biostats tutorial
+
+Go to this webpage: https://biostats-r.github.io/
+
+![](pics/rep_documents.png)

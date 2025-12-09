@@ -1,0 +1,238 @@
+---
+title: "A gentle introduction to Open Science"
+subtitle: "Presentation at the Open Science course at Hjerkinn 2024"
+author: "Erlend B. Nilsen"
+format: 
+  revealjs:
+    slide-number: true
+editor: visual
+bibliography: bib_example2.bib
+---
+
+## Introduction
+
+::: {.callout-tip appearance="simple"}
+*Open science is just science done the way science should be done....*
+:::
+
+*OR*
+
+::: {.callout-tip appearance="simple"}
+*In the future there will be science and closed science*
+
+(i.e. -\> what we today call open science will in the future just be science....)
+:::
+
+![Pillars of Open Science, UNESCO (2021)](images/UNESCO-Open_science-pillars-en.png){fig-align="center"}
+
+## Living Norway Ecological Data Network
+
+![](images/Log_LN.png){fig-align="center"}
+
+[*Living Norway Ecological Data Network*](https://livingnorway.no/) *facilitates open, reproducible and transparent sharing, use and reuse of ecological data to the benefit of society and science*
+
+## Living Norway Ecological Data Network
+
+![](images/clipboard-272055725.png)
+
+## Open Science is an umbrella term
+
+![](images/Figur1.png)
+
+## But why bother?
+
+![](images/Why_Open_Science.png){fig-align="center"}
+
+## What is Open Science
+
+:::::: columns
+::: {.column width="50%"}
+![](images/Figur3.png)
+:::
+
+:::: {.column width="50%"}
+::: {.callout-note appearance="simple"}
+-   We arranged a two-day seminar about open science in research and teaching in 2020
+
+-   The summary of the workshop can be found in the link below
+:::
+::::
+::::::
+
+^[Transforming science education to meet the needs of today’s students and tomorrow’s science](https://livingnorway.no/2020/11/05/transforming-science-education-to-meet-the-needs-of-todays-students-and-tomorrows-science/)^
+
+## Is it all good - or are there remaining challenges?
+
+![](images/clipboard-3919083559.png)
+
+## The six principles of open science
+
+::::: columns
+::: {.column width="50%"}
+-   Open methodology
+
+-   Open source
+
+-   Open data
+
+-   Open access
+
+-   Open peer review
+
+-   Open educational resources
+:::
+
+::: {.column width="50%"}
+![](images/UNESCO-Open_science-pillars-en.png)
+:::
+:::::
+
+## Different schools of open science
+
+:::::: columns
+:::: {.column width="50%"}
+::: {.callout-note appearance="simple"}
+-   The *infrastructure school*
+
+-   The *measurement school*
+
+-   The *public school*
+
+-   The *democratic school*
+
+-   The *pragmatic school*
+
+See @Fecher2014
+:::
+::::
+
+::: {.column width="50%"}
+[![image: Flaticon.com](images/school.png){width="187"}](https://www.flaticon.com/free-icons/school)
+:::
+::::::
+
+## Topics for discussion
+
+::: {.callout-caution appearance="simple"}
+-   *What do YOU associate with Open Science?*
+
+-   *How do you think Open Science can improve your project?*
+:::
+
+## The reproduciblity crisis
+
+::::: columns
+::: {.column width="50%"}
+![](images/clipboard-2433360458.png)
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-2549073998.png)
+:::
+:::::
+
+[1,500 scientists lift the lid on reproducibility \| Nature](https://www.nature.com/articles/533452a)
+
+## Access to data
+
+::::::: columns
+:::: {.column width="50%"}
+![](images/Figur5.png)
+
+::: callout-note
+## Question
+
+What do you think is the situation for student thesis?
+
+Could this be a concern?
+:::
+::::
+
+:::: {.column width="50%"}
+::: {.callout-warning appearance="simple"}
+-   When we publish scientific papers it is expected that data is shared (archived) publicly (so that other researchers can reuse the data)
+
+-   However, currently we often find that this is not happening
+
+    -   See e.g. @Archmiller2020
+:::
+::::
+:::::::
+
+## ...
+
+![](images/Primary_biodiv_data.png)
+
+See @Mandeville2021 for details
+
+## Access to code
+
+::::::: columns
+:::: {.column width="50%"}
+![](images/Figur_code.png)
+
+::: callout-note
+## Question
+
+What do you think is the situation for student thesis?
+
+Could this be a concern?
+:::
+::::
+
+:::: {.column width="50%"}
+::: {.callout-warning appearance="simple"}
+-   When we publish scientific papers - we are expected to share (archive) R-code (or other code we are using to produce the reported results).
+
+-   Again - there is room for improvement!
+
+    -   See e.g. @Culina2020
+:::
+::::
+:::::::
+
+## FAIR!
+
+![](images/FAIR_data.png)
+
+See @Wilkinson2016
+
+## Questionable Reserach Practices
+
+![](images/clipboard-156202845.png)
+
+See @Fraser2018 for details and further discussion!
+
+## The preregistration revolution!
+
+::::: columns
+::: {.column width="50%"}
+![](images/Preregistration.png)
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-1219184602.png)
+
+See @Nosek2018
+:::
+:::::
+
+## Distinguish between exploratory and confirmatory science
+
+::::: columns
+::: {.column width="50%"}
+![](images/clipboard-2312361735.png)
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-2432539168.png)
+:::
+:::::
+
+See @Nilsen2020
+
+## Open science is just as much about....
+
+![](images/clipboard-4143438892.png)
+
+## References

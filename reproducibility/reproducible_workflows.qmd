@@ -1,0 +1,30 @@
+---
+title: "Introduction to reproducible workflows"
+author: "Aud H. Halbritter"
+format: 
+  revealjs:
+    embed-resources: true
+    slide-number: true
+    show-slide-number: all
+execute:
+  echo: true
+---
+
+## {}
+
+![](pics/data_workflow.png)
+
+## {}
+
+![](pics/targets_pipeline.png)
+
+## {}
+
+![](pics/reproducible_pipeline.png)
+
+
+## Biostats tutorial
+
+Go to this webpage: https://biostats-r.github.io/
+
+![](pics/target_exercise.png)

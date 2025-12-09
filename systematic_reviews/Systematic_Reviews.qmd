@@ -1,0 +1,367 @@
+---
+title: "Systematic Reviews and Meta-Analysis in Ecology"
+author: "Matt"
+format: 
+  revealjs:
+    embed-resources: true
+    logo: "images/Leaf_LN.png"
+    slide-number: true
+    show-slide-number: all
+execute:
+  echo: true
+editor: visual
+---
+
+## Why are we talking about Evidence Synthesis in an OpenScience course?
+
+-   Evidence synthesis relies on Openness of primary research
+-   Evidence synthesis built on many Open Science principles e.g. Protocols/reporting standards
+-   Evidence syntheses often insufficiently Open
+
+## Stages of Evidence Synthesis (systematic review/map)
+
+![](images/clipboard-378339014.png)
+
+# Question formulation
+
+## Question formulation
+
+Often an iterative process – starts off broad and needs to be narrowed to be answered Identify a question that is of greatest interest (to stakeholders, decision-makers etc.) Identify a question that maximises cost-effectiveness Identify a question that minimised confusion (avoid vague phrasing)
+
+## Question formulation
+
+What type of questions can be asked?
+
+-   What is the state of the evidence? “What research evidence is there that humans are exposed to and affected by AMR in the environment?”
+
+-   What is the effect of an intervention/exposure on a population? “How do changes in flow magnitude due to hydroelectric power production affect fish abundance and diversity in temperate regions?”
+
+-   How can we generalise the best available evidence to a larger population/spatial extent? Greenspaces & human health benefits
+
+## Question frameworks
+
+-   PICO – Population Intervention Comparator Outcome
+
+    -   What is the effect of neonicotinoid pesticides on pollinator performance?
+
+-   PECO – Population Exposure Comparator Outcome
+
+    -   What is the effectiveness of conversion to organic farming on pollinator performance
+
+-   PO – Population Outcome(s)
+
+    -   What is the prevalence (ppm) of neonicotinoid pesticides in fresh water?
+
+## Question frameworks – Your turn
+
+-   How does the size and density of kelp forest affect fisheries in the Pacific?
+
+-   Are reintroduction programs effective for increasing populations of African wild dogs in South Africa?
+
+-   What is the impact of flooding on abundance of trout in Chilean rivers?
+
+![](images/clipboard-3823169848.png)
+
+## 
+
+How does the size and density of kelp forest affect fisheries in the Pacific?
+
+![](images/clipboard-2425172387.png)
+
+## 
+
+Are reintroduction programs effective for increasing populations of African wild dogs in South Africa?
+
+![](images/clipboard-4240266212.png)
+
+## 
+
+What is the impact of flooding on abundance of trout in Chilean rivers?
+
+![](images/clipboard-3294500146.png)
+
+## Your question?
+
+![](images/clipboard-3823169848.png)
+
+# Protocol
+
+[CEE author guidelines](https://environmentalevidence.org/information-for-authors/)
+
+[Example of a systematic protocol](https://environmentalevidencejournal.biomedcentral.com/articles/10.1186/s13750-022-00276-w)
+
+# Searching
+
+## Where to find evidence - tips and tricks
+
+True or False
+
+-   I would go to GoogleScholar first when searching for evidence
+-   Web of Science is more comprehensive than Google Scholar
+-   Web of Science is a transparent, repeatable resource
+-   Grey literature is defined as anything unpublished and not peer-reviewed
+
+## Searches
+
+-   Comprehensive, transparent, objective
+-   Multiple academic databases
+-   Tried and tested search string
+-   Multiple sources of grey literature
+-   Languages
+-   Documented in detail – all decisions described and explained
+
+## Where to search
+
+-   Bibliographic databases
+-   WOS, Scopus, PubMed
+-   Web-based searches
+-   Google, GoogleScholar
+-   Grey literature searches
+-   Organisational websites
+-   Thesis repositories
+
+## Bibliographic databases
+
+::::: columns
+::: {.column width="50%"}
+-   WoS
+
+-   Scopus
+
+-   Agricola
+
+-   AGRIS (FAO)
+:::
+
+::: {.column width="50%"}
+-   Academic Search Premier
+
+<!-- -->
+
+-   Biological Abstracts
+
+-   CAB Abstracts
+
+-   Lens.org
+:::
+:::::
+
+-   CEE 2012-2017 Systematic review – mean = 9 (2 – 75) databases. Search between 8-15 databases (broad and specific)
+
+## Basic search
+
+How effective is wetland restoration for reducing nitrogen and phosphorus?
+
+-   Built around the question elements
+-   Population = wetland
+-   Intervention = restoration
+-   Comparator = ...
+-   Outcome = nitrogen, phosphorous
+
+## Example search
+
+![](images/clipboard-1461132403.png)
+
+## Document the search
+
+-   Which databases (not just the search platforms)?
+    -   Name, URL, date range, subscriptions, your institute name, etc.
+-   Which websites?
+    -   Name, URL
+    -   What options used?
+-   Search terms
+-   When you searched?
+-   Who searched?
+
+## Data management
+
+-   Search results are data
+-   Search strategy is metadata
+-   Use reproducible workflows
+-   File format – RIS files are useful for exchange between software
+-   Keep track of where files come from (which databases)
+-   Use a file management or review management tool (e.g. Rayyan)
+
+## Some extra resources
+
+[Citation chasing with R](https://estech.shinyapps.io/citationchaser/)
+
+[Data management with R](http://www.eshackathon.org/CiteSource/)
+
+[Review management](https://rayyan.ai/reviews)
+
+## Different types of Evidence synthesis
+
+What is the effect of logging on biodiversity?
+
+![](images/clipboard-3223438125.png)
+
+## 
+
+![](images/clipboard-3573575681.png)
+
+## 
+
+![](images/clipboard-1457603513.png)
+
+## 
+
+![](images/clipboard-2513381944.png)
+
+## 
+
+![](images/clipboard-2427978065.png)
+
+## 
+
+![](images/clipboard-1758288684.png)
+
+## 
+
+![](images/clipboard-3054930533.png)
+
+## Rapid reviews
+
+-   No agreed definition of a “rapid review”
+-   Which corners to cut (not exhaustive)?
+-   Span of the literature (e.g. post 2010 - present)
+-   “Study quality” (e.g. only systematic reviews?)
+-   Number of reviewers (e.g. 1 person to review & 1 to check a %)
+
+# Critical appraisal
+
+## Critical appraisal
+
+This is the hard part that no-one does!!
+
+-   Checking both internal and external validity
+-   Internal – are the conclusions of the paper based on sound causality
+-   External – does the paper really fit with my question
+
+## How do we do it?
+
+::::: columns
+::: {.column width="50%"}
+-   All possible sources of bias, error or uncertainty
+-   Are the outcome measures used appropriate/accurate?
+-   Is a suitable comparator present?
+-   How were treatments assigned?
+-   What is the level of replication?
+:::
+
+::: {.column width="50%"}
+-   What is the study design?
+-   Are baseline measures included?
+-   Are there systematic differences between groups?
+-   Are there potential confounding variables?
+:::
+:::::
+
+## How do we do it?
+
+-   Lots of tools (none of them 100 % reusable!)
+-   Checklists
+-   Questions about validity (“yes”, “no” or “unclear”)
+-   Have in mind what the “optimum” study would be
+-   What is the overall validity? “High” “Low” “Unclear”
+
+# Things to consider
+
+-   Adapt existing tools
+-   Provide logical rational for the approach
+-   Use CA to inform the results
+-   Validity not quality
+-   Conduct of the science NOT reporting of the science (which is annoying but...)
+-   Try to think about all possible threats to validity
+-   This is hard – do not just copy the previous review (as no doubt it can be improved)
+
+## Your turn
+
+Critical appraisal questions
+
+1.  Are control and intervention populations appropriately matched? i.e. did the authors use well-justified and sensible ways to select comparable control and intervention groups?
+
+2.  Do control/before and intervention/after differ only in terms of the intervention? i.e. are there any other factors present that might have caused the differences between control and intervention groups?
+
+3.  Were the measured samples selected in a systematic manner that aims to avoid bias?
+
+## 
+
+4.  Has sufficient time passed after the intervention to allow impacts to be felt?
+
+5.  Was the study design strong and appropriate? i.e. was it a randomised control trial, was there a temporal comparator (before) AND spatial comparator (control), or just temporal OR spatial?
+
+6.  Was the sample size sufficient? i.e. was there true replication?
+
+# Synthesis
+
+## Using evidence to inform decisions
+
+Giving decision-makers a pooled effect size or a biased assessment of the evidence should not be tolerated (looking at you Editors and Reviewers of Journals etc.)
+
+-   What are typical synthesis textual outputs (which are useful)?
+-   What are typical synthesis visual outputs?
+-   Where can we do much better?
+-   How can we help in the decision-process itself (with quantitative evidence)?
+
+## Typical Evidence Synthesis outputs
+
+-   Narrative synthesis
+
+-   Quantitative synthesis
+
+-   Qualitative synthesis
+
+## Typical Evidence Synthesis outputs
+
+-   Transparent
+
+-   Minimise bias
+
+-   Avoid vote-counting
+
+-   Account for varying reliability of the evidence
+
+## DONT DO THIS - vote counting
+
+![](images/clipboard-804514446.png)
+
+## DONT DO THIS - vote counting
+
+![](images/clipboard-3858746199.png)
+
+## Report the synthesis
+
+![](images/clipboard-1512353294.png)
+
+## Forest plots
+
+![](images/clipboard-3299352052.png)
+
+## 
+
+![](images/clipboard-3115346597.png)
+
+## Show me the data!
+
+![](images/clipboard-860927189.png)
+
+## Meta-regression
+
+![](images/clipboard-3633281746.png)
+
+## Meta-analysis
+
+Let's have a look at the meta_analysis.qmd file
+
+## Not all evidence synthesis is created equally
+
+We need to critically assess anything that is called a systematic review or meta-analysis.
+
+![](images/clipboard-4282546901.png)
+
+## Examples of poor conduct
+
+[landscape ecology](https://link.springer.com/article/10.1007/s10980-024-01817-z)
+
+[A challenge - find the problem(s) with this study](https://kar.kent.ac.uk/105632/27/Langhammer%20et%20al.%202024_The%20Positive%20Impact%20of%20Conservation%20Action_Science_Accepted%20Version.pdf)
