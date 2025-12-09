@@ -922,5 +922,334 @@
     "title": "How reproducible is ecology?",
     "section": "Exercise (2/2)",
     "text": "Exercise (2/2)\nFor each paper in this issue check:\n\nIs the data available and can you download it? Repo or supplement file? In what format is the data available (xlsx, csv, txt, etc.)?\nIs the code available? Choose one figure/analysis. Is the data and code for this figure/analysis available? Try to run the code, can you replicate the figure/analysis.\nAdd the data to this google spreadsheet and get a snack 🍪"
+  },
+  {
+    "objectID": "systematic_reviews/meta_analysis.html",
+    "href": "systematic_reviews/meta_analysis.html",
+    "title": "Meta-analysis in R",
+    "section": "",
+    "text": "Meta-analysis is the quantitative summary of effect sizes extracted from “published” sources. A systematic review doesn’t have to have a meta-analysis (but a meta-analysis needs a systematic review)."
+  },
+  {
+    "objectID": "systematic_reviews/meta_analysis.html#meta-analysis",
+    "href": "systematic_reviews/meta_analysis.html#meta-analysis",
+    "title": "Meta-analysis in R",
+    "section": "",
+    "text": "Meta-analysis is the quantitative summary of effect sizes extracted from “published” sources. A systematic review doesn’t have to have a meta-analysis (but a meta-analysis needs a systematic review)."
+  },
+  {
+    "objectID": "systematic_reviews/meta_analysis.html#what-is-an-effect-size",
+    "href": "systematic_reviews/meta_analysis.html#what-is-an-effect-size",
+    "title": "Meta-analysis in R",
+    "section": "What is an effect size?",
+    "text": "What is an effect size?\nAn effect size is the size of the effect!\nThe easiest way to think about them is to think of a classic experiment where we compare the effect of an intervention by using a randomised controlled trial.\nWe can simulate some data from a ten experiments (studies) to show the difference between an intervention and a control group. Let’s imagine we are studying the effect of a restoration intervention on the species richness of beetles.\n\ndata &lt;- data.frame(\n  study_id = c(1:10,10),\n  # Mean species richness in restored and control sites\n  mean_restored = c(12, 15, 14, 20, 8, 13, 16, 19, 10, 18, 17),\n  mean_control = c(9, 12, 11, 15, 10, 11, 14, 17, 9, 14, 14),\n  # Standard deviations for restored and control groups\n  sd_restored = c(2.1, 3.0, 2.5, 3.5, 2.0, 2.8, 3.2, 2.9, 2.3, 3.1, 3),\n  sd_control = c(2.0, 2.9, 2.6, 3.2, 1.9, 2.5, 2.9, 2.7, 2.1, 2.8, 2.7),\n  # Sample sizes for restored and control groups\n  n_restored = c(30, 45, 40, 50, 25, 38, 60, 48, 35, 42, 42),\n  n_control = c(30, 45, 40, 50, 25, 38, 60, 48, 35, 42, 42)\n)\n\ndata |&gt; head()\n\n  study_id mean_restored mean_control sd_restored sd_control n_restored\n1        1            12            9         2.1        2.0         30\n2        2            15           12         3.0        2.9         45\n3        3            14           11         2.5        2.6         40\n4        4            20           15         3.5        3.2         50\n5        5             8           10         2.0        1.9         25\n6        6            13           11         2.8        2.5         38\n  n_control\n1        30\n2        45\n3        40\n4        50\n5        25\n6        38\n\n\n\nStep 1: Calculating the Standardized Mean Difference (SMD)\nThe standardized mean difference (SMD) between restored and control sites is calculated as follows:\n\\[\\text{SMD} = \\frac{\\text{mean}_{\\text{restored}} - \\text{mean}_{\\text{control}}}{\\text{pooled standard deviation}}\\] Where the pooled standard deviation is calculated as:\n\\[2SD_{\\text{pooled}} = \\sqrt{\\frac{(n_{\\text{restored}} - 1) \\cdot SD_{\\text{restored}}^2 + (n_{\\text{control}} - 1) \\cdot SD_{\\text{control}}^2}{n_{\\text{restored}} + n_{\\text{control}} - 2}}\\]\nLet’s calculate this in R:\n\n# Calculate pooled standard deviation and SMD for each study\ndata$sd_pooled &lt;- with(data, sqrt(((n_restored - 1) * sd_restored^2 + (n_control - 1) * sd_control^2) / (n_restored + n_control - 2)))\ndata$smd &lt;- with(data, (mean_restored - mean_control) / sd_pooled)\n\n# Calculate variance of the SMD\ndata$smd_variance &lt;- with(data, ((n_restored + n_control) / (n_restored * n_control)) + (smd^2 / (2 * (n_restored + n_control))))\n\n# View the calculated effect sizes and variances\nprint(data[c(\"study_id\", \"smd\", \"smd_variance\")])\n\n   study_id        smd smd_variance\n1         1  1.4629795   0.08450258\n2         2  1.0168031   0.05018827\n3         3  1.1762445   0.05864719\n4         4  1.4910434   0.05111605\n5         5 -1.0253040   0.09051248\n6         6  0.7535108   0.05636696\n7         7  0.6549461   0.03512064\n8         8  0.7138306   0.04432059\n9         9  0.4540766   0.05861561\n10       10  1.3541827   0.05853459\n11       10  1.0511767   0.05419626\n\n\nIn ecology we often have small sample sizes, so we use Hedges g to “correct” for small samples. In the R package metafor we can calculate this:\n\nhedges_g_data &lt;- metafor::escalc(measure = \"SMD\",\n                        m1i = mean_restored, sd1i = sd_restored, n1i = n_restored,\n                        m2i = mean_control, sd2i = sd_control, n2i = n_control,\n                        data = data)\n\n# View the results\nhedges_g_data |&gt; \n  select(study_id, yi, vi) |&gt; \n  head()\n\n\n  study_id      yi     vi \n1        1  1.4440 0.0840 \n2        2  1.0081 0.0501 \n3        3  1.1649 0.0585 \n4        4  1.4796 0.0509 \n5        5 -1.0092 0.0902 \n6        6  0.7458 0.0563"
+  },
+  {
+    "objectID": "systematic_reviews/meta_analysis.html#running-a-meta-analysis",
+    "href": "systematic_reviews/meta_analysis.html#running-a-meta-analysis",
+    "title": "Meta-analysis in R",
+    "section": "Running a meta-analysis",
+    "text": "Running a meta-analysis\n\nfixed effects vs random effects\nIn meta-analysis, fixed-effects models assume that all studies estimate the same underlying effect size, with any differences among study results being solely due to sampling error. This model is appropriate when we believe that the effect size is constant across all studies, meaning each study measures exactly the same phenomenon.\nIn contrast, random-effects models assume that the true effect size varies from study to study due to real differences in study characteristics, such as differences in species, locations, or experimental conditions. Random-effects models treat these variations as random and allow for both within-study sampling error and between-study variability. This is often more realistic in ecology, where conditions across studies are rarely identical.\n\n\nAccounting for non-independence\nWhere multiple effects come from a single study (or even from related species!) we need to account for non-independence. We can do this in the meta-analysis model.\n\nran_eff_model&lt;-\n  rma.mv(yi, \n         vi, \n         random = ~ 1 | study_id, \n         data = hedges_g_data)\n\n\nsummary(ran_eff_model)\n\n\nMultivariate Meta-Analysis Model (k = 11; method: REML)\n\n  logLik  Deviance       AIC       BIC      AICc   \n -9.7272   19.4543   23.4543   24.0595   25.1686   \n\nVariance Components:\n\n            estim    sqrt  nlvls  fixed    factor \nsigma^2    0.4078  0.6386     10     no  study_id \n\nTest for Heterogeneity:\nQ(df = 10) = 61.8318, p-val &lt; .0001\n\nModel Results:\n\nestimate      se    zval    pval   ci.lb   ci.ub      \n  0.7940  0.2151  3.6912  0.0002  0.3724  1.2156  *** \n\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+  },
+  {
+    "objectID": "systematic_reviews/meta_analysis.html#forest-plot",
+    "href": "systematic_reviews/meta_analysis.html#forest-plot",
+    "title": "Meta-analysis in R",
+    "section": "Forest plot",
+    "text": "Forest plot\n\nforest(ran_eff_model)"
+  },
+  {
+    "objectID": "systematic_reviews/meta_analysis.html#orchard-plots",
+    "href": "systematic_reviews/meta_analysis.html#orchard-plots",
+    "title": "Meta-analysis in R",
+    "section": "Orchard plots",
+    "text": "Orchard plots\n\norchard_plot(ran_eff_model, mod = \"1\", xlab = \"Hedges' g\", angle = 45, group=\"study_id\")"
+  },
+  {
+    "objectID": "systematic_reviews/meta_analysis.html#pitfalls-with-hedges-g",
+    "href": "systematic_reviews/meta_analysis.html#pitfalls-with-hedges-g",
+    "title": "Meta-analysis in R",
+    "section": "Pitfalls with Hedges g",
+    "text": "Pitfalls with Hedges g\nIt is very easy to make a mistake in extracting data for calulating the Hedges g. As a “rule of thumb” a Hedges g of greater than 5 should be double/tripple checked.\nHere is a link to my Hedges g checker"
+  },
+  {
+    "objectID": "systematic_reviews/meta_analysis.html#cumulative-meta-analysis",
+    "href": "systematic_reviews/meta_analysis.html#cumulative-meta-analysis",
+    "title": "Meta-analysis in R",
+    "section": "Cumulative meta-analysis",
+    "text": "Cumulative meta-analysis\nA cumulative meta-analysis examines how the overall effect size estimate changes as each study is added sequentially, usually sorted by publication date. This approach can reveal trends over time, showing whether the effect size has stabilised as more studies are included.\nLet’s go through an example of performing a cumulative meta-analysis with the metafor package in R.\n\nStep 1: Create the Dataset\nFirst, we’ll create a dataset with a year variable to sort studies in chronological order for the cumulative analysis.\n\ndata &lt;- data.frame(\n  study_id = 1:10,\n  year = c(2000, 2002, 2004, 2005, 2006, 2008, 2010, 2012, 2015, 2018),  # Publication year\n  yi = c(0.8, 0.7, 0.5, 0.3, 0.1, -0.1, -0.3, -0.5, -0.7, -0.9),  # Effect sizes (Hedges' g)\n  vi = c(0.02, 0.03, 0.025, 0.04, 0.018, 0.027, 0.035, 0.033, 0.02, 0.03)  # Variances\n)\n\n# Sort data by year for cumulative meta-analysis\ndata &lt;- data[order(data$year), ]\n\n\n\nStep 2: Perform Cumulative Meta-Analysis\nNow, we can use the cumul() function from metafor to perform a cumulative meta-analysis. This function recalculates the meta-analysis result each time a new study is added.\n\n# Fit an initial random-effects model \nrandom_effect_model &lt;- rma(yi = yi, vi = vi, data = data, method = \"REML\")  # Perform cumulative meta-analysis \ncumulative_results &lt;- cumul(random_effect_model, order = data$year)  # View cumulative meta-analysis \ncumulative_results\n\n\n    k estimate     se    zval   pval   ci.lb  ci.ub        Q     Qp   tau2 \n1   1   0.8000 0.1414  5.6569 0.0000  0.5228 1.0772   0.0000 1.0000 0.0000 \n2   2   0.7600 0.1095  6.9378 0.0000  0.5453 0.9747   0.2000 0.6547 0.0000 \n3   3   0.6748 0.0938  7.1978 0.0000  0.4911 0.8586   2.0270 0.3629 0.0020 \n4   4   0.5986 0.1060  5.6447 0.0000  0.3907 0.8064   4.9607 0.1747 0.0174 \n5   5   0.4802 0.1343  3.5758 0.0003  0.2170 0.7434  15.5708 0.0037 0.0642 \n6   6   0.3842 0.1449  2.6517 0.0080  0.1002 0.6681  25.8529 0.0001 0.0997 \n7   7   0.2904 0.1548  1.8756 0.0607 -0.0131 0.5939  37.8277 0.0000 0.1403 \n8   8   0.1927 0.1661  1.1607 0.2458 -0.1327 0.5182  55.7933 0.0000 0.1923 \n9   9   0.0898 0.1780  0.5047 0.6138 -0.2590 0.4387  92.8590 0.0000 0.2578 \n10 10  -0.0087 0.1871 -0.0462 0.9631 -0.3754 0.3581 123.1155 0.0000 0.3224 \n        I2      H2 \n1   0.0000  1.0000 \n2   0.0000  1.0000 \n3   7.4829  1.0809 \n4  38.6738  1.6306 \n5  71.9936  3.5706 \n6  79.8004  4.9506 \n7  84.2217  6.3378 \n8  87.7058  8.1339 \n9  90.8532 10.9328 \n10 92.4608 13.2640 \n\n\n\n\nStep 3: Plot the Cumulative Meta-Analysis\nYou can also visualize the cumulative effect size estimates over time using forest().\n\n# Plot cumulative meta-analysis results \nforest(cumulative_results, xlab = \"Cumulative Hedges' g\", refline = 0, cex = 0.8)\n\n\n\n\n\n\n\n\n\n\nInterpretation\nAs you add each study (from the earliest to the most recent), you’ll see how the cumulative estimate of Hedges’ g changes. In ecology, this can highlight if early results were consistent with later studies or if new findings led to significant shifts in the overall effect estimate. This approach provides insight into whether further studies are likely to meaningfully alter the cumulative effect size or if it has stabilised."
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html",
+    "href": "systematic_reviews/Systematic_Reviews.html",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "",
+    "text": "Evidence synthesis relies on Openness of primary research\nEvidence synthesis built on many Open Science principles e.g. Protocols/reporting standards\nEvidence syntheses often insufficiently Open"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#why-are-we-talking-about-evidence-synthesis-in-an-openscience-course",
+    "href": "systematic_reviews/Systematic_Reviews.html#why-are-we-talking-about-evidence-synthesis-in-an-openscience-course",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Why are we talking about Evidence Synthesis in an OpenScience course?",
+    "text": "Why are we talking about Evidence Synthesis in an OpenScience course?\n\nEvidence synthesis relies on Openness of primary research\nEvidence synthesis built on many Open Science principles e.g. Protocols/reporting standards\nEvidence syntheses often insufficiently Open"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#stages-of-evidence-synthesis-systematic-reviewmap",
+    "href": "systematic_reviews/Systematic_Reviews.html#stages-of-evidence-synthesis-systematic-reviewmap",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Stages of Evidence Synthesis (systematic review/map)",
+    "text": "Stages of Evidence Synthesis (systematic review/map)"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#question-formulation-1",
+    "href": "systematic_reviews/Systematic_Reviews.html#question-formulation-1",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Question formulation",
+    "text": "Question formulation\nOften an iterative process – starts off broad and needs to be narrowed to be answered Identify a question that is of greatest interest (to stakeholders, decision-makers etc.) Identify a question that maximises cost-effectiveness Identify a question that minimised confusion (avoid vague phrasing)"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#question-formulation-2",
+    "href": "systematic_reviews/Systematic_Reviews.html#question-formulation-2",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Question formulation",
+    "text": "Question formulation\nWhat type of questions can be asked?\n\nWhat is the state of the evidence? “What research evidence is there that humans are exposed to and affected by AMR in the environment?”\nWhat is the effect of an intervention/exposure on a population? “How do changes in flow magnitude due to hydroelectric power production affect fish abundance and diversity in temperate regions?”\nHow can we generalise the best available evidence to a larger population/spatial extent? Greenspaces & human health benefits"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#question-frameworks",
+    "href": "systematic_reviews/Systematic_Reviews.html#question-frameworks",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Question frameworks",
+    "text": "Question frameworks\n\nPICO – Population Intervention Comparator Outcome\n\nWhat is the effect of neonicotinoid pesticides on pollinator performance?\n\nPECO – Population Exposure Comparator Outcome\n\nWhat is the effectiveness of conversion to organic farming on pollinator performance\n\nPO – Population Outcome(s)\n\nWhat is the prevalence (ppm) of neonicotinoid pesticides in fresh water?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#question-frameworks-your-turn",
+    "href": "systematic_reviews/Systematic_Reviews.html#question-frameworks-your-turn",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Question frameworks – Your turn",
+    "text": "Question frameworks – Your turn\n\nHow does the size and density of kelp forest affect fisheries in the Pacific?\nAre reintroduction programs effective for increasing populations of African wild dogs in South Africa?\nWhat is the impact of flooding on abundance of trout in Chilean rivers?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#section",
+    "href": "systematic_reviews/Systematic_Reviews.html#section",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "",
+    "text": "How does the size and density of kelp forest affect fisheries in the Pacific?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#section-1",
+    "href": "systematic_reviews/Systematic_Reviews.html#section-1",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "",
+    "text": "Are reintroduction programs effective for increasing populations of African wild dogs in South Africa?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#section-2",
+    "href": "systematic_reviews/Systematic_Reviews.html#section-2",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "",
+    "text": "What is the impact of flooding on abundance of trout in Chilean rivers?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#your-question",
+    "href": "systematic_reviews/Systematic_Reviews.html#your-question",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Your question?",
+    "text": "Your question?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#where-to-find-evidence---tips-and-tricks",
+    "href": "systematic_reviews/Systematic_Reviews.html#where-to-find-evidence---tips-and-tricks",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Where to find evidence - tips and tricks",
+    "text": "Where to find evidence - tips and tricks\nTrue or False\n\nI would go to GoogleScholar first when searching for evidence\nWeb of Science is more comprehensive than Google Scholar\nWeb of Science is a transparent, repeatable resource\nGrey literature is defined as anything unpublished and not peer-reviewed"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#searches",
+    "href": "systematic_reviews/Systematic_Reviews.html#searches",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Searches",
+    "text": "Searches\n\nComprehensive, transparent, objective\nMultiple academic databases\nTried and tested search string\nMultiple sources of grey literature\nLanguages\nDocumented in detail – all decisions described and explained"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#where-to-search",
+    "href": "systematic_reviews/Systematic_Reviews.html#where-to-search",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Where to search",
+    "text": "Where to search\n\nBibliographic databases\nWOS, Scopus, PubMed\nWeb-based searches\nGoogle, GoogleScholar\nGrey literature searches\nOrganisational websites\nThesis repositories"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#bibliographic-databases",
+    "href": "systematic_reviews/Systematic_Reviews.html#bibliographic-databases",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Bibliographic databases",
+    "text": "Bibliographic databases\n\n\n\nWoS\nScopus\nAgricola\nAGRIS (FAO)\n\n\n\nAcademic Search Premier\n\n\n\nBiological Abstracts\nCAB Abstracts\nLens.org\n\n\n\nCEE 2012-2017 Systematic review – mean = 9 (2 – 75) databases. Search between 8-15 databases (broad and specific)"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#basic-search",
+    "href": "systematic_reviews/Systematic_Reviews.html#basic-search",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Basic search",
+    "text": "Basic search\nHow effective is wetland restoration for reducing nitrogen and phosphorus?\n\nBuilt around the question elements\nPopulation = wetland\nIntervention = restoration\nComparator = …\nOutcome = nitrogen, phosphorous"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#example-search",
+    "href": "systematic_reviews/Systematic_Reviews.html#example-search",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Example search",
+    "text": "Example search"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#document-the-search",
+    "href": "systematic_reviews/Systematic_Reviews.html#document-the-search",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Document the search",
+    "text": "Document the search\n\nWhich databases (not just the search platforms)?\n\nName, URL, date range, subscriptions, your institute name, etc.\n\nWhich websites?\n\nName, URL\nWhat options used?\n\nSearch terms\nWhen you searched?\nWho searched?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#data-management",
+    "href": "systematic_reviews/Systematic_Reviews.html#data-management",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Data management",
+    "text": "Data management\n\nSearch results are data\nSearch strategy is metadata\nUse reproducible workflows\nFile format – RIS files are useful for exchange between software\nKeep track of where files come from (which databases)\nUse a file management or review management tool (e.g. Rayyan)"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#some-extra-resources",
+    "href": "systematic_reviews/Systematic_Reviews.html#some-extra-resources",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Some extra resources",
+    "text": "Some extra resources\nCitation chasing with R\nData management with R\nReview management"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#different-types-of-evidence-synthesis",
+    "href": "systematic_reviews/Systematic_Reviews.html#different-types-of-evidence-synthesis",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Different types of Evidence synthesis",
+    "text": "Different types of Evidence synthesis\nWhat is the effect of logging on biodiversity?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#rapid-reviews",
+    "href": "systematic_reviews/Systematic_Reviews.html#rapid-reviews",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Rapid reviews",
+    "text": "Rapid reviews\n\nNo agreed definition of a “rapid review”\nWhich corners to cut (not exhaustive)?\nSpan of the literature (e.g. post 2010 - present)\n“Study quality” (e.g. only systematic reviews?)\nNumber of reviewers (e.g. 1 person to review & 1 to check a %)"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#critical-appraisal-1",
+    "href": "systematic_reviews/Systematic_Reviews.html#critical-appraisal-1",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Critical appraisal",
+    "text": "Critical appraisal\nThis is the hard part that no-one does!!\n\nChecking both internal and external validity\nInternal – are the conclusions of the paper based on sound causality\nExternal – does the paper really fit with my question"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#how-do-we-do-it",
+    "href": "systematic_reviews/Systematic_Reviews.html#how-do-we-do-it",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "How do we do it?",
+    "text": "How do we do it?\n\n\n\nAll possible sources of bias, error or uncertainty\nAre the outcome measures used appropriate/accurate?\nIs a suitable comparator present?\nHow were treatments assigned?\nWhat is the level of replication?\n\n\n\nWhat is the study design?\nAre baseline measures included?\nAre there systematic differences between groups?\nAre there potential confounding variables?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#how-do-we-do-it-1",
+    "href": "systematic_reviews/Systematic_Reviews.html#how-do-we-do-it-1",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "How do we do it?",
+    "text": "How do we do it?\n\nLots of tools (none of them 100 % reusable!)\nChecklists\nQuestions about validity (“yes”, “no” or “unclear”)\nHave in mind what the “optimum” study would be\nWhat is the overall validity? “High” “Low” “Unclear”"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#your-turn",
+    "href": "systematic_reviews/Systematic_Reviews.html#your-turn",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Your turn",
+    "text": "Your turn\nCritical appraisal questions\n\nAre control and intervention populations appropriately matched? i.e. did the authors use well-justified and sensible ways to select comparable control and intervention groups?\nDo control/before and intervention/after differ only in terms of the intervention? i.e. are there any other factors present that might have caused the differences between control and intervention groups?\nWere the measured samples selected in a systematic manner that aims to avoid bias?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#section-9",
+    "href": "systematic_reviews/Systematic_Reviews.html#section-9",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "",
+    "text": "Has sufficient time passed after the intervention to allow impacts to be felt?\nWas the study design strong and appropriate? i.e. was it a randomised control trial, was there a temporal comparator (before) AND spatial comparator (control), or just temporal OR spatial?\nWas the sample size sufficient? i.e. was there true replication?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#using-evidence-to-inform-decisions",
+    "href": "systematic_reviews/Systematic_Reviews.html#using-evidence-to-inform-decisions",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Using evidence to inform decisions",
+    "text": "Using evidence to inform decisions\nGiving decision-makers a pooled effect size or a biased assessment of the evidence should not be tolerated (looking at you Editors and Reviewers of Journals etc.)\n\nWhat are typical synthesis textual outputs (which are useful)?\nWhat are typical synthesis visual outputs?\nWhere can we do much better?\nHow can we help in the decision-process itself (with quantitative evidence)?"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#typical-evidence-synthesis-outputs",
+    "href": "systematic_reviews/Systematic_Reviews.html#typical-evidence-synthesis-outputs",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Typical Evidence Synthesis outputs",
+    "text": "Typical Evidence Synthesis outputs\n\nNarrative synthesis\nQuantitative synthesis\nQualitative synthesis"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#typical-evidence-synthesis-outputs-1",
+    "href": "systematic_reviews/Systematic_Reviews.html#typical-evidence-synthesis-outputs-1",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Typical Evidence Synthesis outputs",
+    "text": "Typical Evidence Synthesis outputs\n\nTransparent\nMinimise bias\nAvoid vote-counting\nAccount for varying reliability of the evidence"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#dont-do-this---vote-counting",
+    "href": "systematic_reviews/Systematic_Reviews.html#dont-do-this---vote-counting",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "DONT DO THIS - vote counting",
+    "text": "DONT DO THIS - vote counting"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#dont-do-this---vote-counting-1",
+    "href": "systematic_reviews/Systematic_Reviews.html#dont-do-this---vote-counting-1",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "DONT DO THIS - vote counting",
+    "text": "DONT DO THIS - vote counting"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#report-the-synthesis",
+    "href": "systematic_reviews/Systematic_Reviews.html#report-the-synthesis",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Report the synthesis",
+    "text": "Report the synthesis"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#forest-plots",
+    "href": "systematic_reviews/Systematic_Reviews.html#forest-plots",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Forest plots",
+    "text": "Forest plots"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#show-me-the-data",
+    "href": "systematic_reviews/Systematic_Reviews.html#show-me-the-data",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Show me the data!",
+    "text": "Show me the data!"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#meta-regression",
+    "href": "systematic_reviews/Systematic_Reviews.html#meta-regression",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Meta-regression",
+    "text": "Meta-regression"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#meta-analysis",
+    "href": "systematic_reviews/Systematic_Reviews.html#meta-analysis",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Meta-analysis",
+    "text": "Meta-analysis\nLet’s have a look at the meta_analysis.qmd file"
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#not-all-evidence-synthesis-is-created-equally",
+    "href": "systematic_reviews/Systematic_Reviews.html#not-all-evidence-synthesis-is-created-equally",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Not all evidence synthesis is created equally",
+    "text": "Not all evidence synthesis is created equally\nWe need to critically assess anything that is called a systematic review or meta-analysis."
+  },
+  {
+    "objectID": "systematic_reviews/Systematic_Reviews.html#examples-of-poor-conduct",
+    "href": "systematic_reviews/Systematic_Reviews.html#examples-of-poor-conduct",
+    "title": "Systematic Reviews and Meta-Analysis in Ecology",
+    "section": "Examples of poor conduct",
+    "text": "Examples of poor conduct\nlandscape ecology\nA challenge - find the problem(s) with this study"
   }
 ]
