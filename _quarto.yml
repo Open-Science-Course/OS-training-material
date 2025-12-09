@@ -3,16 +3,17 @@ project:
   output-dir: docs
   render:
     - course_intro.qmd
-    - reproducible_docs.qmd
-    - reproducible_workflows.qmd
-    - exercise_reproducibility.qmd
-    - intro-reproducible-environment.qmd
-    - OS_2024/dataHandling/dataHandling.qmd
-    - OS_2024/Systematic_Reviews/Systematic_Reviews.qmd
-    - OS_2024/Systematic_Reviews/meta_analysis.qmd
-    - functions.qmd
-    - OS_2024/introduction_os/Gentle_introduction_OS_2024.qmd
-    - OS_2024/Tools_approaches/Tools_Approaches_OS_2024.qmd
+    - introduction_OS/Gentle_introduction_OS_2024.qmd
+    - tools_approaches/Tools_Approaches_OS_2024.qmd
+    - data_handling/functions.qmd
+    - data_handling/dataHandling.qmd
+    - reproducibility/reproducible_docs.qmd
+    - reproducibility/reproducible_workflows.qmd
+    - reproducibility/exercise_reproducibility.qmd
+    - reproducibility/intro-reproducible-environment.qmd
+    - systematic_reviews/Systematic_Reviews.qmd
+    - systematic_reviews/meta_analysis.qmd
+    
 
 
 format:
