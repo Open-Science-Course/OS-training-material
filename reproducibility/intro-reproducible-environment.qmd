@@ -1,8 +1,13 @@
 ---
-title: "Will your code work in 2034?"
+title: "Will your code work in 2036?"
 date: today
+date-format: D MMMM YYYY
 author: Richard J Telford
-format: revealjs
+format: 
+  revealjs:
+    mermaid: 
+      theme: forest
+#mermaid-format: svg
 editor: visual
 code-annotations: hover
 ---
@@ -14,7 +19,16 @@ code-annotations: hover
 library(tidyverse)
 ```
 
-# Everything Changes, your code changes not
+## 
+
+Data + code !=
+reproducible
+
+. . .
+
+Data + code + [environment]{style="color:red"} = reproducible
+
+# Everything Changes,<br>your code changes not
 
 ## R changes
 
@@ -107,7 +121,7 @@ d |> ggplot(aes(x = x, y = y, fill = region)) +
 
 ```
 
-## Solution 0: naming packages used
+## Solution 0: name packages used
 
 > values were analysed in R (R Core Team, 2017) using the qqman package (Turner, 2014).
 
@@ -127,7 +141,7 @@ citation()
 citation("lme4")
 ```
 
-## Solution 1: naming packages used
+## Solution 1: name & version of packages
 
 > Numerical analyses were carried out using R v. 2.15.3 (R Core Team 2013) using the vegan package v. 2.0-9 (Oksanen et al. 2013).
 
@@ -137,20 +151,27 @@ Potentially hundreds of packages used directly and indirectly.
 
 ## Finding package versions
 
-```{markdown}
-#| echo: true
-Numerical analyses were carried out using R v. `r getRversion()`
-(R Core Team 2013) using the vegan package v.`r packageVersion("vegan")`
+``` markdown
+Numerical analyses were carried out using R v. `{{r}} getRversion()`
+(R Core Team 2013) using the vegan package v.`{{r}} packageVersion("vegan")`
 (Oksanen et al. 2013).
 ```
 
 Using `pakret` package
 
-```{markdown}
-#| echo: true
-Numerical analyses were carried out using `r pkrt("R")`
-using `r pkrt("vegan")`.
+``` markdown
+Numerical analyses were carried out using `{{r}} pkrt("R")`
+using `{{r}} pkrt("vegan")`.
 ```
+
+```{r}
+options(pakret.render_mode = FALSE)
+library(pakret)
+```
+
+
+Numerical analyses were carried out using `{r} pkrt("R")`
+using `{r} pkrt("vegan")`.
 
 ## Solution 2: `renv` for reproducible R environment
 
@@ -170,9 +191,9 @@ using `r pkrt("vegan")`.
 4.  Install packages with `renv::install()` (both CRAN and GitHub)
 5.  Run `renv::status()`
 6.  Run `renv::snapshot()` to save changes or `renv::restore()` to revert
-7.  Repeat 3--5
+7.  Repeat 3--6
 
-## Using someone elses project with `renv`
+## Using someone else's project with `renv`
 
 1.  Clone the repo
 2.  Open in RStudio
@@ -188,38 +209,218 @@ using `r pkrt("vegan")`.
 #| eval: false
 #| echo: true
 
-tar_option_set(
-  packages = c("tidyverse")
-)
+tar_option_set(packages = c("tidyverse"))
 ```
 
 -   solution use `targets::tar_renv()`
 
 -   solution use R file with `library()` calls
 
--   Don't forget to `renv::update()` packages to benefit from bugfixes.
+-   Don't forget to `renv::update()` packages to get bugfixes.
 
-## Solution 3: Containers
+## `renv` limitations
 
 `renv` makes the list of packages available.
 
 Does nothing for the all the external dependencies.
 
+You want to reproduce a paper using R 3.6.3 ...
+
+## Solution 3: Containers
+
+Virtual machines vs containers
+
+Containers
+
 -   docker
 
--   Nix
+-   podman
 
-## Solution 3: Rocker - Docker for R
+-   singularity/apptainer
 
-[![Rocker](https://rocker-project.org/img/rocker.png)](https://rocker-project.org/)
+Use for reproducibility, production, high-performance computers
+
+## Install podman
+
+Download and install podman from https://podman.io/
+
+Test it is working:
+
+```{.bash filename="Terminal"}
+#| echo: true
+podman run quay.io/podman/hello
+```
+
+## Docker images
+
+Docker images are snapshots of a computer system
+
+Can be downloaded and used
+
+Images can be stacked
+
+Images have version control
+
+## Rocker - R images for Podman 
+
+::::: columns
+::: {.column width="20%"}
+```{mermaid}
+%%| label: rocker
+%%| fig-width: 2
+
+---
+config:
+  flowchart:
+    padding: 10
+---
+
+flowchart BT
+  ubuntu([ubuntu---])
+  rver([rocker/r-ver-----])
+  rstudio([rocker/rstudio------])
+  tidyverse([rocker/tidyverse------])
+  verse([rocker/verse-----])
+  geospatial([rocker/geospatial------])
+  geospatial-->verse-->tidyverse-->rstudio-->rver-->ubuntu
+
+```
+:::
+
+::: {.column width="80%"}
+
+```{.bash filename="Terminal"}
+podman run --rm -ti -e PASSWORD=pass \
+  -p 8787:8787 docker.io/rocker/rstudio:4.5.3
+```
+ `--rm` remove image after use\
+ `-ti` interactive\
+ `-e` environmental variables\
+ `-p` port\
+ `docker.io` registry\
+ `rocker/rstudio:4.5.3` image & version tag
+
+Open browser http://localhost:8787\
+Usename: root\
+Password: pass (or whatever you set)
+:::
+:::::
+
+## Adding files
+
+use `-v` option to mount files
+
+```{.bash filename="Terminal"}
+podman run --rm -ti -v .:/root -e PASSWORD=pass -p 8787:8787 \
+  docker.io/rocker/rstudio
+```
+
+Files edited in container will be updated outside.
+
+(Also possible to make files read-only)
+
+## Adding dependencies with `renv` {.scrollable}
+
+Make new image from a Dockerfile
+
+```{.dockerfile filename="Dockerfile"}
+# set base image
+FROM docker.io/rocker/tidyverse:4.5.3 
+# install renv into image
+RUN R -e "install.packages('renv', repos = c(CRAN = 'https://cloud.r-project.org'))"
+# copy renv lock into project & restore
+WORKDIR /root
+COPY renv.lock renv.lock
+RUN R -e "renv::restore()"
+```
+
+Build Dockerfile into image with
+
+```{.bash filename="Terminal"}
+podman build -t thesis_image .
+```
+
+Run the image with 
+
+```{.bash filename="Terminal"}
+podman run -ti -v .:/root -p 8787:8787 thesis_image
+```
+
+
+
+## Podman compose {.scrollable}
+
+Command line is too complex to want to write every time.
+
+```{.yaml filename="compose.yml"}
+services:
+  rstudio:
+    image: "docker.io/rocker/rstudio:4.5.3"
+    ports:
+      - "8787:8787"
+    volumes:
+      - type: bind
+        source: .
+        target: /root
+    working_dir: /root
+    environment:
+      - PASSWORD=yourpassword
+
+```
+
+Run with
+
+```{.bash filename="Terminal"}
+podman compose compose.yml up
+
+# close session with
+podman compose down
+```
+
+## Podman desktop
+
+Use for for starting, stopping and managing images.
 
 ## Solution 4: Nix - package manager
+
+Nix language downloads packages
 
 R interface with `rix` package
 
 -   simplifies creating Nix expressions, which define reproducible environments.
 -   lets you work interactively in RStudio
--   provides helpers that make it easy to build those environments.
+
+
+## Rix example
+
+1) install Nix
+
+2) Use rix to make Nix expression
+
+```{r}
+#| label: rix
+#| echo: true
+#| eval: false
+
+library(rix)
+
+rix(
+  date = "2025-02-28", # set a date
+  r_pkgs = c("dplyr", "ggplot2"), # List all the packages you need
+  ide = "rstudio", # List whatever editor you need
+  project_path = ".",
+  overwrite = TRUE
+)
+```
+
+
+3) Build nix environment
+
+```{.bash filename="Terminal"}
+nix-build
+```
+
+
 
 ## Remaining problems
 
