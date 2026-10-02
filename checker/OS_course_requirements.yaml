@@ -1,0 +1,40 @@
+---
+R:
+  recommended: 4.6.0
+  minimum: 4.5.0
+packages:
+  tidyverse:
+    recommended: 2.0.0
+  here: NA
+  targets: NA
+  usethis: NA
+  rgbif: NA
+  csmaps: NA
+  sf: NA
+  devtools: NA
+  metafor: NA
+  orchaRd: NA
+rstudio:
+  recommended: 2026.09.0
+  options:
+    save_workspace:
+      value: never
+      message: Menu tools > Global options > General
+    load_workspace:
+      value: FALSE
+      message: Set load workspace to FALSE to improve reproducibility. Menu tools > Global options > General
+    rainbow_parentheses:
+      value: TRUE
+      message: Rainbow parentheses make it easier to spot missing parentheses. Menu tools > Global options > Code > Display
+    soft_wrap_r_files:
+      value: TRUE
+      message: Soft wrap files so you don't need to scroll sideways. Menu tools > Global options > Code > Editing
+    # TODO (next update): remove this check — native pipe is now RStudio default;
+    # kept for now in case someone has an older RStudio/R version.
+    insert_native_pipe_operator:
+      value: TRUE
+      message: Use the native pipe operator '|>'. Menu tools > Global options > Code > Editing
+quarto:
+  recommended: 1.8.25
+git: NA
+---
