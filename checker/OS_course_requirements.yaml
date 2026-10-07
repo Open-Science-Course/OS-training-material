@@ -8,6 +8,7 @@ packages:
   here: NA
   targets: NA
   usethis: NA
+  renv: NA
   rgbif: NA
   csmaps: NA
   sf: NA

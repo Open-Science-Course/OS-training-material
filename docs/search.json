@@ -2,28 +2,28 @@
   {
     "objectID": "course_intro.html#wifi-password",
     "href": "course_intro.html#wifi-password",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Wifi Password",
-    "text": "Wifi Password\nNetwork: KinosalGuest\nPassword: MoskusGuest"
+    "text": "Wifi Password\nNetwork: eduoram\nPassword: …"
   },
   {
     "objectID": "course_intro.html#open-science-courses",
     "href": "course_intro.html#open-science-courses",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Open Science Courses",
     "text": "Open Science Courses\nIncrease the awareness of Open Science principles in our community and provide education and teaching material on open science, reproducibility and transparency in ecology. We\n\norganize courses and workshops (hands-on)\nprovide the teaching material (openly available)\ndevelop tools to facilitate Open Science practices"
   },
   {
     "objectID": "course_intro.html#collaboration",
     "href": "course_intro.html#collaboration",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Collaboration",
     "text": "Collaboration"
   },
   {
     "objectID": "course_intro.html#aim-of-the-os-course",
     "href": "course_intro.html#aim-of-the-os-course",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Aim of the OS course",
     "text": "Aim of the OS course"
   },
@@ -51,56 +51,56 @@
   {
     "objectID": "course_intro.html#schedule",
     "href": "course_intro.html#schedule",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Schedule",
-    "text": "Schedule\n\n\n\n\n\n\n\n\nDay\nTopic\n\n\n\n\nMonday\nArriving Introduction to OS\nReproducible documents\nPresent ourselves\n\n\nTuesday\nData handling / Using functions\nIntro to GBIF\nMake an R package\n\n\nWednesday\nDarwin Core, IPT, AI\nExcursion + Group photo\nPublish data / Data biases\nExercise reproducibility\n\n\nThursday\nReproducible workflows\nBest practice data analysis\nSystematic reviews and meta-analysis\n\n\nFriday\nUsing version control\nVillrein center Work on own stuff\n\n\nSaturday\nLeaving"
+    "text": "Schedule\n\n\nMonday\n\nIntroduction to OS\nReproducible documents\nPresent ourselves\n\n\n\nTuesday\n\nUsing version control\nIntro to GBIF, Darwin Core, IPT\nMake an R package\n\n\n\nWednesday\n\nData biases\nExcursion + Group photo\nUsing AI for data publishing\nExercise reproducibility\n\n\n\nThursday\n\nReproducible workflows\nBest practice data analysis\nSystematic reviews and meta-analysis\n\n\n\nFriday\n\nData handling\nUsing functions\nExercise\n\n\n\nSaturday\n\nCleaning and leaving"
   },
   {
     "objectID": "course_intro.html#daily-schedule",
     "href": "course_intro.html#daily-schedule",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Daily schedule",
     "text": "Daily schedule"
   },
   {
     "objectID": "course_intro.html#excursion",
     "href": "course_intro.html#excursion",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Excursion",
     "text": "Excursion"
   },
   {
     "objectID": "course_intro.html#villreinsenter",
     "href": "course_intro.html#villreinsenter",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Villreinsenter",
     "text": "Villreinsenter"
   },
   {
     "objectID": "course_intro.html#housekeeping",
     "href": "course_intro.html#housekeeping",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Housekeeping",
-    "text": "Housekeeping\n\nMeals are in the dining room\nLectures in kinosal\nKey for the kinosal in cupboard in the entrance (last person locks the door)\nEvenings: room in the basement"
+    "text": "Housekeeping\n\nRoom sharing -&gt; see list\nHelp with meals prep and do dishes\nPacked lunches (prepare at breakfast)\nWe clean the place before leaving (Friday afternoon/evening, Saturday morning)\nSauna"
   },
   {
     "objectID": "course_intro.html#teching-material",
     "href": "course_intro.html#teching-material",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Teching material",
     "text": "Teching material\nAll material from the course will be available after the course on github with an overview on the webpage."
   },
   {
     "objectID": "course_intro.html#living-norway-community",
     "href": "course_intro.html#living-norway-community",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Living Norway community",
     "text": "Living Norway community"
   },
   {
     "objectID": "course_intro.html#questions",
     "href": "course_intro.html#questions",
-    "title": "Open, Reproducible and Transparent Science Course 2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
     "section": "Questions?",
     "text": "Questions?"
   },
@@ -1251,5 +1251,47 @@
     "title": "Systematic Reviews and Meta-Analysis in Ecology",
     "section": "Examples of poor conduct",
     "text": "Examples of poor conduct\nlandscape ecology\nA challenge - find the problem(s) with this study"
+  },
+  {
+    "objectID": "course_intro.html#os-course-2022---2025",
+    "href": "course_intro.html#os-course-2022---2025",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "OS course 2022 - 2025",
+    "text": "OS course 2022 - 2025"
+  },
+  {
+    "objectID": "course_intro.html#os-course-2026-in-finse",
+    "href": "course_intro.html#os-course-2026-in-finse",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "OS course 2026 in Finse",
+    "text": "OS course 2026 in Finse\nTo do: group photo"
+  },
+  {
+    "objectID": "course_intro.html#welcome-to-os-course-2026-in-finse",
+    "href": "course_intro.html#welcome-to-os-course-2026-in-finse",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Welcome to OS course 2026 in Finse",
+    "text": "Welcome to OS course 2026 in Finse"
+  },
+  {
+    "objectID": "course_intro.html#group-photo",
+    "href": "course_intro.html#group-photo",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Group photo",
+    "text": "Group photo"
+  },
+  {
+    "objectID": "course_intro.html#welcome-to-the-open-science-course",
+    "href": "course_intro.html#welcome-to-the-open-science-course",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Welcome to the open science course",
+    "text": "Welcome to the open science course"
+  },
+  {
+    "objectID": "course_intro.html#excursion---wednesday",
+    "href": "course_intro.html#excursion---wednesday",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Excursion - Wednesday",
+    "text": "Excursion - Wednesday"
   }
 ]
