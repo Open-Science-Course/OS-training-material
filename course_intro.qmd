@@ -1,6 +1,10 @@
 ---
 title: "Open, Reproducible and Transparent Science Course 2026"
 author: "Aud H. Halbritter and OS Course Team"
+title-slide-attributes:
+  data-background-image: pics/finse.jpg
+  data-background-size: cover
+  data-background-opacity: "0.55"
 format: 
   revealjs:
     embed-resources: true
@@ -10,7 +14,7 @@ execute:
   echo: true
 ---
 
-## Welcome to OS course 2026 in Finse
+## Welcome to OS course 2026 in Finse {style="font-size: 1.35em;"}
 
 ::: {style="position: relative; height: 560px;"}
 ![](pics/course_2022.jpg){style="position: absolute; width: 42%; top: 4%; left: 4%; transform: rotate(-7deg); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 2;"}
@@ -18,10 +22,6 @@ execute:
 ![](pics/course_2024.png){style="position: absolute; width: 40%; bottom: -6%; left: 14%; transform: rotate(4deg); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 4;"}
 ![](pics/course_2025.jpeg){style="position: absolute; width: 43%; bottom: -2%; right: 8%; transform: rotate(-4deg); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 5;"}
 :::
-
-## Collaboration
-
-![](pics/collab.png)
 
 
 ## Aim of the OS course
@@ -33,45 +33,55 @@ execute:
 
 ## Schedule
 
-::: {style="font-size: 40%;"}
-+-----------+--------------------------------------+
-| Day       | Topic                                |
-+===========+======================================+
-| Monday    | Arriving                             |
-|           | Introduction to OS    
-|           |                                      |
-|           | Reproducible documents               |
-|           |                                      |
-|           | Present ourselves                    |
-+-----------+--------------------------------------+
-| Tuesday   | Using version control      |
-|           |                                      |
-|           | Intro to GBIF, Darwin Core, IPT      |
-|           |                                      |
-|           | Make an R package                    |
-+-----------+--------------------------------------+
-| Wednesday | Data biases                          |
-|           |                                      |
-|           | Excursion + Group photo              |
-|           |                                      |
-|           | Using AI                             |
-|           |                                      |
-|           | Exercise reproducibility             |
-+-----------+--------------------------------------+
-| Thursday  | Reproducible workflows               |
-|           |                                      |
-|           | Best practice data analysis          |
-|           |                                      |
-|           | Systematic reviews and meta-analysis |
-+-----------+--------------------------------------+
-| Friday    | Data handling                        |
-|           |                                      |
-|           | Using functions                      |
-|           |                                      |
-|           | Exercise                             |
-+-----------+--------------------------------------+
-| Saturday  | Leaving                              |
-+-----------+--------------------------------------+
+::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7em; font-size: 0.48em;"}
+
+::: {style="background: #f7fafc; border-radius: 12px; padding: 0.75em 0.9em; border-top: 5px solid #2b6cb0;"}
+**Monday**
+
+- Introduction to OS
+- Reproducible documents
+- *Present ourselves*
+:::
+
+::: {style="background: #f7fafc; border-radius: 12px; padding: 0.75em 0.9em; border-top: 5px solid #2f855a;"}
+**Tuesday**
+
+- Using version control
+- Intro to GBIF, Darwin Core, IPT
+- *Make an R package*
+:::
+
+::: {style="background: #f7fafc; border-radius: 12px; padding: 0.75em 0.9em; border-top: 5px solid #c05621;"}
+**Wednesday**
+
+- Data biases
+- Excursion + Group photo
+- Using AI for data publishing
+- *Exercise reproducibility*
+:::
+
+::: {style="background: #f7fafc; border-radius: 12px; padding: 0.75em 0.9em; border-top: 5px solid #6b46c1;"}
+**Thursday**
+
+- Reproducible workflows
+- Best practice data analysis
+- Systematic reviews and meta-analysis
+:::
+
+::: {style="background: #f7fafc; border-radius: 12px; padding: 0.75em 0.9em; border-top: 5px solid #b83280;"}
+**Friday**
+
+- Data handling
+- Using functions
+- Exercise
+:::
+
+::: {style="background: #f7fafc; border-radius: 12px; padding: 0.75em 0.9em; border-top: 5px solid #718096;"}
+**Saturday**
+
+- Cleaning and leaving
+:::
+
 :::
 
 ## Daily schedule
@@ -79,7 +89,7 @@ execute:
 ![](pics/schedule.png)
 
 
-## Excursion
+## Excursion - Wednesday
 
 ![](pics/excursion_finse.png)
 
@@ -93,19 +103,24 @@ Password: ...
 
 ## Housekeeping
 
-- We prepare meals and do dishes
-- We do packed lunches (prepare at breakfast)
-- We need to clean the place before we leave (Friday evening, Saturday morning)
+- Room sharing -> see list
+- Help with meals prep and do dishes
+- Packed lunches (prepare at breakfast)
+- We clean the place before leaving (Friday afternoon/evening, Saturday morning)
 - Sauna
 
 
 ## Group photo
 
-To do: group photo
+::: {style="display: flex; justify-content: center; align-items: center; height: 75vh;"}
+![](pics/course_2025.jpeg){style="max-height: 70vh; width: auto; margin: 0;"}
+:::
 
 ## Teching material
 
 All material from the course will be available after the course on [github](https://github.com/Open-Science-Course/OS-training-material) with an overview on the [webpage](https://open-science-course.github.io/course_website/course_content.html).
+
+![](pics/content.png)
 
 
 ## Questions?
