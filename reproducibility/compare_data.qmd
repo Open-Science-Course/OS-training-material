@@ -1,5 +1,5 @@
 ---
-title: "How reproducible is ecology in 2024?"
+title: "How reproducible is ecology?"
 author: "Aud and Matt"
 format: 
   revealjs:
@@ -21,6 +21,11 @@ editor:
 
 library(tidyverse)
 library(readxl)
+library(googlesheets4)
+library(here)
+
+# Public sheet — no Google login required
+gs4_deauth()
 
 ```
 
@@ -29,7 +34,10 @@ library(readxl)
 #| label: data
 #| echo: false
 
-dat23 <- read_excel("data/Reproducibility_2024.xlsx", sheet = "Hjerkinn_2023") |>
+# 2023–2025 from local Excel; 2026 from Google Sheet (Finse_2026 only)
+xlsx_path <- here("data", "Reproducibility_2025.xlsx")
+
+dat23 <- read_excel(xlsx_path, sheet = "Hjerkinn_2023") |>
   select(Journal, `Is the data available?`, "Is the code to run the analysis for Fig/Tab x available?", "Can you reproduce analysis figure/table x?") |> 
   rename("data" = `Is the data available?`,
          "code" = "Is the code to run the analysis for Fig/Tab x available?",
@@ -49,7 +57,7 @@ dat23 <- read_excel("data/Reproducibility_2024.xlsx", sheet = "Hjerkinn_2023") |
          year = 2023)
 
 
-dat24 <- read_excel("data/Reproducibility_2024.xlsx", sheet = "Hjerkinn_2024") |>
+dat24 <- read_excel(xlsx_path, sheet = "Hjerkinn_2024") |>
   select(Journal, `Is the data available?`, "Is the code to run the analysis for Fig/Tab x available?", "Can you reproduce analysis figure/table x?") |> 
   rename("data" = `Is the data available?`,
          "code" = "Is the code to run the analysis for Fig/Tab x available?",
@@ -69,25 +77,91 @@ dat24 <- read_excel("data/Reproducibility_2024.xlsx", sheet = "Hjerkinn_2024") |
   filter(!is.na(Journal))
 
 
-dat <- bind_rows(dat23, dat24) |> 
+dat25 <- read_excel(xlsx_path, sheet = "Hjerkinn_2025") |>
+  select(Journal, `Is the data available?`, "Is the code to run the analysis for Fig/Tab x available?", "Can you reproduce analysis figure/table x?") |> 
+  rename("data" = `Is the data available?`,
+         "code" = "Is the code to run the analysis for Fig/Tab x available?",
+         "reproduce" = "Can you reproduce analysis figure/table x?") %>%
+  mutate(Journal = tolower(Journal),
+         Journal = if_else(Journal == "amrican naturalist", "american naturalist", Journal),
+         data = tolower(data),
+         data = case_when(data %in% c("na", "n/a") ~ NA_character_,
+                          data == "yes, but" ~ "yes",
+                          TRUE ~ data),
+         code = tolower(code),
+         code = case_when(code %in% c("na", "n/a") ~ NA_character_,
+                          grepl("yes", code) ~ "yes",
+                          code == "yea" ~ "yes",
+                          TRUE ~ code),
+         reproduce = tolower(reproduce),
+         reproduce = case_when(reproduce %in% c("na", "n/a") ~ NA_character_,
+                               grepl("currently|six", reproduce) ~ "partly",
+                               grepl("code", reproduce) ~ NA_character_,
+                               TRUE ~ reproduce),
+         year = 2025) |> 
+  filter(!is.na(Journal))
+
+
+ss <- "https://docs.google.com/spreadsheets/d/1Rde3TsuFsExDmNNROZqslWVUOl_dXaLp4V-LnHq3Fyw"
+
+dat26 <- read_sheet(ss, sheet = "Finse_2026") |>
+  select(
+    Journal,
+    `Is the data available? Can it be located?`,
+    `Is the code to run the analysis for Fig/Tab x available?`,
+    `Can you reproduce analysis figure/table x?`
+  ) |> 
+  rename(
+    "data" = `Is the data available? Can it be located?`,
+    "code" = `Is the code to run the analysis for Fig/Tab x available?`,
+    "reproduce" = `Can you reproduce analysis figure/table x?`
+  ) |>
+  mutate(
+    Journal = tolower(Journal),
+    Journal = if_else(Journal == "amrican naturalist", "american naturalist", Journal),
+    data = tolower(data),
+    data = case_when(
+      data %in% c("na", "n/a") ~ NA_character_,
+      data == "yes, but" ~ "yes",
+      TRUE ~ data
+    ),
+    code = tolower(code),
+    code = case_when(
+      code %in% c("na", "n/a") ~ NA_character_,
+      grepl("yes", code) ~ "yes",
+      TRUE ~ code
+    ),
+    reproduce = tolower(reproduce),
+    reproduce = case_when(
+      reproduce %in% c("na", "n/a") ~ NA_character_,
+      grepl("currently|six", reproduce) ~ "partly",
+      grepl("code", reproduce) ~ NA_character_,
+      TRUE ~ reproduce
+    ),
+    year = 2026
+  ) |> 
+  filter(!is.na(Journal))
+
+
+dat <- bind_rows(dat23, dat24, dat25, dat26) |> 
   pivot_longer(cols = c(data, code, reproduce), names_to = "variable", values_to = "availability") |> 
-  mutate(variable = factor(variable, levels = c("data", "code", "reproduce"))) |> 
+  mutate(
+    variable = factor(variable, levels = c("data", "code", "reproduce")),
+    year = factor(year, levels = c(2023, 2024, 2025, 2026))
+  ) |> 
   filter(!availability %in% c("yes, but"))
 ```
 
 
-2023: 44 papers
-
-2024: 54 papers
-
 ```{r}
 #| label: journals
 #| echo: false
+#| eval: true
 
 dat2 <- dat |> 
   filter(variable == "data") |> 
   group_by(Journal, year) |> 
-  summarise(n = n())
+  summarise(n = n(), .groups = "drop")
 
 ggplot(dat2, aes(x = Journal, y = n, fill = Journal)) +
   geom_col() +
@@ -95,8 +169,23 @@ ggplot(dat2, aes(x = Journal, y = n, fill = Journal)) +
   labs(x = "", y = "") +
   theme_bw() +
   theme(legend.position = "none") + 
-  facet_wrap( ~ year)
+  facet_wrap(~ year)
 
+```
+
+```{r}
+#| label: n-papers
+#| echo: false
+#| eval: true
+#| output: asis
+
+n_papers <- dat |> 
+  filter(variable == "data") |> 
+  count(year, name = "n")
+
+counts <- paste0(n_papers$year, ": n = ", n_papers$n, collapse = ", ")
+cat('<p style="font-size: 55%; margin-top: 0.4em;">', counts,
+    "; total = ", sum(n_papers$n), "</p>\n", sep = "")
 ```
 
 ## 
@@ -104,17 +193,16 @@ ggplot(dat2, aes(x = Journal, y = n, fill = Journal)) +
 ```{r}
 #| label: data-code-reproduce
 #| echo: false
+#| eval: true
 
 dat |> 
   group_by(variable, availability, year) |> 
-  summarise(n = n()) |> 
-  mutate(year = as.factor(year)) |> 
+  summarise(n = n(), .groups = "drop") |> 
   ggplot(aes(x = year, y = n, fill = availability)) +
   geom_col() +
   labs(x = "", y = "") +
   theme_bw() +
-  facet_wrap(~variable)
-
+  facet_wrap(~ variable)
 
 ```
 
@@ -124,18 +212,16 @@ dat |>
 ```{r}
 #| label: per-journal
 #| echo: false
-
+#| eval: true
 
 dat |> 
   group_by(Journal, variable, availability, year) |> 
-  summarise(n = n()) |> 
-  mutate(year = as.factor(year)) |> 
+  summarise(n = n(), .groups = "drop") |> 
   ggplot(aes(x = Journal, y = n, fill = availability)) +
   geom_col(position = "fill") +
   coord_flip() +
   labs(x = "", y = "") +
-  facet_wrap(~ variable) +
   theme_bw() +
   theme(legend.position = "bottom") +
-  facet_grid(variable~year)
+  facet_grid(variable ~ year)
 ```
