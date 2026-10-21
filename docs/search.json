@@ -1398,5 +1398,47 @@
     "title": "Introduction to reproducible workflows",
     "section": "The manual way",
     "text": "The manual way\n\nRender your mansucript to a word file.\nShare the file with co-authors for review.\nManually add comments from co-authors to your qmd file."
+  },
+  {
+    "objectID": "reproducibility/reproducible_workflows.html#in-an-ideal-world-using-github-gui",
+    "href": "reproducibility/reproducible_workflows.html#in-an-ideal-world-using-github-gui",
+    "title": "Introduction to reproducible workflows",
+    "section": "In an ideal world… using GitHub GUI",
+    "text": "In an ideal world… using GitHub GUI\n\nInvite collaborators to your repo\nCollaborators edit qmd file online, makes issues or PRs\nYou check the PR, accept the changes you want, and merge the PR to your main branch."
+  },
+  {
+    "objectID": "reproducibility/reproducible_workflows.html#in-an-ideal-world-github",
+    "href": "reproducibility/reproducible_workflows.html#in-an-ideal-world-github",
+    "title": "Introduction to reproducible workflows",
+    "section": "In an ideal world… GitHub",
+    "text": "In an ideal world… GitHub\n\nYour co-authors fork the repo\nMake a branch, edit file(s), make a PR\nYou check the PR, accept the changes you want, and merge the PR to main branch\n\nBut, co-authors rarely have the skills to do this…"
+  },
+  {
+    "objectID": "reproducibility/reproducible_workflows.html#hackmd",
+    "href": "reproducibility/reproducible_workflows.html#hackmd",
+    "title": "Introduction to reproducible workflows",
+    "section": "HackMD",
+    "text": "HackMD\n\nReal-time collaborative Markdown editor (like google docs)\nGitHub sync built in\nQuarto document’s Markdown content"
+  },
+  {
+    "objectID": "reproducibility/reproducible_workflows.html#rules-for-collaboration",
+    "href": "reproducibility/reproducible_workflows.html#rules-for-collaboration",
+    "title": "Introduction to reproducible workflows",
+    "section": "Rules for collaboration",
+    "text": "Rules for collaboration"
+  },
+  {
+    "objectID": "reproducibility/reproducible_workflows.html#rules-for-collaboration-contributing-to-writing",
+    "href": "reproducibility/reproducible_workflows.html#rules-for-collaboration-contributing-to-writing",
+    "title": "Introduction to reproducible workflows",
+    "section": "Rules for collaboration (Contributing to writing)",
+    "text": "Rules for collaboration (Contributing to writing)\n\nSync with upstream\nWrite one sentence per\nCommit frequently\nAdd meaningful commit names and messages\nReview PR before merging to main\nYou can make issues and start discussions"
+  },
+  {
+    "objectID": "reproducibility/reproducible_workflows.html#resources",
+    "href": "reproducibility/reproducible_workflows.html#resources",
+    "title": "Introduction to reproducible workflows",
+    "section": "Resources",
+    "text": "Resources\nCollaborating with quarto\nSORTEE suggestsions"
   }
 ]

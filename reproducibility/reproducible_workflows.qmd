@@ -46,13 +46,22 @@ How do you get comments from co-authors?
 - Manually add comments from co-authors to your qmd file.
 
 
-## In an ideal world...
+## In an ideal world... using GitHub GUI
+
+- Invite collaborators to your repo
+
+- Collaborators edit qmd file online, makes issues or PRs
+
+- You check the PR, accept the changes you want, and merge the PR to your main branch.
+
+
+## In an ideal world... GitHub
 
 - Your co-authors fork the repo
 
-- They read your manuscript (html version), make a PR with edits and comments.
+- Make a branch, edit file(s), make a PR
 
-- You check the PR, accept the changes you want, and merge the PR to your main branch.
+- You check the PR, accept the changes you want, and merge the PR to main branch
 
 But, co-authors rarely have the skills to do this...
 
@@ -64,6 +73,37 @@ But, co-authors rarely have the skills to do this...
 
 ![](pics/trackdown.png)
 
+## HackMD
+
+- Real-time collaborative Markdown editor (like google docs)
+
+- GitHub sync built in
+
+- Quarto document’s Markdown content
+
 ## Quarto 2 might be the solution
 
 ![](pics/quarto2.png)
+
+
+## Rules for collaboration (Contributing to writing)
+
+- Sync with upstream
+
+- Write one sentence per 
+
+- Commit frequently
+
+- Add meaningful commit names and messages
+
+- Review PR before merging to main
+
+- You can make issues and start discussions
+
+
+## Resources
+
+[Collaborating with quarto](https://nrennie.rbind.io/blog/collaborating-quarto/)
+
+[SORTEE suggestsions](https://github.com/SORTEE-Github-Hackathon/manuscript/blob/main/CONTRIBUTING.md)
+
