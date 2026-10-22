@@ -76,7 +76,7 @@ Cooper, N., & (2026). Data- and code-archiving in the British Ecological Society
 ![](pics/cooper_6.jpg)
 
 
-## Reviewed papers from 6 journals (2023-2025)
+## Reviewed papers from 6 journals (2023–2026)
 
 ```{r}
 #| label: setup
@@ -116,8 +116,18 @@ dat_2025 <- readxl::read_excel(here::here("data", "Reproducibility_2025.xlsx"), 
   mutate(across(where(is.logical), ~ if_else(is.na(.x), NA_character_, as.character(.x)))) |>
   mutate(Group = as.character(Group))
 
+# 2026 from Finse course CSV (slightly different data-availability column name)
+dat_2026 <- readr::read_csv(
+  here::here("data", "Reproducibility - Finse_2026.csv"),
+  show_col_types = FALSE
+) |>
+  rename(`Is the data available?` = `Is the data available? Can it be located?`) |>
+  mutate(Year = "2026") |>
+  mutate(across(where(is.logical), ~ if_else(is.na(.x), NA_character_, as.character(.x)))) |>
+  mutate(Group = as.character(Group))
+
 # Combine data first
-dat_combined <- bind_rows(dat_2023, dat_2024, dat_2025)
+dat_combined <- bind_rows(dat_2023, dat_2024, dat_2025, dat_2026)
 
 # Combine and process data
 dat_raw <- dat_combined |>
@@ -136,7 +146,7 @@ dat_raw <- dat_combined |>
          code = case_when(code == "na" | code == "n/a" ~ NA_character_,
                           code == "yea" ~ "yes",
                          TRUE ~ code),
-         Year = factor(Year, levels = c("2023", "2024", "2025"))) |>
+         Year = factor(Year, levels = c("2023", "2024", "2025", "2026"))) |>
   # Filter out rows with missing Journal after processing
   filter(!is.na(Journal))
 
@@ -147,8 +157,9 @@ dat <- dat_raw |>
   filter(!availability %in% c("yes, but"))
 
 # Precompute caption to avoid YAML parsing issues with !expr
+n_by_year <- dat_raw |> count(Year, name = "n")
 fig_cap_papers <- glue::glue(
-  "Number of papers reviewed in 2023: n = {nrow(dat_2023)}, 2024: n = {nrow(dat_2024)}, 2025: n = {nrow(dat_2025)}"
+  "Number of papers reviewed in 2023: n = {n_by_year$n[n_by_year$Year == '2023']}, 2024: n = {n_by_year$n[n_by_year$Year == '2024']}, 2025: n = {n_by_year$n[n_by_year$Year == '2025']}, 2026: n = {n_by_year$n[n_by_year$Year == '2026']}"
 )
 
 ```
@@ -175,7 +186,7 @@ dat_raw |>
 
 ## 
 
-### Data and code availability (2023–2025)
+### Data and code availability (2023–2026)
 
 ```{r}
 #| label: fig-two
@@ -198,7 +209,7 @@ dat |>
 
 ## 
 
-### 2023–2025: data and code availability by journal
+### 2023–2026: data and code availability by journal
 
 ```{r}
 #| label: fig-three

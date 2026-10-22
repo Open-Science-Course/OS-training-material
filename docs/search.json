@@ -893,14 +893,14 @@
     "href": "reproducibility/exercise_reproducibility.html#section",
     "title": "How reproducible is ecology?",
     "section": "",
-    "text": "Data and code availability (2023–2025)\n\n\nFigure 2: Data and code availability by year."
+    "text": "Data and code availability (2023–2026)\n\n\nFigure 2: Data and code availability by year."
   },
   {
     "objectID": "reproducibility/exercise_reproducibility.html#section-1",
     "href": "reproducibility/exercise_reproducibility.html#section-1",
     "title": "How reproducible is ecology?",
     "section": "",
-    "text": "2023–2025: data and code availability by journal\n\n\nFigure 3"
+    "text": "2023–2026: data and code availability by journal\n\n\nFigure 3"
   },
   {
     "objectID": "reproducibility/exercise_reproducibility.html#section-2",
@@ -1440,5 +1440,12 @@
     "title": "Introduction to reproducible workflows",
     "section": "Resources",
     "text": "Resources\nCollaborating with quarto\nSORTEE suggestsions"
+  },
+  {
+    "objectID": "reproducibility/exercise_reproducibility.html#reviewed-papers-from-6-journals-20232026",
+    "href": "reproducibility/exercise_reproducibility.html#reviewed-papers-from-6-journals-20232026",
+    "title": "How reproducible is ecology?",
+    "section": "Reviewed papers from 6 journals (2023–2026)",
+    "text": "Reviewed papers from 6 journals (2023–2026)\n\n\nFigure 1: Number of papers reviewed in 2023: n = 44, 2024: n = 54, 2025: n = 59, 2026: n = 64"
   }
 ]
