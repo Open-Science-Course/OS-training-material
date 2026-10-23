@@ -177,13 +177,13 @@ Numerical analyses were carried out using `{r} pkrt("R")` using `{r} pkrt("vegan
 
 ## Solution 2: `renv` for reproducible R environment
 
-- detect which packages you use and their dependencies
+-   detect which packages you use and their dependencies
 
-- keeps a **lockfile** - a list of the version of ALL the packages installed
+-   keeps a **lockfile** - a list of the version of ALL the packages installed
 
-- makes a project library
+-   makes a project library
 
-- will install correct version of packages in the lockfile when you start using a project
+-   will install correct version of packages in the lockfile when you start using a project
 
 ## Demo `renv`
 
@@ -203,9 +203,9 @@ Numerical analyses were carried out using `{r} pkrt("R")` using `{r} pkrt("vegan
 
 ## Pitfalls
 
-- `renv` only valid for the version of R it was built on
-- not all package can be discovered
-  - finds `library(dplyr)`, `tidyr::nest(...)` and dependencies
+-   `renv` only valid for the version of R it was built on
+-   not all package can be discovered
+    -   finds `library(dplyr)`, `tidyr::nest(...)` and dependencies
 
 ```{r}
 #| eval: false
@@ -214,11 +214,11 @@ Numerical analyses were carried out using `{r} pkrt("R")` using `{r} pkrt("vegan
 tar_option_set(packages = c("tidyverse"))
 ```
 
-- solution use `targets::tar_renv()`
+-   solution use `targets::tar_renv()`
 
-- solution use R file with `library()` calls
+-   solution use R file with `library()` calls
 
-- Don't forget to `renv::update()` packages to get bugfixes.
+-   Don't forget to `renv::update()` packages to get bugfixes.
 
 ## `renv` limitations
 
@@ -234,11 +234,11 @@ Virtual machines vs containers
 
 Containers
 
-- docker
+-   docker
 
-- podman
+-   podman
 
-- singularity/apptainer
+-   singularity/apptainer
 
 Use for reproducibility, production, high-performance computers
 
@@ -385,8 +385,8 @@ Nix language downloads packages
 
 R interface with `rix` package
 
-- simplifies creating Nix expressions, which define reproducible environments.
-- lets you work interactively in RStudio
+-   simplifies creating Nix expressions, which define reproducible environments.
+-   lets you work interactively in RStudio
 
 ## Rix example
 
@@ -418,4 +418,4 @@ nix-build
 
 ## Remaining problems
 
-- dependencies on external API (e.g. gbif, leaflet)
+-   dependencies on external API (e.g. gbif, leaflet)

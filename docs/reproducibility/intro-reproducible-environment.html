@@ -11,8 +11,8 @@
   <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Richard J Telford">
-  <meta name="dcterms.date" content="2025-12-08">
-  <title>Will your code work in 2034?</title>
+  <meta name="dcterms.date" content="2026-10-23">
+  <title>Will your code work in 2036?</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -189,13 +189,17 @@
       margin-right: 0; 
     }
   </style>
+  <meta name="mermaid-theme" content="forest">
+  <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Will your code work in 2034?</h1>
+  <h1 class="title">Will your code work in 2036?</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -205,11 +209,18 @@ Richard J Telford
 </div>
 </div>
 
-  <p class="date">2025-12-08</p>
+  <p class="date">23 October 2026</p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<p>Data + code != reproducible</p>
+<div class="fragment">
+<p>Data + code + <span style="color:red">environment</span> = reproducible</p>
+</div>
 </section>
 <section>
 <section id="everything-changes-your-code-changes-not" class="title-slide slide level1 center">
-<h1>Everything Changes, your code changes not</h1>
+<h1>Everything Changes,<br>your code changes not</h1>
 
 </section>
 <section id="r-changes" class="slide level2">
@@ -241,23 +252,23 @@ Richard J Telford
 <h2>Packages Change</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2"></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span>
-<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a></span>
-<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-6" class="code-annotation-target"><a href="#annotated-cell-2-6"></a>  <span class="fu">opts</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2"></a></span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass)) <span class="sc">+</span></span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5"></a>  <span class="fu">opts</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="6" data-code-annotation="1"><code>opts</code>? What are <code>opts</code></span>
+<span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="1"><code>opts</code>? What are <code>opts</code>?</span>
 </dd>
 </dl>
 </div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-error">
-<pre><code>Error in opts(legend.position = "top"): could not find function "opts"</code></pre>
+<pre><code>Error in `opts()`:
+! could not find function "opts"</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -274,9 +285,11 @@ THEME SYSTEM
 <section id="solutions" class="slide level2">
 <h2>Solutions</h2>
 
-<img data-src="intro-reproducible-environment_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
-<section id="solution-0-naming-packages-used" class="slide level2">
-<h2>Solution 0: naming packages used</h2>
+<img data-src="intro-reproducible-environment_files/figure-revealjs/fig-solution-complexity-1.png" id="fig-solution-complexity" width="960" class="r-stretch quarto-figure-center"><p class="caption">
+Figure&nbsp;1
+</p></section>
+<section id="solution-0-name-packages-used" class="slide level2">
+<h2>Solution 0: name packages used</h2>
 <blockquote>
 <p>values were analysed in R (R Core Team, 2017) using the qqman package (Turner, 2014).</p>
 </blockquote>
@@ -289,8 +302,9 @@ THEME SYSTEM
 <div class="cell-output cell-output-stdout">
 <pre><code>To cite R in publications use:
 
-  R Core Team (2025). _R: A Language and Environment for Statistical
+  R Core Team (2026). _R: A Language and Environment for Statistical
   Computing_. R Foundation for Statistical Computing, Vienna, Austria.
+  doi:10.32614/R.manuals &lt;https://doi.org/10.32614/R.manuals&gt;.
   &lt;https://www.R-project.org/&gt;.
 
 A BibTeX entry for LaTeX users is
@@ -300,7 +314,8 @@ A BibTeX entry for LaTeX users is
     author = {{R Core Team}},
     organization = {R Foundation for Statistical Computing},
     address = {Vienna, Austria},
-    year = {2025},
+    year = {2026},
+    doi = {10.32614/R.manuals},
     url = {https://www.R-project.org/},
   }
 
@@ -337,8 +352,8 @@ A BibTeX entry for LaTeX users is
 </div>
 </div>
 </section>
-<section id="solution-1-naming-packages-used" class="slide level2">
-<h2>Solution 1: naming packages used</h2>
+<section id="solution-1-name-version-of-packages" class="slide level2">
+<h2>Solution 1: name &amp; version of packages</h2>
 <blockquote>
 <p>Numerical analyses were carried out using R v. 2.15.3 (R Core Team 2013) using the vegan package v. 2.0-9 (Oksanen et al.&nbsp;2013).</p>
 </blockquote>
@@ -347,16 +362,13 @@ A BibTeX entry for LaTeX users is
 </section>
 <section id="finding-package-versions" class="slide level2">
 <h2>Finding package versions</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a></a>Numerical analyses were carried out using R v. <span class="in">`r getRversion()`</span></span>
-<span id="cb11-2"><a></a>(R Core Team 2013) using the vegan package v.<span class="in">`r packageVersion("vegan")`</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a></a>Numerical analyses were carried out using R v. <span class="in">`{r} getRversion()`</span></span>
+<span id="cb11-2"><a></a>(R Core Team 2013) using the vegan package v.<span class="in">`{r} packageVersion("vegan")`</span></span>
 <span id="cb11-3"><a></a>(Oksanen et al. 2013).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 <p>Using <code>pakret</code> package</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a></a>Numerical analyses were carried out using <span class="in">`r pkrt("R")`</span></span>
-<span id="cb12-2"><a></a>using <span class="in">`r pkrt("vegan")`</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a></a>Numerical analyses were carried out using <span class="in">`{r} pkrt("R")`</span></span>
+<span id="cb12-2"><a></a>using <span class="in">`{r} pkrt("vegan")`</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Numerical analyses were carried out using R version 4.6.1 <span class="citation" data-cites="base">[@base]</span> using the ‘vegan’ package version 2.7.5 <span class="citation" data-cites="vegan">[@vegan]</span>.</p>
 </section>
 <section id="solution-2-renv-for-reproducible-r-environment" class="slide level2">
 <h2>Solution 2: <code>renv</code> for reproducible R environment</h2>
@@ -376,11 +388,11 @@ A BibTeX entry for LaTeX users is
 <li>Install packages with <code>renv::install()</code> (both CRAN and GitHub)</li>
 <li>Run <code>renv::status()</code></li>
 <li>Run <code>renv::snapshot()</code> to save changes or <code>renv::restore()</code> to revert</li>
-<li>Repeat 3–5</li>
+<li>Repeat 3–6</li>
 </ol>
 </section>
 <section id="using-someone-elses-project-with-renv" class="slide level2">
-<h2>Using someone elses project with <code>renv</code></h2>
+<h2>Using someone else’s project with <code>renv</code></h2>
 <ol type="1">
 <li>Clone the repo</li>
 <li>Open in RStudio</li>
@@ -397,42 +409,210 @@ A BibTeX entry for LaTeX users is
 </ul></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">tar_option_set</span>(</span>
-<span id="cb13-2"><a></a>  <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb13-3"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">tar_option_set</span>(<span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li><p>solution use <code>targets::tar_renv()</code></p></li>
 <li><p>solution use R file with <code>library()</code> calls</p></li>
-<li><p>Don’t forget to <code>renv::update()</code> packages to benefit from bugfixes.</p></li>
+<li><p>Don’t forget to <code>renv::update()</code> packages to get bugfixes.</p></li>
 </ul>
+</section>
+<section id="renv-limitations" class="slide level2">
+<h2><code>renv</code> limitations</h2>
+<p><code>renv</code> makes the list of packages available.</p>
+<p>Does nothing for the all the external dependencies.</p>
+<p>You want to reproduce a paper using R 3.6.3 …</p>
 </section>
 <section id="solution-3-containers" class="slide level2">
 <h2>Solution 3: Containers</h2>
-<p><code>renv</code> makes the list of packages available.</p>
-<p>Does nothing for the all the external dependencies.</p>
+<p>Virtual machines vs containers</p>
+<p>Containers</p>
 <ul>
 <li><p>docker</p></li>
-<li><p>Nix</p></li>
+<li><p>podman</p></li>
+<li><p>singularity/apptainer</p></li>
 </ul>
+<p>Use for reproducibility, production, high-performance computers</p>
 </section>
-<section id="solution-3-rocker---docker-for-r" class="slide level2">
-<h2>Solution 3: Rocker - Docker for R</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><a href="https://rocker-project.org/"><img data-src="https://rocker-project.org/img/rocker.png"></a></p>
-<figcaption>Rocker</figcaption>
-</figure>
+<section id="install-podman" class="slide level2">
+<h2>Install podman</h2>
+<p>Download and install podman from https://podman.io/</p>
+<p>Test it is working:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-filename="Terminal"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a></a><span class="ex">podman</span> run quay.io/podman/hello</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="docker-images" class="slide level2">
+<h2>Docker images</h2>
+<p>Docker images are snapshots of a computer system</p>
+<p>Can be downloaded and used</p>
+<p>Images can be stacked</p>
+<p>Images have version control</p>
+</section>
+<section id="rocker---r-images-for-podman" class="slide level2">
+<h2>Rocker - R images for Podman</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<div class="cell" data-reveal="true" data-fig-width="2" data-layout-align="default">
+<div class="cell-output-display">
+<div id="rocker">
+<div>
+<pre class="mermaid mermaid-js" data-label="rocker">---
+config:
+  flowchart:
+    padding: 10
+---
+
+flowchart BT
+  ubuntu([ubuntu---])
+  rver([rocker/r-ver-----])
+  rstudio([rocker/rstudio------])
+  tidyverse([rocker/tidyverse------])
+  verse([rocker/verse-----])
+  geospatial([rocker/geospatial------])
+  geospatial--&gt;verse--&gt;tidyverse--&gt;rstudio--&gt;rver--&gt;ubuntu
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:80%;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-filename="Terminal"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a></a><span class="ex">podman</span> run <span class="at">--rm</span> <span class="at">-ti</span> <span class="at">-e</span> PASSWORD=pass <span class="dt">\</span></span>
+<span id="cb15-2"><a></a>  <span class="at">-p</span> 8787:8787 docker.io/rocker/rstudio:4.5.3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>--rm</code> remove image after use<br>
+<code>-ti</code> interactive<br>
+<code>-e</code> environmental variables<br>
+<code>-p</code> port<br>
+<code>docker.io</code> registry<br>
+<code>rocker/rstudio:4.5.3</code> image &amp; version tag</p>
+<p>Open browser http://localhost:8787<br>
+Usename: root<br>
+Password: pass (or whatever you set)</p>
+</div></div>
+</section>
+<section id="adding-files" class="slide level2">
+<h2>Adding files</h2>
+<p>use <code>-v</code> option to mount files</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-filename="Terminal"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a></a><span class="ex">podman</span> run <span class="at">--rm</span> <span class="at">-ti</span> <span class="at">-v</span> .:/root <span class="at">-e</span> PASSWORD=pass <span class="at">-p</span> 8787:8787 <span class="dt">\</span></span>
+<span id="cb16-2"><a></a>  docker.io/rocker/rstudio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Files edited in container will be updated outside.</p>
+<p>(Also possible to make files read-only)</p>
+</section>
+<section id="adding-dependencies-with-renv" class="slide level2 scrollable">
+<h2>Adding dependencies with <code>renv</code></h2>
+<p>Make new image from a Dockerfile</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Dockerfile</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-filename="Dockerfile"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb17-1"><a></a><span class="co"># set base image</span></span>
+<span id="cb17-2"><a></a><span class="kw">FROM</span> docker.io/rocker/tidyverse:4.5.3 </span>
+<span id="cb17-3"><a></a><span class="co"># install renv into image</span></span>
+<span id="cb17-4"><a></a><span class="kw">RUN</span> <span class="ex">R</span> <span class="at">-e</span> <span class="st">"install.packages('renv', repos = c(CRAN = 'https://cloud.r-project.org'))"</span></span>
+<span id="cb17-5"><a></a><span class="co"># copy renv lock into project &amp; restore</span></span>
+<span id="cb17-6"><a></a><span class="kw">WORKDIR</span> /root</span>
+<span id="cb17-7"><a></a><span class="kw">COPY</span> renv.lock renv.lock</span>
+<span id="cb17-8"><a></a><span class="kw">RUN</span> <span class="ex">R</span> <span class="at">-e</span> <span class="st">"renv::restore()"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Build Dockerfile into image with</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-filename="Terminal"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a></a><span class="ex">podman</span> build <span class="at">-t</span> thesis_image .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Run the image with</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-filename="Terminal"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a></a><span class="ex">podman</span> run <span class="at">-ti</span> <span class="at">-v</span> .:/root <span class="at">-p</span> 8787:8787 thesis_image</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="podman-compose" class="slide level2 scrollable">
+<h2>Podman compose</h2>
+<p>Command line is too complex to want to write every time.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>compose.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-filename="compose.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb20-2"><a></a><span class="at">  </span><span class="fu">rstudio</span><span class="kw">:</span></span>
+<span id="cb20-3"><a></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> </span><span class="st">"docker.io/rocker/rstudio:4.5.3"</span></span>
+<span id="cb20-4"><a></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb20-5"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8787:8787"</span></span>
+<span id="cb20-6"><a></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb20-7"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> bind</span></span>
+<span id="cb20-8"><a></a><span class="at">        </span><span class="fu">source</span><span class="kw">:</span><span class="at"> .</span></span>
+<span id="cb20-9"><a></a><span class="at">        </span><span class="fu">target</span><span class="kw">:</span><span class="at"> /root</span></span>
+<span id="cb20-10"><a></a><span class="at">    </span><span class="fu">working_dir</span><span class="kw">:</span><span class="at"> /root</span></span>
+<span id="cb20-11"><a></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb20-12"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> PASSWORD=yourpassword</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Run with</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-filename="Terminal"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a></a><span class="ex">podman</span> compose compose.yml up</span>
+<span id="cb21-2"><a></a></span>
+<span id="cb21-3"><a></a><span class="co"># close session with</span></span>
+<span id="cb21-4"><a></a><span class="ex">podman</span> compose down</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="podman-desktop" class="slide level2">
+<h2>Podman desktop</h2>
+<p>Use for for starting, stopping and managing images.</p>
 </section>
 <section id="solution-4-nix---package-manager" class="slide level2">
 <h2>Solution 4: Nix - package manager</h2>
+<p>Nix language downloads packages</p>
 <p>R interface with <code>rix</code> package</p>
 <ul>
 <li>simplifies creating Nix expressions, which define reproducible environments.</li>
 <li>lets you work interactively in RStudio</li>
-<li>provides helpers that make it easy to build those environments.</li>
 </ul>
+</section>
+<section id="rix-example" class="slide level2">
+<h2>Rix example</h2>
+<ol type="1">
+<li><p>install Nix</p></li>
+<li><p>Use rix to make Nix expression</p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">library</span>(rix)</span>
+<span id="cb22-2"><a></a></span>
+<span id="cb22-3"><a></a><span class="fu">rix</span>(</span>
+<span id="cb22-4"><a></a>  <span class="at">date =</span> <span class="st">"2025-02-28"</span>, <span class="co"># set a date</span></span>
+<span id="cb22-5"><a></a>  <span class="at">r_pkgs =</span> <span class="fu">c</span>(<span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>), <span class="co"># List all the packages you need</span></span>
+<span id="cb22-6"><a></a>  <span class="at">ide =</span> <span class="st">"rstudio"</span>, <span class="co"># List whatever editor you need</span></span>
+<span id="cb22-7"><a></a>  <span class="at">project_path =</span> <span class="st">"."</span>,</span>
+<span id="cb22-8"><a></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span></span>
+<span id="cb22-9"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>Build nix environment</li>
+</ol>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-filename="Terminal"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a></a><span class="ex">nix-build</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
 <section id="remaining-problems" class="slide level2">
 <h2>Remaining problems</h2>
