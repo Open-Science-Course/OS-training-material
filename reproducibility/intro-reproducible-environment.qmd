@@ -21,8 +21,7 @@ library(tidyverse)
 
 ## 
 
-Data + code !=
-reproducible
+Data + code != reproducible
 
 . . .
 
@@ -35,6 +34,7 @@ Data + code + [environment]{style="color:red"} = reproducible
 ### R \< 3.6.0
 
 ```{r}
+#| label: sample-old-show
 #| echo: true
 #| eval: false
 set.seed(1)
@@ -42,6 +42,7 @@ sample(LETTERS, size = 1)
 ```
 
 ```{r}
+#| label: sample-old-eval
 #| warning: false
 RNGkind(sample.kind = "Rounding")
 set.seed(1)
@@ -52,6 +53,7 @@ sample(LETTERS, size = 1)
 ### R \>= 3.6.0
 
 ```{r}
+#| label: sample-new-show
 #| echo: true
 #| eval: false
 set.seed(1)
@@ -59,6 +61,7 @@ sample(LETTERS, size = 1)
 ```
 
 ```{r}
+#| label: sample-new-eval
 #| output-location: fragment
 RNGkind(sample.kind = "default")
 set.seed(1)
@@ -69,18 +72,18 @@ sample(LETTERS, size = 1)
 ## Packages Change
 
 ```{r}
+#| label: opts-error
 #| error: true
 #| echo: true
 #| output-location: fragment
 library(ggplot2)
-data(penguins, package = "palmerpenguins")
 
-ggplot(penguins, aes(x = species, y = body_mass_g)) +
+ggplot(penguins, aes(x = species, y = body_mass)) +
   geom_bar(position = "dodge") +
   opts(legend.position = "top")               # <1>
 ```
 
-1.  `opts`? What are `opts`
+1.  `opts`? What are `opts`?
 
 ::: fragment
 ### ggplot2 News June 2012
@@ -99,6 +102,7 @@ THEME SYSTEM
 ## Solutions
 
 ```{r}
+#| label: fig-solution-complexity
 n_sol <- 4
 
 d <- tibble(
@@ -169,19 +173,17 @@ options(pakret.render_mode = FALSE)
 library(pakret)
 ```
 
-
-Numerical analyses were carried out using `{r} pkrt("R")`
-using `{r} pkrt("vegan")`.
+Numerical analyses were carried out using `{r} pkrt("R")` using `{r} pkrt("vegan")`.
 
 ## Solution 2: `renv` for reproducible R environment
 
--   detect which packages you use and their dependencies
+- detect which packages you use and their dependencies
 
--   keeps a **lockfile** - a list of the version of ALL the packages installed
+- keeps a **lockfile** - a list of the version of ALL the packages installed
 
--   makes a project library
+- makes a project library
 
--   will install correct version of packages in the lockfile when you start using a project
+- will install correct version of packages in the lockfile when you start using a project
 
 ## Demo `renv`
 
@@ -201,9 +203,9 @@ using `{r} pkrt("vegan")`.
 
 ## Pitfalls
 
--   `renv` only valid for the version of R it was built on
--   not all package can be discovered
-    -   finds `library(dplyr)`, `tidyr::nest(...)` and dependencies
+- `renv` only valid for the version of R it was built on
+- not all package can be discovered
+  - finds `library(dplyr)`, `tidyr::nest(...)` and dependencies
 
 ```{r}
 #| eval: false
@@ -212,11 +214,11 @@ using `{r} pkrt("vegan")`.
 tar_option_set(packages = c("tidyverse"))
 ```
 
--   solution use `targets::tar_renv()`
+- solution use `targets::tar_renv()`
 
--   solution use R file with `library()` calls
+- solution use R file with `library()` calls
 
--   Don't forget to `renv::update()` packages to get bugfixes.
+- Don't forget to `renv::update()` packages to get bugfixes.
 
 ## `renv` limitations
 
@@ -232,11 +234,11 @@ Virtual machines vs containers
 
 Containers
 
--   docker
+- docker
 
--   podman
+- podman
 
--   singularity/apptainer
+- singularity/apptainer
 
 Use for reproducibility, production, high-performance computers
 
@@ -246,8 +248,7 @@ Download and install podman from https://podman.io/
 
 Test it is working:
 
-```{.bash filename="Terminal"}
-#| echo: true
+``` {.bash filename="Terminal"}
 podman run quay.io/podman/hello
 ```
 
@@ -261,7 +262,7 @@ Images can be stacked
 
 Images have version control
 
-## Rocker - R images for Podman 
+## Rocker - R images for Podman
 
 ::::: columns
 ::: {.column width="20%"}
@@ -288,17 +289,17 @@ flowchart BT
 :::
 
 ::: {.column width="80%"}
-
-```{.bash filename="Terminal"}
+``` {.bash filename="Terminal"}
 podman run --rm -ti -e PASSWORD=pass \
   -p 8787:8787 docker.io/rocker/rstudio:4.5.3
 ```
- `--rm` remove image after use\
- `-ti` interactive\
- `-e` environmental variables\
- `-p` port\
- `docker.io` registry\
- `rocker/rstudio:4.5.3` image & version tag
+
+`--rm` remove image after use\
+`-ti` interactive\
+`-e` environmental variables\
+`-p` port\
+`docker.io` registry\
+`rocker/rstudio:4.5.3` image & version tag
 
 Open browser http://localhost:8787\
 Usename: root\
@@ -310,7 +311,7 @@ Password: pass (or whatever you set)
 
 use `-v` option to mount files
 
-```{.bash filename="Terminal"}
+``` {.bash filename="Terminal"}
 podman run --rm -ti -v .:/root -e PASSWORD=pass -p 8787:8787 \
   docker.io/rocker/rstudio
 ```
@@ -323,7 +324,7 @@ Files edited in container will be updated outside.
 
 Make new image from a Dockerfile
 
-```{.dockerfile filename="Dockerfile"}
+``` {.dockerfile filename="Dockerfile"}
 # set base image
 FROM docker.io/rocker/tidyverse:4.5.3 
 # install renv into image
@@ -336,23 +337,21 @@ RUN R -e "renv::restore()"
 
 Build Dockerfile into image with
 
-```{.bash filename="Terminal"}
+``` {.bash filename="Terminal"}
 podman build -t thesis_image .
 ```
 
-Run the image with 
+Run the image with
 
-```{.bash filename="Terminal"}
+``` {.bash filename="Terminal"}
 podman run -ti -v .:/root -p 8787:8787 thesis_image
 ```
-
-
 
 ## Podman compose {.scrollable}
 
 Command line is too complex to want to write every time.
 
-```{.yaml filename="compose.yml"}
+``` {.yaml filename="compose.yml"}
 services:
   rstudio:
     image: "docker.io/rocker/rstudio:4.5.3"
@@ -365,12 +364,11 @@ services:
     working_dir: /root
     environment:
       - PASSWORD=yourpassword
-
 ```
 
 Run with
 
-```{.bash filename="Terminal"}
+``` {.bash filename="Terminal"}
 podman compose compose.yml up
 
 # close session with
@@ -387,15 +385,14 @@ Nix language downloads packages
 
 R interface with `rix` package
 
--   simplifies creating Nix expressions, which define reproducible environments.
--   lets you work interactively in RStudio
-
+- simplifies creating Nix expressions, which define reproducible environments.
+- lets you work interactively in RStudio
 
 ## Rix example
 
-1) install Nix
+1)  install Nix
 
-2) Use rix to make Nix expression
+2)  Use rix to make Nix expression
 
 ```{r}
 #| label: rix
@@ -413,15 +410,12 @@ rix(
 )
 ```
 
+3)  Build nix environment
 
-3) Build nix environment
-
-```{.bash filename="Terminal"}
+``` {.bash filename="Terminal"}
 nix-build
 ```
 
-
-
 ## Remaining problems
 
--   dependencies on external API (e.g. gbif, leaflet)
+- dependencies on external API (e.g. gbif, leaflet)

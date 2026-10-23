@@ -16,8 +16,12 @@ editor: visual
 ## ![](images/data%20lifecycle.png)
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-library(ggplot2)
-theme_set(ggcharts::theme_hermit(grid = "XY"))
+#| label: setup
+library(tidyverse)
+
+# defaults
+theme_set(theme_bw())
+options(pillar.print_max = 5, pillar.print_min = 5) # control printing of tibbles
 
 ```
 
@@ -35,20 +39,71 @@ Managing the "data life-cycle" within and beyond a project.
 
 ***Data wrangling*** changing the format to make it more useful for your analysis
 
-## Some R Functions that help data cleaning
+## Clean your data with code
+
+Why? What could go wrong?
+
+## Avoiding name conflicts
+
+```{r}
+#| label: penguins-tibble
+#| echo: false
+penguins <- as_tibble(penguins)
+```
+
+
+```{r}
+#| label: conflicts
+#| output-location: fragment
+#| message: false
+#| error: true
+library(tidyverse)
+library(MASS)
+
+penguins |> select(species, body_mass)
+```
+
+::: fragment
+### Explictly name packages
+
+```{r}
+penguins |> dplyr::select(species, body_mass)
+```
+:::
+
+## Conflicted
+
+Turns namespace conflicts into errors
+
+```{r}
+#| error: true
+library(conflicted)
+penguins |> select(species, body_mass)
+```
+
+
+::: fragment
+Prefer functions from a particular package. 
+
+```{r}
+conflict_prefer_all("dplyr", quiet = TRUE)
+penguins |> select(species, body_mass)
+```
+:::
+
+
+
+## R functions to help clean data
 
 ### {janitor}
 
 ```{r echo=TRUE}
-library(tidyverse) 
-library(palmerpenguins) 
-library(janitor)  
-palmerpenguins::penguins_raw |>  names() 
+library(janitor)
+penguins_raw |> names()
 ```
 
 ```{r}
-
-janitor::clean_names(palmerpenguins::penguins_raw) |>  names()
+janitor::clean_names(penguins_raw) |> names()
 ```
 
 ## 
@@ -56,47 +111,39 @@ janitor::clean_names(palmerpenguins::penguins_raw) |>  names()
 ### {dplyr}
 
 ```{r}
-clean_penguins<-janitor::clean_names(palmerpenguins::penguins_raw)  
+clean_penguins <- janitor::clean_names(penguins_raw)
 
 dplyr::glimpse(clean_penguins)
 ```
 
-## 
-
-### {skimr}
-
-```{r}
-out<-skimr::skim(palmerpenguins::penguins_raw) 
-
-out
-```
+Also `skimr` package for more detailed summaries 
 
 ## 
 
 ### {dplyr}
 
 ```{r}
-#Deduplication  
-data<-tibble(Day=c("Monday", "Tuesday","Wednesday", "Wednesday"), 
-             Person=c("Becks", "Amy", "Matt", "Matt"))
+# Deduplication
+data <- tibble(
+  Day = c("Monday", "Tuesday", "Wednesday", "Wednesday"),
+  Person = c("Becks", "Amy", "Matt", "Matt")
+)
 data
 data |> dplyr::distinct()
-
 ```
 
-## 
-
-### {naniar}
-
-```{r}
-
-# creating some data with missing values
-missing_penguins<-missMethods::delete_MCAR(clean_penguins, 0.3) 
+## Data cleaning with `dplyr` & co
 
 
-missing_penguins |> 
-naniar::vis_miss()
-```
+`mutate()` with
+
+- `lubridate` package for dates
+- `stringr` package for character vectors
+- `forcats` package for factor vectors
+- `replace_values()`, `replace_when()` for updating vectors
+
+
+# Missing data
 
 ## Missing data
 
@@ -104,26 +151,43 @@ Missing data is normally a problem. Typically as ecologists we sweep missing dat
 
 ![](images/SWEEP-IT-UNDER-THE-CARPET-BANKSY-2.jpg)
 
+## Visualising missing data
+
+### {naniar}
+
+```{r}
+# creating some data with missing values
+missing_penguins <- missMethods::delete_MCAR(clean_penguins, 0.3)
+
+
+missing_penguins |>
+  naniar::vis_miss()
+```
+
 ## 
 
 If you have ever written some code like this:
 
 ```{r, eval=FALSE}
-# na.omit() 
-df <- na.omit(df)  
-# complete.cases() 
-df <- df[complete.cases(df), ]   
-# rowSums() 
-df <- df[rowSums(is.na(df)) == 0, ]   
-# drop_na() 
-df <- df  |>  tidyr::drop_na()
+# na.omit()
+df <- na.omit(df)
+# complete.cases()
+df <- df[complete.cases(df), ]
+# rowSums()
+df <- df[rowSums(is.na(df)) == 0, ]
+# drop_na()
+df <- df |> tidyr::drop_na()
 ```
 
 you are removing missing data (NAs) from your dataset.
 
 ## Why is this a problem?
 
-By throwing away potentially useful data (only including those rows without a NA in them) you reduce the information you are working with, reduce statistical power and introduce selection bias (invalidating any assumption of randomisation).
+By throwing away potentially useful data (only including those rows without a NA in them) you
+
+- reduce the information you are working with
+- reduce statistical power
+- introduce selection bias (invalidating any assumption of randomisation).
 
 ## Different types of missingness
 
@@ -215,79 +279,78 @@ Missing data patterns - MAR
 Missing data patterns - MNAR
 :::
 
-## What effect does missingness have?
+## The effect of missingness
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
-library(tidyverse, quietly = TRUE) 
-library(missMethods, quietly = TRUE) 
-library(palmerpenguins)
+library(missMethods)
 
-#create datasets with levels missingness
+# create datasets with levels missingness
 
-penguins_complete<-penguins |> 
+penguins_complete <- penguins |>
   drop_na()
 
-miss_penguins_MCAR<-
-  missMethods::delete_MCAR(penguins_complete, 
-                                             0.3, "flipper_length_mm") 
-# create a pattern of missingness with censoring 
-#(missing value in flipper_length 
-#if body_mass is below 30% quantile of body_mass)
+miss_penguins_MCAR <- delete_MCAR(
+    penguins_complete,
+    0.3, "flipper_len"
+  )
+# create a pattern of missingness with censoring
+# (missing value in flipper_length if body_mass in below 30% quantile)
 
-miss_penguins_MAR<-
-  missMethods::delete_MAR_censoring(penguins_complete,
-                                                     0.3, "flipper_length_mm", "body_mass_g") 
-# create a pattern of missingness with censoring 
-#(missing value in flipper_length 
-#if flipper_length is below 30% quantile) 
+miss_penguins_MAR <- delete_MAR_censoring(
+    penguins_complete,
+    0.3, "flipper_len", "body_mass"
+  )
+# create a pattern of missingness with censoring
+# (missing value in flipper_length if flipper_length is below 30% quantile)
 
-miss_penguins_MNAR<-
-  missMethods::delete_MNAR_censoring(penguins_complete, 
-                                                       0.3, "flipper_length_mm")
+miss_penguins_MNAR <- delete_MNAR_censoring(
+    penguins_complete,
+    0.3, "flipper_len"
+  )
 
-all_data<-bind_rows("Full"=penguins_complete, 
-                    "MCAR"= miss_penguins_MCAR,
-                    "MAR"= miss_penguins_MAR,
-                    "MNAR"=miss_penguins_MNAR, 
-                    .id="Missingness")
+all_data <- bind_rows(
+  "Full" = penguins_complete,
+  "MCAR" = miss_penguins_MCAR,
+  "MAR" = miss_penguins_MAR,
+  "MNAR" = miss_penguins_MNAR,
+  .id = "Missingness"
+)
 ```
 
 ## 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-#plot the missing data function
+# plot the missing data function
 
-MDplot<-function(df_comp, df_mis, title){ df_comp$missX<-is.na(df_mis$flipper_length_mm) 
-ggplot(data=df_comp,aes(x=flipper_length_mm,y=body_mass_g, colour=missX))+ 
-  geom_point(alpha=0.2)+ geom_smooth(method = "lm")+
-  labs(x="Flipper length (mm)", y="Body mass (g)")+
-  scale_color_discrete(name="Missing data?")+ 
-  ggtitle(title)
-#+ theme_bw() 
+MDplot <- function(df_comp, df_mis, title) {
+  df_comp$missX <- is.na(df_mis$flipper_len)
+  ggplot(data = df_comp, aes(x = flipper_len, y = body_mass, colour = missX)) +
+    geom_point(alpha = 0.2) +
+    geom_smooth(method = "lm") +
+    labs(x = "Flipper length (mm)", y = "Body mass (g)") +
+    scale_color_discrete(name = "Missing data?") +
+    ggtitle(title)
+  #+ theme_bw()
 }
-
-
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-MDplot(penguins_complete, miss_penguins_MCAR, title="MCAR")
-
+MDplot(penguins_complete, miss_penguins_MCAR, title = "MCAR")
 ```
 
 ## 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-MDplot(penguins_complete, miss_penguins_MAR, title="MAR")
-
+MDplot(penguins_complete, miss_penguins_MAR, title = "MAR")
 ```
 
 ## 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-MDplot(penguins_complete, miss_penguins_MNAR, title="MNAR")
+MDplot(penguins_complete, miss_penguins_MNAR, title = "MNAR")
 ```
 
-## What can we do about missing data?
+## What to do about missing data?
 
 With MCAR and MAR we can use multiple imputation techniques
 
@@ -296,28 +359,24 @@ With MCAR and MAR we can use multiple imputation techniques
 ## 
 
 ```{r, message=FALSE, warning=FALSE}
+#| label: mice-setup
 # Load mice
-library(mice, quietly = TRUE)
+library(mice)
 
 # Set seed for reproducibility
 set.seed(123)
 
-# Simulate data: location, year, count
-locations <- rep(1:5, each = 5)  # Assuming 5 locations
-years <- rep(2009:2023, 5)  # Assuming data for 5 years
-count <- round(rpois(25, lambda = 20))  # Simulated count data
-
-# Create a dataframe
-data <- data.frame(Location = locations, Year = years, Count = count)
+# Simulate data: location, year, count 
+data <- data.frame(              # Create a dataframe
+  Location = rep(1:5, each = 5), # Assuming 5 locations, 
+  Year = rep(2009:2023, 5),      # Assuming data for 5 years, 
+  Count = rpois(25, lambda = 20) # Simulated count data
+)  
 
 # Introduce missingness - Missing completely at random (MCAR)
-prop_missing <- 0.2  # Example: 20% missingness
+prop_missing <- 0.2 # Example: 20% missingness
 missing_indices <- sample(1:nrow(data), prop_missing * nrow(data))
 data$Count[missing_indices] <- NA
-
-# Check the structure of the data
-str(data)
-
 ```
 
 ## 
@@ -325,10 +384,10 @@ str(data)
 When we impute the missing data we use 5 replicates and then take the mean of all 5 datasets.
 
 ```{r}
+#| label: mice
+#| output: false
 # Impute missing data using MICE
-imp <- mice(data, m = 5, method = 'pmm', seed = 500)
-
-
+imp <- mice(data, m = 5, method = "pmm", seed = 500)
 ```
 
 ## 
@@ -337,21 +396,19 @@ imp <- mice(data, m = 5, method = 'pmm', seed = 500)
 # Analyse trends and variation in the original and imputed data
 # For illustration purposes, assuming a simple trend analysis
 original_trend <- aggregate(data$Count, by = list(data$Year), FUN = mean, na.rm = TRUE)
-names(original_trend)<-c("Year","Count")
-imputed_trend <- complete(imp, 'long')
+names(original_trend) <- c("Year", "Count")
+imputed_trend <- complete(imp, "long")
 imputed_trend <- aggregate(Count ~ Year, data = imputed_trend, FUN = mean)
 
 # Visualization of trends in original and imputed data
-plot_data<-bind_rows("original"=original_trend, "imputed"=imputed_trend, .id="Trend")
-
+plot_data <- bind_rows("original" = original_trend, "imputed" = imputed_trend, .id = "Trend")
 ```
 
 ```{r, echo=FALSE}
-plot_data |> 
-  ggplot(aes(Year, Count, colour=Trend))+
-  geom_point()+
+plot_data |>
+  ggplot(aes(Year, Count, colour = Trend)) +
+  geom_point() +
   geom_line()
-
 ```
 
 ## sem() instead of lm()
@@ -361,48 +418,60 @@ Using a Structured Equation Model (SEM) we can run a simple linear regression.
 ```{r, echo=TRUE,message=FALSE}
 library(lavaan)
 # we will use the Iris dataset for this example
-complete_model<-lm(Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length, data=iris)
+complete_model <- lm(Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length, data = iris)
 
-iris_MCAR<-missMethods::delete_MCAR(iris, 0.3, "Sepal.Width")
+iris_MCAR <- missMethods::delete_MCAR(iris, 0.3, "Sepal.Width")
 
-miss_model1<-lm(Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length, data=iris_MCAR)
-
+miss_model1 <- lm(Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length, data = iris_MCAR)
 ```
 
 ```{r, echo=FALSE,message=FALSE, warning=FALSE}
 library(stargazer, quietly = TRUE)
-stargazer(complete_model, miss_model1, 
-          star.cutoffs = c(.05, .01, .001), 
-  no.space = T, type = 'text')
+stargazer(complete_model, miss_model1,
+  star.cutoffs = c(.05, .01, .001),
+  no.space = T, type = "text"
+)
 ```
 
 ## 
 
 ```{r, message=FALSE, warning=FALSE}
-miss_model2 <- sem('Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length', data=iris_MCAR, missing="ML")
+miss_model2 <- sem(
+  model = "Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length", 
+  data = iris_MCAR,
+  missing = "ML")
 summary(miss_model2)
-
 ```
 
-Adding the argument 'missing = "ML"' to the sem() function estimates a likelihood function for each row based on the variables that are present so that all the available data are used.
+The argument `missing = "ML"` to the `sem()` function estimates a likelihood function for each row based on the variables that are present.
+
+Let all the available data be used.
 
 ## Data validation
 
 ```{r}
-library(data.validator)  
-report <- data_validation_report()  
+library(data.validator)
+report <- data_validation_report()
 
 between <- function(a, b) {
-  function(x) { a <= x & x <= b }
+  function(x) {
+    a <= x & x <= b
+  }
 }
 
-validate(iris, name = "Verifying flower dataset") |> 
-  validate_if(Sepal.Length > 0, description = "Sepal length is greater than 0") |> 
-  validate_cols(between(0, 4), Sepal.Width, description = "Sepal width is between 0 and 4") |> 
+validate(iris, name = "Verifying flower dataset") |>
+  validate_if(
+    expr = Sepal.Length > 0, 
+    description = "Sepal length is greater than 0"
+  ) |>
+  validate_cols(
+    predicate = between(0, 4), 
+    Sepal.Width, 
+    description = "Sepal width is between 0 and 4"
+  ) |>
   add_results(report)
 
 print(report)
-
 ```
 
 ## 
@@ -413,37 +482,49 @@ print(report)
 
 ## Messy data
 
-Look at the messy data dataset. How would you go about cleaning this dataset?
+How would you go about cleaning this dataset?
 
 ```{r}
-messy_data <- readRDS(here::here("data_handling/data/messy_data.RDS")) 
-
-messy_data |> data.table::data.table() 
+#| label: messy-data
+#| echo: false
+messy_data <- readRDS(here::here("data_handling/data/messy_data.RDS"))
+messy_data |> slice(1:17) |> print()
 ```
+
+# Tidy data
+
+![](images/data-science.png)
+
+## Tidy data principles
+
+![](images/tidy-1.png)
+
 
 ## Data wrangling
 
 ![](images/Longwide.png)
 
+
 ## Transform to long format
 
 ```{r}
-library(tidyverse) 
-# this avoids tidyverse conflicts with the base function filter 
-conflicted::conflict_prefer("filter", "dplyr") 
-# Pivot longer  
+library(tidyverse)
+
 penguins_long <- palmerpenguins::penguins |>
-  pivot_longer(contains("_"),names_to = c("part", "measure" , "unit"),names_sep = "_")  
+  pivot_longer(
+    cols = contains("_"), 
+    names_to = c("part", "measure", "unit"), 
+    names_sep = "_"
+  )
 
-penguins_long 
-
+penguins_long
 ```
 
 ## Transform to wide format
 
 ```{r}
 penguins_long |>
-  pivot_wider(names_from = species, values_from = value) 
+  pivot_wider(names_from = species, values_from = value)
 ```
 
 ## What's going on?
@@ -452,17 +533,24 @@ No identifier for each observation so R puts all the values in a list. To solve 
 
 ```{r}
 penguins_long |>
-  mutate(sample=row_number()) |>
-  pivot_wider(names_from = species,values_from = value) 
+  mutate(sample = row_number()) |>
+  pivot_wider(names_from = species, values_from = value)
 ```
 
-## Tidy data
+## Separate
 
-![](images/data-science.png)
+One cell should contain one thing
 
-## Tidy data principles
+```{r}
+#| label: separate
+df <- tibble(id = 1:3, x = c("m-123", "f-455", "f-123"))
+df
 
-![](images/tidy-1.png)
+# separate into columns by delimiter
+df |> separate_wider_delim(x, delim = "-", names = c("sex", "unit"))
+```
+
+
 
 ## Untidy data
 
@@ -478,41 +566,376 @@ smallGame <- readRDS(here::here("data_handling/data/smallGame.RDS"))
 
 -   Which format do you find easier to use? (there is no "correct" answer to this one!)
 
-## Code style
+# Style
 
-What are attributes of good code?
+## Code is communication
 
-Have a look at the "notReproducible.qmd" file
+-   With your computer
 
-## Tidyverse style guide
+-   With your collaborators
+
+> "Your closest collaborator is you six months ago but you don't reply to email."
+> --- Paul Wilson
+
+-   With reviewers/examiners
+
+Need understandable code
 
 ["Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread."](https://style.tidyverse.org/)
 
-```{r, eval=FALSE}
-# Examples 
-day_one # Good 
-DayOne # Bad 
-# Avoid names of common functions
-T <- FALSE # Bad 
-c <- 10 # Bad 
-mean <- function(x) sum(x) # Bad 
-# Space after a comma 
-x[, 1] # Good 
-x[,1] # Bad 
-# space after () in functions 
-function(x) {}# Good 
-function (x) {} # Bad 
-function(x){} # Bad 
+## Journal code archiving requirements {.scrollable}
+
+### [Nature Journals](https://www.nature.com/nature-portfolio/editorial-policies/reporting-standards)
+
+> A condition of publication in a Nature Portfolio journal is that authors are required to make materials, data, **code**, and associated protocols promptly available to readers without undue qualifications.
+
+### [Canadian Journal of Fisheries and Aquatic Sciences](https://blog.cdnsciencepub.com/open-data-and-code-in-fisheries-and-aquatic-science/)
+
+>  it is a condition for publication of accepted manuscripts at CJFAS that authors make publicly available all data and **code** needed to reproduce those results (including code to reproduce statistical results, simulation results, and figures) via an online data repository.
+
+## Tidy code
+
+<blockquote class="twitter-tweet" data-lang="en" width="550">
+
+<p lang="en" dir="ltr">
+
+The only way to write good code is to write tons of shitty code first.
+Feeling shame about bad code stops you from getting to good code
+
+</p>
+
+--- Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/589068687669243905">17 April 2015</a>
+
+</blockquote>
+
+```{=html}
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 ```
+-   Makes code easier to read
+-   Makes code easier to debug
+
+Make your own style - but be consistent
+
+[Tidyverse style guide](https://style.tidyverse.org/)
+
+## Naming Things
+
+> "There are only two hard things in Computer Science: cache invalidation and naming things."
+
+> --- Phil Karlton
+
+-   Names can contain letters, numbers, "\_" and "."
+-   Names must begin with a letter or "."
+-   Avoid using names of existing functions - confusing
+-   Make names concise yet meaningful
+-   Reserved words include `TRUE`, `for`, `if`
+
+## Which names are valid in R {.smaller}
+
+```{r}
+#| echo: false
+library(classquiz) ## install.packages("pak");pak::pak("richardjtelford/classquiz")
+cq_add_form(
+  form_url = "https://docs.google.com/forms/d/e/1FAIpQLSeLIUnzdTfBUqjr_X0MvF7JBDQgy_mndeZVsjgW4JR3tFRHSw/viewform?usp=header")
+```
+
+---
+
+```{r}
+#| echo: false
+#| output: asis
+
+cq_add_results(
+  sheet_url = "https://docs.google.com/spreadsheets/d/1v3jF5jzbd4bpsmf1x-cZpX1NmL4FAsR0tGIh-a5I_RU/edit?resourcekey=&gid=24040024#gid=24040024", 
+  type = "multiple_choice_grid", 
+  height = 500, 
+  marginLeft = 170,
+  domain = c("Yes", "No"),
+  range = c("green", "orange")
+)
+```
+
+## Names can be too long {background-image="images/Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch_stationbord.jpeg" background-color="black"}
+
+::: aside
+[Rob Koster - CC BY-SA 3.0](https://commons.wikimedia.org/w/index.php?curid=25230696)
+:::
+
+::: notes
+"The church of St. Mary of the pool of the white hazels near to the fierce whirlpool and the church of St. Tysilio of the red cave"
+:::
+
+## Or too short
+
+::: r-fit-text
+Å
+:::
+
+::: notes
+Å is in Lofoten
+
+Common in old FORTRAN code - save memory with short names 
+
+exceptions
+
+-   counter in a for loop
+-   main object in a function
+:::
+
+## Naming convensions
+
+| camelCase 🐫      | UpperCamelCase    | snake_case 🐍       |
+|-------------------|-------------------|---------------------|
+| billLengthMM      | BillLengthMM      | bill_length_mm      |
+| bergenWeather2022 | BergenWeather2022 | bergen_weather_2022 |
+| dryMassG          | DryMassG          | dry_mass_g          |
+| makeWeatherPlot   | MakeWeatherPlot   | make_weather_plot   |
+
+## White-space is free!
+
+Place spaces
+
+-   around infix operators (`|>`, `+`, `-`, `<-`, )
+-   around `=` in function calls
+-   after commas not before
+
+### Good
+
+```{r, eval = FALSE}
+gentoo <- filter(penguins, species == "Gentoo", body_mass_g >= 300)
+```
+
+### Bad
+
+```{r, eval = FALSE}
+gentoo<-filter(penguins,species=="Gentoo",body_mass_g>=300)
+```
+
+## Split long commands over multiple lines
+
+### Bad
+
+```{r, eval = FALSE}
+penguins |> group_by(species) |> summarise(max_mass = max(body_mass_g), mean_bill_length = mean(bill_length_mm), .groups = "drop")
+```
+
+### Good
+
+```{r, eval = FALSE}
+penguins |> 
+  group_by(species) |> 
+  summarise(
+    max_mass = max(body_mass_g),
+    mean_bill_length = mean(bill_length_mm),
+   .groups = "drop"
+  )
+```
+
+::: notes
+Aim for a maximum line length of 80 characters
+:::
+
+## Indentation makes code readable
+
+### Good
+
+```{r, eval = FALSE}
+positive <- function(x) {
+  if (is.null(dim(x))) {
+    x[x > 0]
+  } else{
+    x[, colSums(x) > 0, drop  = FALSE]
+  }
+}
+```
+
+### Bad
+
+```{r, eval = FALSE}
+positive <- function(x){
+if(is.null(dim(x)))
+{x[x >0]} 
+else{
+x[, colSums(x) > 0, drop  = FALSE]
+}}
+```
+
+
+## Comments
+
+Use \# to start comments.
+
+Help you and others to understand what you did
+
+Comments should explain the why, not the what.
+
+```{r}
+#| eval: false
+# Bad
+# remove line 37 of the penguins dataset
+penguins <- penguins[-37, ]
+```
+
+
+Try to make code self-documenting with descriptive object names
+
+## Comments for navigation
+
+Helps you find your way around a script
+
+```{r, eval = FALSE}
+#### Load data ####
+...
+
+#### Plot data ####
+...
+```
+
+## No magic numbers
+
+```{r}
+# Bad
+x <- c(1, 5, 6, 3, 6)
+mean(x)
+x[x > 4.2]
+```
+::: fragment
+```{r}
+# Good
+x <- c(1, 5, 6, 3, 6)
+x_mean <- mean(x)
+x[x > x_mean]
+```
+:::
+
+
+## Don't repeat yourself
+
+Repeated code is hard to maintain
+
+Make repeated code into functions.
+
+```{r, eval = FALSE}
+my_fun <- function(arg1) {arg1 ^ 2}
+my_fun(7)
+```
+
+Single place to maintain
+
+## Split analyses over multiple files
+
+Long scripts become difficult to navigate
+
+Fix by moving parts of the code into different files
+
+For example:
+
+-   data import code to "loadData.R"
+-   functions to "functions.R"
+
+Import with
+
+```{r, eval = FALSE}
+source("1-functions.R")
+source("2-loadData.R")
+```
+
+Number files so they sort alphabetically in order of use.
+
+
+
+## Organising a project
+
+All in one directory - messy
+
+```{r}
+#| echo: false
+d <- file.path(tempdir(), "bad")
+fs::dir_create(d)
+fs::file_create(file.path(d, "thesis.Rproj"))
+fs::file_create(file.path(d, "data1.csv"))
+fs::file_create(file.path(d, "data2.csv"))
+fs::file_create(file.path(d, "introduction.qmd"))
+fs::file_create(file.path(d, "discussion.qmd"))
+
+fs::dir_tree(d)
+```
+
+Directories for each type of file - clean
+
+```{r}
+#| echo: false
+d <- file.path(tempdir(), "good")
+fs::dir_create(d)
+fs::dir_create(file.path(d, "data"))
+fs::dir_create(file.path(d, "chapters"))
+
+fs::file_create(file.path(d, "thesis.Rproj"))
+fs::file_create(file.path(d, "data", "data1.csv"))
+fs::file_create(file.path(d, "data", "data2.csv"))
+fs::file_create(file.path(d, "chapters", "1-introduction.qmd"))
+fs::file_create(file.path(d, "chapters", "2-discussion.qmd"))
+
+fs::dir_tree(d)
+```
+
+## Paths
+
+
+
+```{r}
+#| eval: false
+# absolute path - bad
+read_delim("c://users/richard/documents/biostats/data/data.csv")
+```
+::: fragment
+
+Use RStudio projects
+
+Use relative paths
+
+```{r}
+#| eval: false
+# relative path - better
+read_delim("data/data.csv")
+```
+:::
+
+::: fragment
+
+`here()` finds files relative to the project root
+
+```{r}
+#| eval: false
+# here::here() - best
+library(here)
+read_delim(here("data/data.csv"))
+```
+
+:::
+
+
+
+## Code style
+
+Have a look at the "notReproducible.qmd" file
+
+What is wrong with the code?
+
+
+
+
+
 
 ## Useful packages for style
 
+Some badly formatted code in "bad_style.R"
+
 ```{r}
-#| echo: true
+#| echo: false
 #| message: false
 #| warning: false
 
-library(lintr)
 # Define the code as a character vector
 code <- c(
   "# Spacing ",
@@ -522,27 +945,42 @@ code <- c(
   "base :: get",
   "# Indenting",
   "if (y < 0 && debug)",
-  "  message('Y is negative')",
+  "message('Y is negative')",
   "# Assignment",
   "x = 5"
 )
 
 # Write the code to 'bad_style.R'
 writeLines(code, "bad_style.R")
-
-# Run lintr on the newly created file
-lint("bad_style.R")
-
+paste(code, collapse = "\n") |> cat()
 ```
 
-## 
+## `lintr` for static code analysis
+
+Detects style issues, syntax errors and fragile code 
 
 ```{r}
-library("styler") 
-style_file("bad_style.R")
-readLines("bad_style.R")
+#| label: lintr
+# Run lintr on the newly created file
+library(lintr)
+lint("bad_style.R") # usually run from RStudio Addins
+```
+
+## `styler` to fix your style
+
+```{r}
+#| label: styler
+library("styler")
+style_file("bad_style.R") # usually run from RStudio Addins
+```
 
 
+```{r}
+#| label: styler-result
+#| echo: false
+readLines("bad_style.R") |> 
+  paste(collapse = "\n") |> 
+  cat()
 ```
 
 ## What I think...

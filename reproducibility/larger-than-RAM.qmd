@@ -2,7 +2,7 @@
 title: "R and large data sets"
 author: "Richard J. Telford"
 institute: "University of Bergen"
-editor: visual
+editor: source
 format: revealjs
 execute: 
   echo: true
@@ -18,9 +18,9 @@ options(pillar.print_min = 5)
 
 R loads objects into memory.
 
--   Data must be loaded into RAM, even if only part of it is needed.
--   Data must be stored in RAM, even if it is not used.
--   RAM is limited, data sets can be larger than the available RAM.
+- Data must be loaded into RAM, even if only part of it is needed.
+- Data must be stored in RAM, even if it is not used.
+- RAM is limited, data sets can be larger than the available RAM.
 
 Large objects can cause the system to run out of memory.
 
@@ -28,8 +28,8 @@ Bad things happen if you run out of memory.
 
 ## Buy a better computer
 
--   RAM is expensive
--   Could never afford enough to deal with the largest datasets
+- RAM is expensive
+- Could never afford enough to deal with the largest datasets
 
 ## duckdb
 
@@ -71,17 +71,17 @@ Supports most `dplyr` function.
 
 Will fall-back to `dplyr` if it has to.
 
--   `group_by()` fails - use `.by` argument instead
+- `group_by()` fails - use `.by` argument instead
 
 Supports many functions within `dplyr` verbs - each needs a translation
 
--   `sum()`, `mean()`, `n()`
+- `sum()`, `mean()`, `n()`
 
 ## parquet files
 
 Alternative to csv files
 
-Compressed  - smaller file size
+Compressed - smaller file size
 
 Import with `duckplyr` or `arrow` packages
 
@@ -129,9 +129,9 @@ tibble::tibble(siteID = rep(c(1, 2), 2), speciesID = c("PoaAlp", "PoaAlp", "GeuR
 
 Separate tables
 
--   Primary keys  - unique
+- Primary keys - unique
 
--   Foreign keys
+- Foreign keys
 
 Stand alone database - SQLite, duckDB
 

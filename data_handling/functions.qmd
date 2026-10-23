@@ -13,7 +13,6 @@ execute:
 #| label: setup
 #| echo: false
 library(tidyverse)
-library(palmerpenguins)
 
 ## set theme
 theme_set(theme_bw())
@@ -75,18 +74,17 @@ Guaranteed never to fail.
 ```{r}
 #| eval: false
 library(tidyverse)
-library(palmerpenguins)
 
-penguins |> 
+penguins |> # dataset included in R
   filter(species == "Gentoo") |> 
-  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +
+  ggplot(aes(x = body_mass, y = bill_len)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(x = "Body mass g", y = "Bill length mm", title = "Gentoo")
 
 penguins |> 
   filter(species == "Adelie") |> 
-  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +
+  ggplot(aes(x = body_mass, y = bill_len)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(x = "Body mass g", y = "Bill length mm", title = "Gentoo")
@@ -104,7 +102,7 @@ General -- Specific functions
 #| eval: false
 penguins |> 
   filter(species == "Adelie") |> 
-  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +
+  ggplot(aes(x = body_mass, y = bill_len)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(x = "Body mass g", y = "Bill length mm", title = "Gentoo")
@@ -214,7 +212,7 @@ filter_penguins(penguins, "Gentoo")
 filter_penguins <- function(.data, column, value, new_col) {
   .data |> 
     filter({{column}} == {{value}}) |> 
-    mutate({{new_col}} := mean(body_mass_g)) # := instead of =
+    mutate({{new_col}} := mean(body_mass)) # := instead of =
   
 }
   
@@ -227,7 +225,7 @@ filter_penguins(penguins, island, "Dream", island_mean)
 #| eval: false
 penguins |> 
   filter(species == "Adelie") |> 
-  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +
+  ggplot(aes(x = body_mass, y = bill_len)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(x = "Body mass g", y = "Bill length mm", title = "Gentoo")

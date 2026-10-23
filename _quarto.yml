@@ -11,9 +11,10 @@ project:
     - reproducibility/reproducible_workflows.qmd
     - reproducibility/exercise_reproducibility.qmd
     - reproducibility/intro-reproducible-environment.qmd
+    - reproducibility/larger-than-RAM.qmd
     - systematic_reviews/Systematic_Reviews.qmd
     - systematic_reviews/meta_analysis.qmd
-    
+
 
 
 format:
