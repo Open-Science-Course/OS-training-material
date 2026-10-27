@@ -1,0 +1,303 @@
+/* Star Wars lunch seminar theme — scoped helpers for revealjs */
+
+@import url("https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap");
+
+.reveal {
+  background: #000;
+}
+
+.reveal .slides section {
+  color: #eee;
+  font-family: "News Cycle", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  color: #feda4a;
+  text-transform: none;
+  font-family: "News Cycle", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+.reveal a {
+  color: #4bd5ee;
+}
+
+.reveal .slide-number {
+  color: #feda4a;
+}
+
+/* --- Blue prologue --- */
+.prologue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  color: #4bd5ee;
+  font-size: 1.6em;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.5;
+  max-width: 18em;
+  margin: 0 auto;
+}
+
+/* --- Opening crawl --- */
+.crawl-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  perspective: 350px;
+  perspective-origin: 50% 100%;
+}
+
+.crawl {
+  position: absolute;
+  left: 50%;
+  width: 92vw;
+  max-width: none;
+  margin-left: -46vw;
+  bottom: 0;
+  transform-origin: 50% 100%;
+  color: #feda4a;
+  font-family: "News Cycle", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.35em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
+  text-align: justify;
+  animation: crawl 62s linear forwards;
+  will-change: transform;
+}
+
+.crawl .episode {
+  text-align: center;
+  font-size: 0.95em;
+  margin-bottom: 0.4em;
+  letter-spacing: 0.12em;
+}
+
+.crawl .crawl-title {
+  text-align: center;
+  font-size: 1.55em;
+  margin: 0 0 1.1em 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.crawl p {
+  margin: 0 0 1em 0;
+}
+
+/* Fixed tilt (flatter than original); only vertical motion is animated */
+@keyframes crawl {
+  0% {
+    transform: rotateX(32deg) translateY(60%);
+  }
+  100% {
+    transform: rotateX(32deg) translateY(-160%);
+  }
+}
+
+/* Restart crawl when revisiting the slide (reveal may keep DOM) */
+.reveal .slides section.present .crawl {
+  animation-name: crawl;
+}
+
+/* --- Title / logo feel --- */
+/* Hide empty slide titles used for special layouts */
+.reveal .slides section.no-title > h2:empty,
+.reveal .slides section.no-title > h2:has(+ *),
+.reveal .slides section.no-title > h2 {
+  display: none;
+}
+
+.reveal .slides section.crawl-slide {
+  padding: 0 !important;
+  height: 100%;
+  overflow: hidden;
+  top: 0 !important;
+}
+
+.reveal .slides section.crawl-slide .crawl-stage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.title-hero {
+  text-align: center;
+  margin-top: 12vh;
+}
+
+.title-hero .eyebrow {
+  color: #4bd5ee;
+  font-size: 0.85em;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 0.6em;
+}
+
+.title-hero .hero-title,
+.closing .hero-title {
+  color: #feda4a;
+  font-size: 2.2em;
+  font-weight: 700;
+  margin: 0.2em 0;
+  line-height: 1.2;
+}
+
+.title-hero .subtitle {
+  color: #feda4a;
+  font-size: 1.15em;
+  margin-top: 0.8em;
+}
+
+.title-hero .tagline {
+  color: #ccc;
+  font-size: 0.85em;
+  margin-top: 1.4em;
+}
+
+/* --- Two-column Dark Side / Light Side --- */
+.side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5em;
+  margin-top: 0.5em;
+  font-size: 0.85em;
+}
+
+.side-panel {
+  border-radius: 8px;
+  padding: 1em 1.1em;
+  min-height: 12em;
+}
+
+.side-panel.dark-side {
+  background: rgba(120, 20, 20, 0.35);
+  border: 1px solid #8b1a1a;
+}
+
+.side-panel.light-side {
+  background: rgba(40, 90, 140, 0.35);
+  border: 1px solid #4bd5ee;
+}
+
+.side-panel h3 {
+  margin-top: 0;
+  font-size: 1.15em;
+}
+
+.side-panel.dark-side h3 {
+  color: #ff6b6b;
+}
+
+.side-panel.light-side h3 {
+  color: #4bd5ee;
+}
+
+.side-panel ul {
+  margin: 0.4em 0 0 0;
+}
+
+/* --- Mission cards --- */
+.missions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7em 1.2em;
+  font-size: 0.72em;
+  margin-top: 0.4em;
+}
+
+.mission {
+  background: rgba(254, 212, 74, 0.08);
+  border-left: 4px solid #feda4a;
+  padding: 0.55em 0.8em;
+  border-radius: 0 6px 6px 0;
+}
+
+.mission strong {
+  color: #feda4a;
+  display: block;
+  margin-bottom: 0.15em;
+}
+
+.mission span {
+  color: #ccc;
+  font-size: 0.95em;
+}
+
+/* --- Quote slide --- */
+.force-quote {
+  text-align: center;
+  margin-top: 18vh;
+  font-size: 1.45em;
+  color: #feda4a;
+  line-height: 1.4;
+  max-width: 16em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.force-quote .attr {
+  display: block;
+  margin-top: 1em;
+  font-size: 0.55em;
+  color: #4bd5ee;
+  letter-spacing: 0.08em;
+}
+
+/* --- Stats --- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35em;
+  margin-top: 0.1em;
+  text-align: center;
+  max-width: 72%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stat {
+  background: rgba(254, 212, 74, 0.08);
+  border: 1px solid rgba(254, 212, 74, 0.35);
+  border-radius: 7px;
+  padding: 0.25em 0.25em;
+}
+
+.stat strong {
+  display: block;
+  color: #feda4a;
+  font-size: 1.15em;
+  line-height: 1.1;
+}
+
+.stat span {
+  display: block;
+  color: #ccc;
+  font-size: 0.48em;
+  margin-top: 0.15em;
+  letter-spacing: 0.02em;
+}
+
+/* --- Closing --- */
+.closing {
+  text-align: center;
+  margin-top: 20vh;
+}
+
+.closing h2 {
+  font-size: 1.8em;
+}
+
+.closing p {
+  color: #ccc;
+  font-size: 0.95em;
+}
