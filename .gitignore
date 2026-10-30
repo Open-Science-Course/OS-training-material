@@ -48,3 +48,4 @@ vignettes/*.pdf
 _freeze/
 
 **/*.quarto_ipynb
+.venv-teaser/

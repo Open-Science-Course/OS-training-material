@@ -69,7 +69,7 @@
   letter-spacing: 0.04em;
   line-height: 1.45;
   text-align: justify;
-  animation: crawl 62s linear forwards;
+  animation: crawl 40s linear forwards;
   will-change: transform;
 }
 
@@ -92,19 +92,14 @@
   margin: 0 0 1em 0;
 }
 
-/* Fixed tilt (flatter than original); only vertical motion is animated */
+/* Stop mid-slide so the text stays readable */
 @keyframes crawl {
   0% {
     transform: rotateX(32deg) translateY(60%);
   }
   100% {
-    transform: rotateX(32deg) translateY(-160%);
+    transform: rotateX(32deg) translateY(-25%);
   }
-}
-
-/* Restart crawl when revisiting the slide (reveal may keep DOM) */
-.reveal .slides section.present .crawl {
-  animation-name: crawl;
 }
 
 /* --- Title / logo feel --- */

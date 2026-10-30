@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A New Hope for Reproducibility — Lunch seminar teaser</title>
+  <link href="https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 960px;
+      height: 540px;
+      background: #000;
+      overflow: hidden;
+      font-family: "News Cycle", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .stage {
+      position: relative;
+      width: 960px;
+      height: 540px;
+      background: #000;
+      overflow: hidden;
+      perspective: 380px;
+      perspective-origin: 50% 100%;
+    }
+    .fade {
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 18%;
+      background: linear-gradient(to bottom, #000 5%, transparent);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .crawl {
+      position: absolute;
+      left: 50%;
+      width: 98%;
+      margin-left: -49%;
+      bottom: 0;
+      transform-origin: 50% 100%;
+      color: #feda4a;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+      text-align: justify;
+      animation: crawl 18s linear forwards;
+      will-change: transform;
+    }
+    .crawl .episode {
+      text-align: center;
+      font-size: 0.95em;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.35em;
+    }
+    .crawl .title {
+      text-align: center;
+      font-size: 1.5em;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 0 0 0.85em 0;
+    }
+    .crawl p { margin: 0 0 0.75em 0; }
+    .crawl .name {
+      text-align: center;
+      font-size: 1.5em;
+      margin-top: 0.9em;
+      letter-spacing: 0.05em;
+    }
+    .crawl .tag {
+      text-align: center;
+      font-size: 1.1em;
+      color: #4bd5ee;
+      margin-top: 0.55em;
+    }
+    /* Stop earlier so more text stays readable in-frame */
+    @keyframes crawl {
+      0%   { transform: rotateX(24deg) translateY(50%); }
+      100% { transform: rotateX(24deg) translateY(-20%); }
+    }
+    /* Capture mode: seek via --t (0–1). Match keyframe travel: 50% → -20% = 70% */
+    body.capture .crawl {
+      animation: none;
+      transform: rotateX(24deg) translateY(calc(50% - 70% * var(--t, 0)));
+    }
+  </style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div class="fade"></div>
+    <div class="crawl" id="crawl">
+      <p class="episode">EPISODE OS</p>
+      <p class="title">A New Hope for Reproducibility</p>
+      <p>
+        Join us this Friday for a lunch seminar featuring none other than the last hope against the Galactic Empire of Irreproducible Results; the data tracker, hypothesis attacker, and knowledge stacker;
+      </p>
+      <p>
+        the reproducibility crusader, transparency persuader, and error evader; the Swiss Jedi knight, graph igniter, manuscript writer, and open-science delight;
+      </p>
+      <p>
+        the Force-awakened Friday-lunch-seminar highlight:
+      </p>
+      <p class="name">Aud Helen Halbritter!</p>
+      <p class="tag">May the Force be Open with you.</p>
+    </div>
+  </div>
+  <script>
+  (function () {
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      document.body.classList.add("capture");
+      document.body.style.setProperty("--t", t);
+    }
+  })();
+  </script>
+</body>
+</html>

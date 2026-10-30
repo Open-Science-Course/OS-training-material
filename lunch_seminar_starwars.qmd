@@ -9,6 +9,21 @@ format:
     show-slide-number: all
     transition: fade
     auto-stretch: false
+include-after-body:
+  - text: |
+      <script>
+      // Restart the Star Wars crawl whenever that slide becomes active
+      function restartCrawl(slide) {
+        if (!slide || !slide.classList.contains('crawl-slide')) return;
+        slide.querySelectorAll('.crawl').forEach((el) => {
+          el.style.animation = 'none';
+          void el.offsetWidth; // force reflow
+          el.style.animation = '';
+        });
+      }
+      Reveal.on('ready', (event) => restartCrawl(event.currentSlide));
+      Reveal.on('slidechanged', (event) => restartCrawl(event.currentSlide));
+      </script>
 ---
 
 ##  {background-color="#000" .center .no-title}
@@ -27,7 +42,7 @@ far away…
 <p class="crawl-title">A New Hope for Reproducibility</p>
 
 <p>
-It is a period of scientific crisis. Bad research practice has spread across the galaxy. Closed data, missing code, and opaque workflows cast a long shadow over published results.
+It is a period of reproducibility crisis. Bad research practice has spread across the galaxy. Closed data, missing code, and misty workflows cast a long shadow over published results.
 </p>
 
 <p>
@@ -55,6 +70,14 @@ Open Science — this is the way.
 ![](pics/Data_life_cycle.png){style="max-height: 72vh; max-width: 82%; width: auto; margin: 0;"}
 :::
 
+## The Rebel Alliance
+
+A collaboration across universities and institutes:
+
+::: {style="display: flex; justify-content: center; align-items: center; height: 70vh;"}
+![](pics/collab.png){style="max-height: 68vh; width: auto; margin: 0;"}
+:::
+
 
 ## Rebel base · Planet Hoth {background-image="pics/hoth.jpg" background-opacity="0.5" background-size="cover"}
 
@@ -65,14 +88,6 @@ Open Science course
 <p style="color: #eee; font-size: 1.15em; max-width: 22em; margin: 0.8em auto 0;">
 Jedi training in Open, Reproducible and Transparent Science
 </p>
-:::
-
-## The Rebel Alliance
-
-A collaboration across universities and institutes:
-
-::: {style="display: flex; justify-content: center; align-items: center; height: 70vh;"}
-![](pics/collab.png){style="max-height: 68vh; width: auto; margin: 0;"}
 :::
 
 
@@ -87,6 +102,7 @@ A collaboration across universities and institutes:
 - Data publishing and sharing
 - Reproducible workflows
 - Analysis and reporting
+- Using AI for coding
 :::
 
 ::: {style="display: flex; flex-direction: column; align-items: center; justify-content: center;"}
@@ -107,8 +123,9 @@ A collaboration across universities and institutes:
 - **Excursion** — clear your head (even Jedi need fresh air)
 :::
 
-::: {style="display: flex; justify-content: center;"}
-![](pics/excursion.jpeg){style="max-height: 58vh; width: auto; margin: 0;"}
+::: {style="display: flex; flex-direction: column; align-items: center; gap: 0.4em;"}
+![](pics/data_code_availability_2026.png){style="max-height: 22vh; max-width: 100%; width: auto; margin: 0;"}
+![](pics/excursion.jpeg){style="max-height: 40vh; width: auto; margin: 0;"}
 :::
 
 ::::
@@ -163,11 +180,14 @@ A collaboration across universities and institutes:
 
 ## Sponsors of the Rebellion
 
-::: {style="text-align: center; color: #ccc; margin-bottom: 1em;"}
+:::: {style="display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 1.2em; align-items: center;"}
+
+::: {}
+::: {style="text-align: center; color: #ccc; margin-bottom: 0.8em;"}
 Fuel for the Jedi training
 :::
 
-::: {.missions style="grid-template-columns: 1fr 1fr; font-size: 1em; max-width: 28em; margin: 0 auto;"}
+::: {.missions style="grid-template-columns: 1fr; font-size: 1em; max-width: 14em; margin: 0 auto;"}
 ::: {.mission style="text-align: center; border-left: none; border-top: 4px solid #feda4a; border-radius: 6px;"}
 <strong style="font-size: 1.3em;">GBIF Norway</strong>
 :::
@@ -175,6 +195,13 @@ Fuel for the Jedi training
 <strong style="font-size: 1.3em;">OIKOS</strong>
 :::
 :::
+:::
+
+::: {style="display: flex; justify-content: center;"}
+![](pics/chewie.jpg){style="max-height: 62vh; width: auto; margin: 0;"}
+:::
+
+::::
 
 
 ## Formal UiB course · BIO940
@@ -193,14 +220,14 @@ Credits for Jedi who complete the training
 
 ## SORTEE Commendation Award
 
-:::: {style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1em; align-items: center;"}
+:::: {style="display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 1em; align-items: center;"}
 
-::: {}
+::: {style="font-size: 0.85em;"}
 Living Norway Open Science Training received a **SORTEE Commendation Award** for promoting open, reliable and transparent research in ecology and evolutionary biology.
 :::
 
 ::: {style="display: flex; justify-content: center;"}
-![](pics/award.png){style="max-height: 55vh; width: auto; margin: 0;"}
+![](pics/award.png){style="max-height: 68vh; width: auto; margin: 0;"}
 :::
 
 ::::
