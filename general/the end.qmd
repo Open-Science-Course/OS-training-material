@@ -1,7 +1,7 @@
 ---
 title: "The end"
 title-slide-attributes:
-  data-background-image: pics/finse.jpg
+  data-background-image: ../pics/finse.jpg
   data-background-size: cover
   data-background-opacity: "0.55"
 format: 
@@ -15,18 +15,18 @@ execute:
 
 ## Thank you
 
-![](pics/course_2026.jpg)
+![](../pics/course_2026.jpg)
 
 ## NØF 2027 in Bergen
 
-![](pics/nof2027.png)
+![](../pics/nof2027.png)
 
 
 ## Teching material
 
 All material from the course will be available after the course on [github](https://github.com/Open-Science-Course/OS-training-material) with an overview on the [webpage](https://open-science-course.github.io/course_website/course_content.html).
 
-![](pics/content.png)
+![](../pics/content.png)
 
 
 ## Other things

@@ -2,7 +2,7 @@
 title: "Open, Reproducible and Transparent Science Course 2026"
 author: "Aud H. Halbritter and OS Course Team"
 title-slide-attributes:
-  data-background-image: pics/finse.jpg
+  data-background-image: ../pics/finse.jpg
   data-background-size: cover
   data-background-opacity: "0.55"
 format: 
@@ -17,22 +17,22 @@ execute:
 ## Welcome to OS course 2026 in Finse {style="font-size: 1.35em;"}
 
 ::: {style="position: relative; height: 560px;"}
-![](pics/course_2022.jpg){style="position: absolute; width: 42%; top: 4%; left: 4%; transform: rotate(-7deg); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 2;"}
-![](pics/course_2023.png){style="position: absolute; width: 44%; top: -16%; right: -4%; transform: rotate(5deg); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 3;"}
-![](pics/course_2024.png){style="position: absolute; width: 40%; bottom: -6%; left: 14%; transform: rotate(4deg); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 4;"}
-![](pics/course_2025.jpeg){style="position: absolute; width: 43%; bottom: -2%; right: 8%; transform: rotate(-4deg); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 5;"}
+![](../pics/course_2022.jpg){style="position: absolute; width: 42%; top: 4%; left: 4%; transform: rotate(-7deg); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 2;"}
+![](../pics/course_2023.png){style="position: absolute; width: 44%; top: -16%; right: -4%; transform: rotate(5deg); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 3;"}
+![](../pics/course_2024.png){style="position: absolute; width: 40%; bottom: -6%; left: 14%; transform: rotate(4deg); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 4;"}
+![](../pics/course_2025.jpeg){style="position: absolute; width: 43%; bottom: -2%; right: 8%; transform: rotate(-4deg); box-shadow: 0 8px 20px rgba(0,0,0,0.35); z-index: 5;"}
 :::
 
 ## Collaboration
 
 ::: {style="display: flex; justify-content: center; align-items: center; height: 80vh;"}
-![](pics/collab.png){style="max-height: 78vh; width: auto; margin: 0;"}
+![](../pics/collab.png){style="max-height: 78vh; width: auto; margin: 0;"}
 :::
 
 ## Aim of the OS course
 
 ::: {style="display: flex; justify-content: center; align-items: center; height: 80vh;"}
-![](pics/Data_life_cycle.png){style="max-height: 78vh; width: auto; margin: 0;"}
+![](../pics/Data_life_cycle.png){style="max-height: 78vh; width: auto; margin: 0;"}
 :::
 
 
@@ -92,12 +92,12 @@ execute:
 
 ## Daily schedule
 
-![](pics/schedule.png)
+![](../pics/schedule.png)
 
 
 ## Excursion - Wednesday
 
-![](pics/excursion_finse.png)
+![](../pics/excursion_finse.png)
 
 
 ## Wifi Password
@@ -119,14 +119,14 @@ Password: ...
 ## Group photo
 
 ::: {style="display: flex; justify-content: center; align-items: center; height: 75vh;"}
-![](pics/course_2025.jpeg){style="max-height: 70vh; width: auto; margin: 0;"}
+![](../pics/course_2025.jpeg){style="max-height: 70vh; width: auto; margin: 0;"}
 :::
 
 ## Teching material
 
 All material from the course will be available after the course on [github](https://github.com/Open-Science-Course/OS-training-material) with an overview on the [webpage](https://open-science-course.github.io/course_website/course_content.html).
 
-![](pics/content.png)
+![](../pics/content.png)
 
 
 ## Questions?

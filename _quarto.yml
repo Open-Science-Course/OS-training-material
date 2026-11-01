@@ -2,7 +2,9 @@ project:
   type: website
   output-dir: docs
   render:
-    - course_intro.qmd
+    - general/course_intro.qmd
+    - general/the end.qmd
+    - general/lunch_seminar_starwars.qmd
     - introduction_OS/Gentle_introduction_OS_2024.qmd
     - tools_approaches/Tools_Approaches_OS_2024.qmd
     - data_handling/functions.qmd

@@ -67,7 +67,7 @@ Open Science — this is the way.
 ## Lack in data life cycle Jedi training
 
 ::: {style="display: flex; justify-content: center; align-items: flex-start; height: 75vh; padding-top: 0.2em;"}
-![](pics/Data_life_cycle.png){style="max-height: 72vh; max-width: 82%; width: auto; margin: 0;"}
+![](../pics/Data_life_cycle.png){style="max-height: 72vh; max-width: 82%; width: auto; margin: 0;"}
 :::
 
 ## The Rebel Alliance
@@ -75,11 +75,11 @@ Open Science — this is the way.
 A collaboration across universities and institutes:
 
 ::: {style="display: flex; justify-content: center; align-items: center; height: 70vh;"}
-![](pics/collab.png){style="max-height: 68vh; width: auto; margin: 0;"}
+![](../pics/collab.png){style="max-height: 68vh; width: auto; margin: 0;"}
 :::
 
 
-## Rebel base · Planet Hoth {background-image="pics/hoth.jpg" background-opacity="0.5" background-size="cover"}
+## Rebel base · Planet Hoth {background-image="../pics/hoth.jpg" background-opacity="0.5" background-size="cover"}
 
 ::: {style="text-align: center; margin-top: 8vh;"}
 <p style="color: #feda4a; font-size: 1.15em; margin: 0 auto;">
@@ -107,7 +107,7 @@ Jedi training in Open, Reproducible and Transparent Science
 
 ::: {style="display: flex; flex-direction: column; align-items: center; justify-content: center;"}
 <p style="margin: 0 0 0.4em 0; text-align: center;">Based on <span style="font-size: 1.8em; color: #feda4a; font-weight: 700;">R</span>2D2 code</p>
-![](pics/r2d2.jpg){style="max-height: 48vh; width: auto; margin: 0;"}
+![](../pics/r2d2.jpg){style="max-height: 48vh; width: auto; margin: 0;"}
 :::
 
 ::::
@@ -124,8 +124,8 @@ Jedi training in Open, Reproducible and Transparent Science
 :::
 
 ::: {style="display: flex; flex-direction: column; align-items: center; gap: 0.4em;"}
-![](pics/data_code_availability_2026.png){style="max-height: 22vh; max-width: 100%; width: auto; margin: 0;"}
-![](pics/excursion.jpeg){style="max-height: 40vh; width: auto; margin: 0;"}
+![](../pics/data_code_availability_2026.png){style="max-height: 22vh; max-width: 100%; width: auto; margin: 0;"}
+![](../pics/excursion.jpeg){style="max-height: 40vh; width: auto; margin: 0;"}
 :::
 
 ::::
@@ -138,18 +138,18 @@ Jedi training in Open, Reproducible and Transparent Science
 :::
 
 ::: {style="display: flex; justify-content: center; margin-top: 1em;"}
-![](pics/content.png){style="max-height: 45vh; width: auto;"}
+![](../pics/content.png){style="max-height: 45vh; width: auto;"}
 :::
 
 
 ## Previous episodes {.smaller}
 
 ::: {style="position: relative; height: 540px;"}
-![](pics/course_2022.jpg){style="position: absolute; width: 34%; top: 4%; left: 0%; transform: rotate(-7deg); box-shadow: 0 8px 20px rgba(0,0,0,0.45); z-index: 2;"}
-![](pics/course_2023.png){style="position: absolute; width: 36%; top: -10%; right: 18%; transform: rotate(4deg); box-shadow: 0 8px 20px rgba(0,0,0,0.45); z-index: 3;"}
-![](pics/course_2024.png){style="position: absolute; width: 34%; top: 8%; right: -4%; transform: rotate(7deg); box-shadow: 0 8px 20px rgba(0,0,0,0.45); z-index: 4;"}
-![](pics/course_2025.jpeg){style="position: absolute; width: 35%; bottom: -2%; left: 8%; transform: rotate(3deg); box-shadow: 0 8px 20px rgba(0,0,0,0.45); z-index: 5;"}
-![](pics/course_2026.jpg){style="position: absolute; width: 36%; bottom: 2%; right: 2%; transform: rotate(-5deg); box-shadow: 0 8px 20px rgba(0,0,0,0.45); z-index: 6;"}
+![](../pics/course_2022.jpg){style="position: absolute; width: 34%; top: 4%; left: 0%; transform: rotate(-7deg); box-shadow: 0 8px 20px rgba(0,0,0,0.45); z-index: 2;"}
+![](../pics/course_2023.png){style="position: absolute; width: 36%; top: -10%; right: 18%; transform: rotate(4deg); box-shadow: 0 8px 20px rgba(0,0,0,0.45); z-index: 3;"}
+![](../pics/course_2024.png){style="position: absolute; width: 34%; top: 8%; right: -4%; transform: rotate(7deg); box-shadow: 0 8px 20px rgba(0,0,0,0.45); z-index: 4;"}
+![](../pics/course_2025.jpeg){style="position: absolute; width: 35%; bottom: -2%; left: 8%; transform: rotate(3deg); box-shadow: 0 8px 20px rgba(0,0,0,0.45); z-index: 5;"}
+![](../pics/course_2026.jpg){style="position: absolute; width: 36%; bottom: 2%; right: 2%; transform: rotate(-5deg); box-shadow: 0 8px 20px rgba(0,0,0,0.45); z-index: 6;"}
 :::
 
 
@@ -175,7 +175,7 @@ Jedi training in Open, Reproducible and Transparent Science
 :::
 
 ::: {style="display: flex; justify-content: center; margin-top: 0.45em;"}
-![](pics/map.png){style="max-height: 52vh; width: auto; margin: 0; border-radius: 8px;"}
+![](../pics/map.png){style="max-height: 52vh; width: auto; margin: 0; border-radius: 8px;"}
 :::
 
 ## Sponsors of the Rebellion
@@ -198,7 +198,7 @@ Fuel for the Jedi training
 :::
 
 ::: {style="display: flex; justify-content: center;"}
-![](pics/chewie.jpg){style="max-height: 62vh; width: auto; margin: 0;"}
+![](../pics/chewie.jpg){style="max-height: 62vh; width: auto; margin: 0;"}
 :::
 
 ::::
@@ -213,7 +213,7 @@ Credits for Jedi who complete the training
 :::
 
 ::: {style="display: flex; justify-content: center;"}
-![](pics/bio940.jpeg){style="max-height: 58vh; width: auto; margin: 0;"}
+![](../pics/bio940.jpeg){style="max-height: 58vh; width: auto; margin: 0;"}
 :::
 
 ::::
@@ -227,7 +227,7 @@ Living Norway Open Science Training received a **SORTEE Commendation Award** for
 :::
 
 ::: {style="display: flex; justify-content: center;"}
-![](pics/award.png){style="max-height: 68vh; width: auto; margin: 0;"}
+![](../pics/award.png){style="max-height: 68vh; width: auto; margin: 0;"}
 :::
 
 ::::
