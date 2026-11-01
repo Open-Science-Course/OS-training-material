@@ -1601,5 +1601,215 @@
     "title": "Systematic Reviews and Meta-Analysis in Ecology",
     "section": "Examples of poor conduct",
     "text": "Examples of poor conduct\nlandscape ecology\nA challenge - find the problem(s) with this study"
+  },
+  {
+    "objectID": "general/course_intro.html#welcome-to-os-course-2026-in-finse",
+    "href": "general/course_intro.html#welcome-to-os-course-2026-in-finse",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Welcome to OS course 2026 in Finse",
+    "text": "Welcome to OS course 2026 in Finse"
+  },
+  {
+    "objectID": "general/course_intro.html#collaboration",
+    "href": "general/course_intro.html#collaboration",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Collaboration",
+    "text": "Collaboration"
+  },
+  {
+    "objectID": "general/course_intro.html#aim-of-the-os-course",
+    "href": "general/course_intro.html#aim-of-the-os-course",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Aim of the OS course",
+    "text": "Aim of the OS course"
+  },
+  {
+    "objectID": "general/course_intro.html#schedule",
+    "href": "general/course_intro.html#schedule",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Schedule",
+    "text": "Schedule\n\n\nMonday\n\nIntroduction to OS\nReproducible documents\nIntroductions\n\n\n\nTuesday\n\nUsing version control\nUsing funcitions\nIntro to GBIF, Darwin Core, IPT\nMake an R package\n\n\n\nWednesday\n\nData biases\nExcursion + Group photo\nUsing AI for data publishing\nExercise reproducibility\n\n\n\nThursday\n\nReproducible workflows\nBest practice data analysis\nSystematic reviews and meta-analysis\n\n\n\nFriday\n\nData handling\nFAIR by design\nExercise\n\n\n\nSaturday\n\nCleaning and leaving"
+  },
+  {
+    "objectID": "general/course_intro.html#daily-schedule",
+    "href": "general/course_intro.html#daily-schedule",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Daily schedule",
+    "text": "Daily schedule"
+  },
+  {
+    "objectID": "general/course_intro.html#excursion---wednesday",
+    "href": "general/course_intro.html#excursion---wednesday",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Excursion - Wednesday",
+    "text": "Excursion - Wednesday"
+  },
+  {
+    "objectID": "general/course_intro.html#wifi-password",
+    "href": "general/course_intro.html#wifi-password",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Wifi Password",
+    "text": "Wifi Password\nNetwork: eduoram\nPassword: …"
+  },
+  {
+    "objectID": "general/course_intro.html#housekeeping",
+    "href": "general/course_intro.html#housekeeping",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Housekeeping",
+    "text": "Housekeeping\n\nRoom sharing -&gt; see list\nHelp with meals prep and do dishes -&gt; check duty list\nPacked lunches (prepare at breakfast)\nWe clean the place before leaving (Friday afternoon/evening, Saturday morning)\nSauna"
+  },
+  {
+    "objectID": "general/course_intro.html#group-photo",
+    "href": "general/course_intro.html#group-photo",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Group photo",
+    "text": "Group photo"
+  },
+  {
+    "objectID": "general/course_intro.html#teching-material",
+    "href": "general/course_intro.html#teching-material",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Teching material",
+    "text": "Teching material\nAll material from the course will be available after the course on github with an overview on the webpage."
+  },
+  {
+    "objectID": "general/course_intro.html#questions",
+    "href": "general/course_intro.html#questions",
+    "title": "Open, Reproducible and Transparent Science Course 2026",
+    "section": "Questions?",
+    "text": "Questions?"
+  },
+  {
+    "objectID": "general/the end.html#thank-you",
+    "href": "general/the end.html#thank-you",
+    "title": "The end",
+    "section": "Thank you",
+    "text": "Thank you"
+  },
+  {
+    "objectID": "general/the end.html#nøf-2027-in-bergen",
+    "href": "general/the end.html#nøf-2027-in-bergen",
+    "title": "The end",
+    "section": "NØF 2027 in Bergen",
+    "text": "NØF 2027 in Bergen"
+  },
+  {
+    "objectID": "general/the end.html#teching-material",
+    "href": "general/the end.html#teching-material",
+    "title": "The end",
+    "section": "Teching material",
+    "text": "Teching material\nAll material from the course will be available after the course on github with an overview on the webpage."
+  },
+  {
+    "objectID": "general/the end.html#other-things",
+    "href": "general/the end.html#other-things",
+    "title": "The end",
+    "section": "Other things",
+    "text": "Other things\n\nI will send you a feedback from to fill out\nCredits\nReceipts for course fee\nTell your friends and supervisors about the course"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#section",
+    "href": "general/lunch_seminar_starwars.html#section",
+    "title": "",
+    "section": "",
+    "text": "A long time ago in a galaxy far, far away…"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#section-1",
+    "href": "general/lunch_seminar_starwars.html#section-1",
+    "title": "",
+    "section": "",
+    "text": "EPISODE OS\n\n\nA New Hope for Reproducibility\n\n\nIt is a period of reproducibility crisis. Bad research practice has spread across the galaxy. Closed data, missing code, and misty workflows cast a long shadow over published results.\n\n\nWithout transparency, others cannot verify what was done. Analyses cannot be re-run. Findings drift into the Dark Side of irreproducibility — and fraud and honest error hide in the same fog, hard to discover, hard to challenge, hard to trust.\n\n\nA galaxy that cannot reproduce its own results cannot defend the truth. The Rebellion must rise…"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#section-2",
+    "href": "general/lunch_seminar_starwars.html#section-2",
+    "title": "",
+    "section": "",
+    "text": "Open Science — this is the way. May the Force be Open with you"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#lack-in-data-life-cycle-jedi-training",
+    "href": "general/lunch_seminar_starwars.html#lack-in-data-life-cycle-jedi-training",
+    "title": "",
+    "section": "Lack in data life cycle Jedi training",
+    "text": "Lack in data life cycle Jedi training"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#the-rebel-alliance",
+    "href": "general/lunch_seminar_starwars.html#the-rebel-alliance",
+    "title": "",
+    "section": "The Rebel Alliance",
+    "text": "The Rebel Alliance\nA collaboration across universities and institutes:"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#rebel-base-planet-hoth",
+    "href": "general/lunch_seminar_starwars.html#rebel-base-planet-hoth",
+    "title": "",
+    "section": "Rebel base · Planet Hoth",
+    "text": "Rebel base · Planet Hoth\n\n\nOpen Science course\n\n\nJedi training in Open, Reproducible and Transparent Science"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#hands-on-jedi-training",
+    "href": "general/lunch_seminar_starwars.html#hands-on-jedi-training",
+    "title": "",
+    "section": "Hands-on Jedi training",
+    "text": "Hands-on Jedi training\n\n\n\nIntroduction to Open Science\nTools and approaches\nData handling and management\nData publishing and sharing\nReproducible workflows\nAnalysis and reporting\nUsing AI for coding\n\n\n\n\nBased on R2D2 code"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#hands-on-jedi-training-1",
+    "href": "general/lunch_seminar_starwars.html#hands-on-jedi-training-1",
+    "title": "",
+    "section": "Hands-on Jedi training",
+    "text": "Hands-on Jedi training\n\n\n\nReproducibility exercise — hunt for open data & code\nApply it all exercise — apply what you learned\nExcursion — clear your head (even Jedi need fresh air)"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#the-holocrons-are-freely-available-for-the-rebellion",
+    "href": "general/lunch_seminar_starwars.html#the-holocrons-are-freely-available-for-the-rebellion",
+    "title": "",
+    "section": "The holocrons are freely available for the Rebellion",
+    "text": "The holocrons are freely available for the Rebellion\n\nopen-science-course.github.io/course_content.html"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#previous-episodes",
+    "href": "general/lunch_seminar_starwars.html#previous-episodes",
+    "title": "",
+    "section": "Previous episodes",
+    "text": "Previous episodes"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#the-rebellion-so-far",
+    "href": "general/lunch_seminar_starwars.html#the-rebellion-so-far",
+    "title": "",
+    "section": "The Rebellion so far",
+    "text": "The Rebellion so far\n\n\n96 Rebells\n\n\n21 Starsystem\n\n\n74 PhDadawan\n\n\n22 Others"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#sponsors-of-the-rebellion",
+    "href": "general/lunch_seminar_starwars.html#sponsors-of-the-rebellion",
+    "title": "",
+    "section": "Sponsors of the Rebellion",
+    "text": "Sponsors of the Rebellion\n\n\n\nFuel for the Jedi training\n\n\n\nGBIF Norway\n\n\nOIKOS"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#formal-uib-course-bio940",
+    "href": "general/lunch_seminar_starwars.html#formal-uib-course-bio940",
+    "title": "",
+    "section": "Formal UiB course · BIO940",
+    "text": "Formal UiB course · BIO940\n\n\nCredits for Jedi who complete the training"
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#sortee-commendation-award",
+    "href": "general/lunch_seminar_starwars.html#sortee-commendation-award",
+    "title": "",
+    "section": "SORTEE Commendation Award",
+    "text": "SORTEE Commendation Award\n\n\nLiving Norway Open Science Training received a SORTEE Commendation Award for promoting open, reliable and transparent research in ecology and evolutionary biology."
+  },
+  {
+    "objectID": "general/lunch_seminar_starwars.html#section-3",
+    "href": "general/lunch_seminar_starwars.html#section-3",
+    "title": "",
+    "section": "",
+    "text": "May the Forceof open sciencebe with you\n\n\nThank you"
   }
 ]
